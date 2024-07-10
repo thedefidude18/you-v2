@@ -1,0 +1,22 @@
+.cont {
+  display: flex;
+  gap: 5px;
+}
+.btn {
+  width: 113px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.left_btn {
+  /* padding: 25px 12px 25px 12px; */
+  color: var(--secondary-color);
+  border-radius: 8px 0px 0px 8px;
+  background: linear-gradient(136.86deg, #4459a9 5.64%, #402383 118.93%);
+  /* font-family: Poppins; */
+}
+.right_btn {
+  color: #292d32;
+  border-radius: 0px 8px 8px 0px;
+  background: var(--third-color);
+}

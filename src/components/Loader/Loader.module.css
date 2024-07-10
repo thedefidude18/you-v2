@@ -1,0 +1,26 @@
+.form_Cont {
+  width: 547px;
+  height: 400px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  width: 82px;
+  height: 82px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

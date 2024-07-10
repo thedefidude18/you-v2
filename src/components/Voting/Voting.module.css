@@ -1,0 +1,17 @@
+.voting_Card {
+  margin-top: 15px;
+  width: 256px;
+  height: 239px;
+  border-radius: 8px;
+  background-color: var(--third-color);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.voting_Card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--primart-color);
+}

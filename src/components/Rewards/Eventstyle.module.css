@@ -1,0 +1,119 @@
+.Title_Cont {
+  display: flex;
+  align-items: center;
+}
+.Title_cont h3 {
+  /* font-family: Poppins; */
+  font-size: 16px;
+  font-weight: 600;
+  color: #525252;
+}
+.Card_Wrapper {
+  width: 614px;
+  margin: auto;
+}
+.Card_View {
+  position: relative;
+  width: 614px;
+  height: 230px;
+  border-radius: 8px;
+  background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
+    linear-gradient(0deg, rgba(42, 53, 84, 0.54), rgba(42, 53, 84, 0.54));
+  color: var(--third-color);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.description {
+  width: 241px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.86px;
+  color: #f0f0f0;
+}
+.description span {
+  font-size: 16px;
+  font-weight: 800;
+}
+.jewellery {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+.lastRow_View {
+  display: flex;
+  font-size: 62.4px;
+  font-weight: 700;
+  align-items: center;
+  gap: 15px;
+}
+.price {
+  font-size: 39px;
+  margin-bottom: -15px;
+}
+.midRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.midRow h4 {
+  /* font-family: Poppins; */
+  font-size: 19px;
+  font-weight: 600;
+  color: #525252;
+}
+.aftermidRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 4px;
+  margin-bottom: 60px;
+}
+.aftermidRow p {
+  width: 286px;
+  /* font-family: Poppins; */
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #525252;
+}
+.aftermidRow p span {
+  font-weight: 800;
+}
+.lastRow {
+  display: flex;
+  justify-content: space-between;
+}
+.lastRow div {
+  display: flex;
+  
+}
+.lastRow p {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* font-family: Poppins; */
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #525252;
+}
+.lastRow p span {
+  font-weight: 700;
+}
+.lastRow input {
+  width: 213px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: var(--third-color);
+  padding: 12px;
+  color: #949aaf;
+  font-size: 14px;
+}
+
+.lastRow input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  color: #949aaf;
+}

@@ -1,0 +1,64 @@
+.steps_container {
+  width: 569px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto 30px;
+}
+.step_cont {
+  display: flex;
+  gap: 4px;
+}
+.step_Num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e1e1e6;
+  color: #8d8d99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.step_Name {
+  /* font-family: Poppins; */
+  font-size: 12px;
+  font-weight: 600;
+}
+.par__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.done {
+  /* animation: moveBackground 2s linear infinite !important; */
+  background: linear-gradient(136.86deg, #4459a9 5.64%, #402383 118.93%);
+  color: var(--secondary-color);
+}
+.line {
+  height: 6px;
+  width: 93px;
+  border-radius: 3px;
+  background-color: #eff0f6;
+  margin-inline-end: 12px;
+  border-radius: 20px;
+  overflow: hidden;
+  /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
+}
+.cover {
+  background: linear-gradient(136.86deg, #4459a9 5.64%, #402383 118.93%);
+  height: 100%;
+  width: 100%;
+  animation-name: animation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+@keyframes animation {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}

@@ -1,0 +1,22 @@
+.banner__cont {
+  background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  height: 170px;
+  border-radius: 8px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  display: flex;
+  padding: 0 60px;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner__cont h1 {
+  width: 362px;
+
+  color: var(--secondary-color);
+  font-size: 40px;
+  font-weight: 700;
+}
+.banner__cont img {
+  margin-top: -20px;
+}

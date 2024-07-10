@@ -1,0 +1,16 @@
+.withdraw_Card {
+  width: 256px;
+  height: 280px;
+  border-radius: 8px;
+  background-color: var(--third-color);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.withdraw_Card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--primart-color);
+}

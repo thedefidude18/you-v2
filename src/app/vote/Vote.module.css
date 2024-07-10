@@ -1,0 +1,12 @@
+.divide__Cont {
+  display: grid;
+  grid-template-columns: 571px 256px;
+  column-gap: 60px;
+  width: fit-content;
+  margin: 15px auto;
+}
+.cards__cont {
+  height: 583px;
+  width: 571px;
+  overflow-y: scroll;
+}

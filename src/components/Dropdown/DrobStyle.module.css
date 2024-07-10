@@ -1,0 +1,27 @@
+.filter__btn__cont {
+  position: relative;
+  z-index: 99;
+}
+.filter__btn__cont button {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: var(--secondary-color);
+}
+.dropdown {
+  background-color: var(--secondary-color);
+  border-radius: 6px;
+
+  text-align: center;
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+.dropdown ul li p {
+  cursor: pointer;
+}
+.active {
+  display: block;
+}

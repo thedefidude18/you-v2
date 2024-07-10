@@ -1,0 +1,122 @@
+.project_Card_cont {
+  /* width: 343px;
+  height: 420px; */
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 11px 0px #7e7ce93d;
+  padding: 9px;
+  background-color: var(--third-color);
+  border-radius: 8px;
+}
+.project_Card_cont .image__cont {
+  position: relative;
+}
+.project_Card_cont .image__cont .view {
+  width: 100%;
+  height: 170px;
+  border-radius: 8px;
+}
+.project_Card_cont .image__cont .tools {
+  right: 10px;
+  top: 12px;
+  position: absolute;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.project_Card_cont .first__Row {
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 94.465%;
+}
+.project_Card_cont .first__Row h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  width: fit-content;
+}
+.project_Card_cont .first__Row .brands__cont {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.5;
+  color: var(--primary-color);
+  width: 94.8%;
+  margin: auto;
+}
+.prices {
+  /* display: flex;
+  justify-content: space-between;
+  text-align: center; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  margin: 10px auto;
+  padding: 16px 0;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  width: 94.465%;
+}
+.prices > div {
+  display: flex;
+
+  flex-direction: column;
+}
+.point {
+  margin-inline-start: 5px;
+  display: flex;
+}
+.small_Caption {
+  font-size: 10px;
+  font-weight: 500;
+  color: #292d32;
+  opacity: 0.5;
+  margin-top: 6px;
+}
+.middle {
+  border-left: 1px solid #292d32;
+  border-right: 1px solid #292d32;
+}
+.price_Num_cont {
+  font-size: 20px;
+  font-weight: 500;
+  color: #292d32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.last__Row {
+  width: 94.465%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.last__Row .left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.last__Row .left p {
+  /* font-family: Poppins; */
+  font-size: 10px;
+  font-weight: 400;
+}
+.last__Row .left button {
+  height: 40px !important;
+}
+.last__Row input {
+  width: 213px;
+  padding: 12px;
+  border-radius: 4px;
+}
+.last__Row input::placeholder,
+.last__Row input {
+  color: #949aaf;
+  font-size: 14px;
+  font-weight: 400;
+}

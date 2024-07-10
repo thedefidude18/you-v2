@@ -1,0 +1,40 @@
+.wdraw_oper_cont {
+  display: flex;
+  width: 142px;
+}
+.wdraw_oper_cont img {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline-start: 4px;
+}
+.content h4 {
+  font-size: 12px;
+  font-weight: 700;
+}
+.content p,
+.content span {
+  font-weight: 500;
+  color: var(--primary-color);
+  opacity: 0.5;
+}
+.content p {
+  font-size: 9px;
+}
+.content span {
+  font-size: 11px;
+}
+.first_Row {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+.price {
+  font-weight: 700 !important;
+  color: var(--fourth-color) !important;
+  opacity: 1 !important;
+}

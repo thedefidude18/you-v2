@@ -1,0 +1,111 @@
+.card__cont {
+  height: 271px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  justify-content: space-between;
+  background: var(--third-color);
+  box-shadow: 0px 4px 11px 0px #7e7ce93d;
+  margin: 8px 4px 18px 8px;
+}
+.row__one {
+  display: flex;
+  justify-content: space-between;
+}
+.ava__cont {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.row__one img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+.row__one h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+.row__one .right__cont p {
+  font-size: 10px;
+  font-weight: 500;
+  color: #292d32;
+  margin-bottom: 2px;
+}
+.row__one .right__cont a {
+  padding: 8px;
+  color: var(--secondary-color);
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.row__one .right__cont a span:first-of-type {
+  margin-inline-end: 4px;
+  color: var(--secondary-color);
+}
+.row__one .right__cont a span {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--fourth-color);
+  margin-inline-start: 3px;
+}
+.row__two h4,
+.row__two p {
+  opacity: 0.5;
+  color: var(--primary-color);
+
+  font-size: 16px;
+}
+.row__two h4 {
+  font-weight: 700;
+}
+.row__two p {
+  font-weight: 400;
+}
+.row__three {
+  display: flex;
+  gap: 23px;
+}
+.bar__Cont {
+}
+.bar__Cont .divide {
+  display: grid;
+  grid-template-columns: 50px 410px 26px;
+  column-gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.barShadow {
+  width: 409px;
+  height: 6px;
+  background-color: #d9d9d9;
+  border-radius: 4px;
+  position: relative;
+}
+.bar__Cont .barShadow::after {
+  content: "";
+  position: absolute;
+  width: 93%;
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--fourth-color);
+}
+.bar__Cont h6 {
+  opacity: 50%;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 12px;
+}
+.last_Row {
+  display: flex;
+  gap: 16px;
+}
+.statistics {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

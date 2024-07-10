@@ -1,0 +1,50 @@
+.main_Title {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.main_Title h2 {
+  width: fit-content;
+}
+.process_cont {
+  display: flex;
+  align-items: center;
+  width: 160px;
+  justify-content: space-between;
+}
+.process_cont button {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #ebe9e9;
+}
+.process_cont button img {
+  width: 16px;
+  height: 16px;
+}
+.filter__btn__cont {
+  position: relative;
+  z-index: 99;
+}
+.dropdown {
+  background-color: #ebe9e9;
+  border-radius: 4px;
+  text-align: center;
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+.dropdown ul li p {
+  cursor: pointer;
+}
+.divide {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 343px);
+
+  gap: 17px;
+}
+.active {
+  display: block;
+}

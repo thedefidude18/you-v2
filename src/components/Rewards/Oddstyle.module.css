@@ -1,0 +1,14 @@
+.view_cont {
+  height: 230px;
+  display: grid;
+  grid-template-columns: repeat(3, 344px);
+  margin-top: 15px;
+  gap: 15px;
+}
+.last_Cont {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 15px;
+  width: 985px;
+}
