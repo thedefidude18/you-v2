@@ -2,10 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Project.module.css";
 // import Button from "../Button/Button";
-import Link from "next/link";
 import Button from "../Button/Button";
-import DropDown from "../Dropdown/DropDown";
-import SocialIcon from "../Socialicon/SocialIcon";
 import { getEllipsisTxt } from "@/utils";
 import { useAccount } from "wagmi";
 function ProjeectCard({ project }) {
@@ -14,7 +11,7 @@ function ProjeectCard({ project }) {
   const [hasCart, setHasCart] = useState(false)
 
   useEffect(() => {
-    if (chain?.id == project.chainId) {
+    if (chain?.id ==project && project?.chainId) {
       console.log(project.chainId)
       console.log(chain?.id)
       setHasCart(true);

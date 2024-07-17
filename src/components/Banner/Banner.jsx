@@ -10,7 +10,7 @@ function Banner({ text, image, heightImage, widthImage }) {
     };
   return (
     <div className={styled.banner__cont}>
-      <h1>{text}</h1>
+        <h1 style={{ whiteSpace: "nowrap" }} dangerouslySetInnerHTML={{ __html: text }} />
       <img src={image} alt="bannerImage" style={style} />
     </div>
   );

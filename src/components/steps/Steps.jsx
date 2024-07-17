@@ -1,12 +1,8 @@
 import React from "react";
 import styles from "./Stepsstyle.module.css";
-function Steps({ step }) {
+function Steps({ step ,steps}) {
   console.log(step); ////[object Object]1
-  const steps = [
-    { name: "Build Details", completed: true },
-    { name: "Target & Data", completed: false },
-    { name: "Social Links", completed: false },
-  ];
+ 
   return (
     <div className={styles.steps_container}>
       {steps.map((item, index) => (

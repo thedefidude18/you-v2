@@ -18,7 +18,7 @@ function page() {
       />
       <div className={styles.page_cont}>
         <ProjeectCard
-          image={selectedProject.image}
+          image={selectedProject?.image}
           height="589px"
           imageHight="221px"
         />

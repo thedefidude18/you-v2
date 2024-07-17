@@ -15,9 +15,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [stateStep, setStateStep] = useState(0);
+  const [isContributer,setIsContributer] = useState(true)
   return (
     <html lang="en">
-      <sharedState.Provider value={{ stateStep, setStateStep }}>
+      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">
             <Aside />

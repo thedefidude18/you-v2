@@ -63,3 +63,49 @@
   font-weight: 600;
   cursor: pointer;
 }
+.des_box{
+  padding:14px 16px;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #2f2f2f;
+  margin-top: 20px;
+  opacity: 0.5;
+  
+}
+.radio_input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom_radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #424198;
+  
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.custom_radio::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #424198;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.radio_input:checked + .custom_radio::after {
+  opacity: 1;
+}
+

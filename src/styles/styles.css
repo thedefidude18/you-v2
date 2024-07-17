@@ -1,0 +1,100 @@
+.summary-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  
+  .summary-card {
+    background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+    color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;  
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle; 
+  }
+  
+  .table th {
+    background-color: #f0f0f0;
+  }
+  
+  .vote-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .vote-btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  .vote-btn {
+    background-color: #000; 
+    color: #fff;
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+  .vote-btn.disabled {
+    background-color: #ccc; 
+    cursor: not-allowed; 
+  }
+  
+  /* Container for the round info */
+  .round-info {
+    display: flex;
+    align-items: center; 
+  }
+  
+  /* Style for the round icon */
+  .round-icon {
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+   
+  }
+  
+  /* Style for the round text */
+  .round-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 2px; 
+    display: inline-block; 
+    border-bottom: 3px solid black; 
+  }
+  
+  /* Style for the round time text */
+  .round-time {
+    color: grey; 
+    font-size: 14px; 
+  }
+  
+  /* Container for the transaction link */
+  .transaction-link {
+    display: flex;
+    align-items: center; 
+  }
+  
+  

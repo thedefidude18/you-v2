@@ -3,19 +3,16 @@ import Banner from "@/components/Banner/Banner";
 import FormFirstStep from "@/components/qrForms/FormFirstStep";
 import Steps from "@/components/steps/Steps";
 import React, { useContext, useEffect, useState } from "react";
-import { sharedState } from "../layout";
 import FormSecondStep from "@/components/qrForms/FormSecondStep";
 import FormThirdStep from "@/components/qrForms/FormThirdStep";
 import Loader from "@/components/Loader/Loader";
 import SuccessCard from "@/components/SuccessCard/SuccessCard";
+import { useRouter } from "next/navigation";
 
 function page() {
   const styleBtn = {
     width: "164px",
     height: "40px",
-    // position: "absolute",
-    // top: "823px",
-    // left: "1170px",
     padding: "8px 18px",
     gap: "8px",
     borderRadius: "4px",
@@ -24,7 +21,7 @@ function page() {
     fontSize: "16px",
     fontWeight: "600",
   };
- 
+  const router = useRouter()
   const [stateStep,setStateStep] = useState(0)
   useEffect(() => {
     if (stateStep === 3) {
@@ -36,8 +33,12 @@ function page() {
   const handleNext = () => {
     setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 4));
   };
+  
   const handleBack = () => {
-    setStateStep((prevStep) => (  prevStep -1  ));
+    if(stateStep ===0){
+router.push("/projects");
+    }
+    setStateStep((prevStep) => (prevStep >0 &&  prevStep -1  ));
   };
  
   const steps = [
@@ -49,7 +50,7 @@ function page() {
   return (
     <div>
 <Banner
-        text="Submit your <br/> project."
+        text="Edit your project."
         image="/svgs/proj/BannerProduct.svg"
         widthImage="206"
         heightImage="206"
@@ -60,10 +61,10 @@ function page() {
       {stateStep === 2 && <FormThirdStep />}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
-      <div style={{display:"flex",justifyContent:`${stateStep >0 ?" space-between":"flex-end"}`,alignItems:"center",marginTop:"40px"}}>
-    {stateStep !=0 && <button style={styleBtn} onClick={handleBack}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"40px"}}>
+    <button style={styleBtn} onClick={handleBack}>
        Back
-      </button>}
+      </button>
       <button style={styleBtn} onClick={handleNext}>
         {stateStep === 2 ? "Submit" : "Next"}
       </button>

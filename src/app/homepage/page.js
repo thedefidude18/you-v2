@@ -38,6 +38,15 @@ export default function HomePage() {
     console.log(stateRecived);
     setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 3));
   };
+   const handleBack = () => {
+    console.log(stateRecived);
+    setStateStep((prevStep) => (prevStep >= 1 ? prevStep - 1 : 0));
+  };
+  const steps = [
+    { name: "Build Details", completed: true },
+    { name: "Target & Data", completed: false },
+    { name: "Social Links", completed: false },
+  ];
   return (
     <div>
       <Banner
@@ -46,15 +55,21 @@ export default function HomePage() {
         widthImage="206"
         heightImage="206"
       />
-      <Steps step={stateStep} />
+      <Steps step={stateStep} steps={steps}/>
       {stateStep === 0 && <FormFirstStep />}
       {stateStep === 1 && <FormSecondStep />}
       {stateStep === 2 && <FormThirdStep />}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
+      
+      {/* <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}> */}
+     {stateStep !=0 && <button style={styleBtn} onClick={handleBack}>
+       Back
+      </button>}
       <button style={styleBtn} onClick={handleNext}>
         {stateStep === 2 ? "Submit" : "Next"}
       </button>
+      {/* </div> */}
     </div>
   );
 }

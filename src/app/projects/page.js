@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./Projects.module.css";
 import Link from "next/link";
 import ProjeectCard from "@/components/projectCard/ProjeectCard";
-import ProjectsData from "./ProjectsData";
 import { getProjects } from "@/utils";
+import ProjectCard from "@/components/projectCard/ProjectCard";
 function page() {
   const [projects, setProjects] = useState([]);
   const [active, setActive] = useState(false);
@@ -21,9 +21,10 @@ function page() {
   return (
     <div>
       <Banner
-        text="Check Out Your favorite projects "
+        text="My Project "
         image="/svgs/proj/BannerSvg.svg"
       />
+     
       <div className={styles.main_Title}>
         <h2>Trending Buidls</h2>
         <div className={styles.process_cont}>
@@ -84,6 +85,7 @@ function page() {
           </button>
         </div>
       </div>
+      <ProjectCard/>
       <div className={styles.divide}>
         {projects.map((item, index) => (
           <ProjeectCard
