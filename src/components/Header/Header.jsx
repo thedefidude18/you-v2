@@ -24,7 +24,7 @@ function Header() {
         <div className={stateStep > 0 ? styles.cart : ""}>
           <img src="/svgs/Cart.svg" alt="Cart" />
         </div>
-        {stateStep === 0 ? (
+        {/* {stateStep === 0 ? (
           <>
             <div className="Notification">
               <img src="/svgs/Notifications.svg" alt="notifications" />
@@ -34,15 +34,17 @@ function Header() {
               <img src="/svgs/Arrow.svg" alt="arrow" />
             </div>
           </>
-        ) : (
-          <p className={styles.buttonGroup}>
+        ) 
+        : 
+        ( */}
+          <div className={styles.buttonGroup}>
             <p className={styles.leftBtn}>
               <img src="./svgs/qf/Star.svg" alt="star" />
               Star
             </p>
             <p className={styles.rightBtn}>1000</p>
-          </p>
-        )}
+          </div>
+        {/* )} */}
         <div className="wallet">
           <ConnectButton />
         </div>

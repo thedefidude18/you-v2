@@ -25,7 +25,8 @@ function HomePage() {
     fontWeight: "600",
   };
  
-  const [stateStep,setStateStep] = useState(0)
+   const stateRecived = useContext(sharedState);
+ const { stateStep,setStateStep } = stateRecived;
   useEffect(() => {
     if (stateStep === 3) {
       setTimeout(() => {
