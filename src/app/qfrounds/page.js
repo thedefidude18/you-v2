@@ -48,7 +48,7 @@ function page() {
  
   return (
     <div>
-<Banner
+{/* <Banner
         text="Submit your <br/> project."
         image="/svgs/proj/BannerProduct.svg"
         widthImage="206"
@@ -67,7 +67,7 @@ function page() {
       <button style={styleBtn} onClick={handleNext}>
         {stateStep === 2 ? "Submit" : "Next"}
       </button>
-      </div>
+      </div> */}
       
     </div>
   );

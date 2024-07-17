@@ -96,11 +96,11 @@ function Aside() {
               </li>
             );
           })}
-          {(show1 || show2) && (
+          {/* {(show1 || show2) && ( */}
             <li>
               <DoubleButton />
             </li>
-          )}
+          {/* )} */}
         </ul>
       </div>
       <div>

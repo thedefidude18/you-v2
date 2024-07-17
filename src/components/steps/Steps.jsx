@@ -18,7 +18,7 @@ function Steps({ step ,steps}) {
             {item.completed ? (
               <img src="/svgs/qf/Right.svg" alt="completed" />
             ) : (
-              <p>{index + 1}</p>
+              <p >{index + 1}</p>
             )}
           </div>
           <div className={styles.par__bar}>
