@@ -40,7 +40,6 @@
   letter-spacing: 0.03em;
 }
 .drag_Cont {
-  height: 156px;
   background-color: var(--secondary-color);
   border-radius: 4px;
   display: flex;
@@ -107,5 +106,9 @@
 
 .radio_input:checked + .custom_radio::after {
   opacity: 1;
+}
+
+.cover_img {
+  width: 300px;
 }
 

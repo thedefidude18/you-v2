@@ -24,9 +24,21 @@ function HomePage() {
     fontSize: "16px",
     fontWeight: "600",
   };
- 
-   const stateRecived = useContext(sharedState);
- const { stateStep,setStateStep } = stateRecived;
+
+  const stateRecived = useContext(sharedState);
+  const { stateStep, setStateStep } = stateRecived;
+  const [formData, setFormData] = useState(
+    {
+      title: "",
+      description: "",
+      websiteURL: "",
+      socialURL: "",
+      githubURL: "",
+      coverURL: "",
+      filterTags: ""
+    }
+  );
+
   useEffect(() => {
     if (stateStep === 3) {
       setTimeout(() => {
@@ -38,38 +50,39 @@ function HomePage() {
     setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 4));
   };
   const handleBack = () => {
-    setStateStep((prevStep) => (  prevStep -1  ));
+    setStateStep((prevStep) => (prevStep - 1));
   };
- 
+
+
   const steps = [
     { name: "Build Details", completed: true },
     { name: "Grant Mode", completed: false },
     { name: "Social Links", completed: false },
   ];
- 
+
   return (
     <div>
-<Banner
+      <Banner
         text="Submit your <br/> project."
         image="/svgs/proj/BannerProduct.svg"
         widthImage="206"
         heightImage="206"
       />
-      <Steps step={stateStep} steps={steps}/>
-      {stateStep === 0 && <FormFirstStep />}
-      {stateStep === 1 && <FormSecondStep />}
-      {stateStep === 2 && <FormThirdStep />}
+      <Steps step={stateStep} steps={steps} />
+      {stateStep === 0 && <FormFirstStep formData={formData} setFormData={setFormData} />}
+      {stateStep === 1 && <FormSecondStep formData={formData} setFormData={setFormData}/>}
+      {stateStep === 2 && <FormThirdStep formData={formData} setFormData={setFormData}/>}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
-      <div style={{display:"flex",justifyContent:`${stateStep >0 ?" space-between":"flex-end"}`,alignItems:"center",marginTop:"40px"}}>
-    {stateStep !=0 && <button style={styleBtn} onClick={handleBack}>
-       Back
-      </button>}
-      <button style={styleBtn} onClick={handleNext}>
-        {stateStep === 2 ? "Submit" : "Next"}
-      </button>
+      <div style={{ display: "flex", justifyContent: `${stateStep > 0 ? " space-between" : "flex-end"}`, alignItems: "center", marginTop: "40px" }}>
+        {stateStep != 0 && <button style={styleBtn} onClick={handleBack}>
+          Back
+        </button>}
+        <button style={styleBtn} onClick={handleNext}>
+          {stateStep === 2 ? "Submit" : "Next"}
+        </button>
       </div>
-      
+
     </div>
   );
 }
