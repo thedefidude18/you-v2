@@ -17,6 +17,7 @@ function HomePage() {
     // top: "823px",
     // left: "1170px",
     padding: "8px 18px",
+    marginBottom: "20px",
     gap: "8px",
     borderRadius: "4px",
     backgroundColor: "var(--primary-color)",

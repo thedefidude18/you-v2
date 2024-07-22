@@ -9,19 +9,19 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
   const [image, setImage] = useState(null);
 
   const dragZone = useRef(null);
-  function handleDragOver(e) {
-    e.preventDefault();
-    dragZone.current.classList.add(styles.dragOver);
-  }
-  function handleDragLeave(e) {
-    e.preventDefault();
-    dragZone.current.classList.remove(styles.dragOver);
-  }
-  function handleDrop(e) {
-    e.preventDefault();
-    dragZone.current.classList.remove(styles.dragOver);
-    const file = e.dataTransfer.files;
-  }
+  // function handleDragOver(e) {
+  //   e.preventDefault();
+  //   dragZone.current.classList.add(styles.dragOver);
+  // }
+  // function handleDragLeave(e) {
+  //   e.preventDefault();
+  //   dragZone.current.classList.remove(styles.dragOver);
+  // }
+  // function handleDrop(e) {
+  //   e.preventDefault();
+  //   dragZone.current.classList.remove(styles.dragOver);
+  //   const file = e.dataTransfer.files;
+  // }
 
   const handleImageUpload = async (e) => {
     if (e.target.files) {
@@ -69,10 +69,6 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
     }
   };
 
-  const uploadImage = async (file) => {
-    
-  }
-
   return (
     <div className={styles.form_Cont}>
       <div className={styles.elemen_Cont}>
@@ -108,9 +104,9 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
       <label className={styles.title__Lable}>Project Cover Image</label>
       <div
         ref={dragZone}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
+        // onDragOver={handleDragOver}
+        // onDragLeave={handleDragLeave}
+        // onDrop={handleDrop}
         className={styles.drag_Cont}
       >
         {image ? (
