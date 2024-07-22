@@ -8,6 +8,8 @@ import FormSecondStep from "@/components/qrForms/FormSecondStep";
 import FormThirdStep from "@/components/qrForms/FormThirdStep";
 import Loader from "@/components/Loader/Loader";
 import SuccessCard from "@/components/SuccessCard/SuccessCard";
+import { useAccount, useConfig } from "wagmi";
+import { createProject } from "@/utils/interact";
 
 function HomePage() {
   const styleBtn = {
@@ -26,30 +28,36 @@ function HomePage() {
     fontWeight: "600",
   };
 
+  const config = useConfig();
+  const { chain } = useAccount();
+
   const stateRecived = useContext(sharedState);
   const { stateStep, setStateStep } = stateRecived;
   const [formData, setFormData] = useState(
     {
       title: "",
       description: "",
+      target: 0,
       websiteURL: "",
       socialURL: "",
       githubURL: "",
       coverURL: "",
-      filterTags: ""
+      filterTags: "nft"
     }
   );
 
-  useEffect(() => {
-    if (stateStep === 3) {
-      setTimeout(() => {
-        setStateStep(4);
-      }, 1000);
+  const handleNext = async () => {
+    if (stateStep == 2) {
+      setStateStep(3);
+      const res = await createProject(config, chain.id, formData);
+      if (res) setStateStep(4);
+      else setStateStep(2)
     }
-  }, [stateStep]);
-  const handleNext = () => {
-    setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 4));
+    else {
+      setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : prevStep));
+    }
   };
+  
   const handleBack = () => {
     setStateStep((prevStep) => (prevStep - 1));
   };
@@ -71,8 +79,8 @@ function HomePage() {
       />
       <Steps step={stateStep} steps={steps} />
       {stateStep === 0 && <FormFirstStep formData={formData} setFormData={setFormData} />}
-      {stateStep === 1 && <FormSecondStep formData={formData} setFormData={setFormData}/>}
-      {stateStep === 2 && <FormThirdStep formData={formData} setFormData={setFormData}/>}
+      {stateStep === 1 && <FormSecondStep formData={formData} setFormData={setFormData} />}
+      {stateStep === 2 && <FormThirdStep formData={formData} setFormData={setFormData} />}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
       <div style={{ display: "flex", justifyContent: `${stateStep > 0 ? " space-between" : "flex-end"}`, alignItems: "center", marginTop: "40px" }}>

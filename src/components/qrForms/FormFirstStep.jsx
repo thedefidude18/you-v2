@@ -57,6 +57,7 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
         const parsedData = JSON.parse(data);
         const cloudinaryImgUrl = parsedData.url;
 
+        console.log(cloudinaryImgUrl, "===========")
         setFormData({
           ...formData,
           coverURL: cloudinaryImgUrl,

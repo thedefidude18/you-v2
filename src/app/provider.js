@@ -4,7 +4,8 @@ import { WagmiProvider, http } from "wagmi";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { bscTestnet, polygonAmoy } from "viem/chains";
+import { polygonAmoy } from "viem/chains";
+import { bscTestnet } from "@/utils/network";
 
 const config = getDefaultConfig({
     appName: 'YouBuidl',

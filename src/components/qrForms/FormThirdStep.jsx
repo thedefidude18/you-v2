@@ -1,24 +1,36 @@
 import React from "react";
 import styles from "./common.module.css";
-function FormThirdStep() {
+function FormThirdStep({ formData = {}, setFormData = () => { } }) {
   const inputs = [
     {
       icon: "/svgs/proj/icon1.svg",
       label: " Project website",
-    },
-    {
-      icon: "/svgs/proj/Discord.svg",
-      label: "Discord",
+      value: formData.websiteURL,
+      setValue: (e) => setFormData({
+        ...formData,
+        websiteURL: e.target.value,
+      })
     },
     {
       icon: "/svgs/proj/X.svg",
       label: "X Link",
+      value: formData.socialURL,
+      setValue: (e) => setFormData({
+        ...formData,
+        socialURL: e.target.value,
+      })
     },
     {
       icon: "/svgs/proj/Github.svg",
       label: "Git Hub",
+      value: formData.githubURL,
+      setValue: (e) => setFormData({
+        ...formData,
+        githubURL: e.target.value,
+      })
     },
   ];
+
   return (
     <div className={styles.form_Cont}>
       {inputs.map((item, index) => (
@@ -29,7 +41,7 @@ function FormThirdStep() {
               {item.label}
             </label>
           </div>
-          <input type="url" className={styles.input} placeholder="https://" />
+          <input type="url" className={styles.input} value={item.value} onChange={item.setValue} placeholder="https://" />
         </div>
       ))}
     </div>

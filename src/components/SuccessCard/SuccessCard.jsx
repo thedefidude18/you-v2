@@ -7,7 +7,7 @@ function SuccessCard() {
       <img src="/svgs/qf/congrats.svg" alt="icon" />
       <h2>Congratulations!!</h2>
       <p>You have successfully created a project</p>
-      <Button type="link" text="View Project" path="#" />
+      <Button type="link" text="View Project" path="/projects" />
     </div>
   );
 }
