@@ -53,11 +53,11 @@ function HomePage() {
       if (res) setStateStep(4);
       else setStateStep(2)
     }
-    else {
+    if (stateStep < 2) {
       setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : prevStep));
     }
   };
-  
+
   const handleBack = () => {
     setStateStep((prevStep) => (prevStep - 1));
   };
@@ -87,9 +87,13 @@ function HomePage() {
         {stateStep != 0 && <button style={styleBtn} onClick={handleBack}>
           Back
         </button>}
-        <button style={styleBtn} onClick={handleNext}>
-          {stateStep === 2 ? "Submit" : "Next"}
-        </button>
+        {
+          stateStep < 4 && (
+            <button style={styleBtn} onClick={handleNext}>
+              {stateStep == 2 ? "Submit" : "Next"}
+            </button>
+          )
+        }
       </div>
 
     </div>

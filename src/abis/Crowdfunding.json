@@ -185,6 +185,67 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "address",
+        "name": "project",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "desc",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "target",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "websiteUrl",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "githubUrl",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "socialUrl",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "projectCoverUrl",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "filterTags",
+        "type": "string"
+      }
+    ],
+    "name": "ProjectUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "project",
@@ -590,6 +651,59 @@
       }
     ],
     "name": "createWithdrawRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "project",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "target",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "websiteUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "socialUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "githubUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "coverUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "filterTags",
+        "type": "string"
+      }
+    ],
+    "name": "editProject",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

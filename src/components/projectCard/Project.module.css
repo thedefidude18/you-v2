@@ -39,7 +39,6 @@
 .project_Card_cont .first__Row .brands__cont {
   display: flex;
   align-items: center;
-  gap: 6px;
 }
 .description {
   font-size: 16px;

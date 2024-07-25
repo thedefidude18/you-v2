@@ -11,10 +11,10 @@ export const optimismId = 11155420;
 
 export const adminWallet = "0x48ede9a182e23a3c7da3fae3a92f85214dcb926e"
 export const chainLogos = {
-    [bscId]: "/assets/images/polygon.png",
-    [polygonId]: "/assets/images/polygon.png",
-    [arbitrumId]: "/assets/images/arbitrum.png",
-    [optimismId]: "/assets/images/oplogosmall.png"
+    [bscId]: "/svgs/proj/bsc.svg",
+    [polygonId]: "/svgs/proj/polygon.svg",
+    [arbitrumId]: "/svgs/proj/arbitrum.svg",
+    [optimismId]: "/svgs/proj/optimism.svg"
 }
 
 export const categoryIcons = {
@@ -33,7 +33,7 @@ export const categoryIcons = {
 }
 
 export const contractAddresses = {
-    [bscId]: "0xB716853a24D082fB8371466DfF7ee1B831944bc9",
+    [bscId]: "0x7B89912eA9b4274f4716754206301769D498403A",
     [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
@@ -54,7 +54,7 @@ export const defaultEthLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.0.4",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.1.1",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",

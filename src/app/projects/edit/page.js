@@ -8,6 +8,9 @@ import FormThirdStep from "@/components/qrForms/FormThirdStep";
 import Loader from "@/components/Loader/Loader";
 import SuccessCard from "@/components/SuccessCard/SuccessCard";
 import { useRouter } from "next/navigation";
+import { sharedState } from "@/app/layout";
+import { editProject } from "@/utils/interact";
+import { useAccount, useConfig } from "wagmi";
 
 function page() {
   const styleBtn = {
@@ -22,54 +25,84 @@ function page() {
     fontWeight: "600",
   };
   const router = useRouter()
-  const [stateStep,setStateStep] = useState(0)
+
+  const config = useConfig();
+  const { chain } = useAccount();
+
+  const stateRecived = useContext(sharedState);
+  const { currentProject } = stateRecived;
+
+  const [formData, setFormData] = useState(
+    {
+      title: "",
+      description: "",
+      target: 0,
+      websiteURL: "",
+      socialURL: "",
+      githubURL: "",
+      coverURL: "",
+      filterTags: "nft"
+    }
+  );
+
+  const [stateStep, setStateStep] = useState(0);
+
   useEffect(() => {
-    if (stateStep === 3) {
-      setTimeout(() => {
-        setStateStep(4);
-      }, 1000);
+    if (currentProject) setFormData(currentProject);
+  }, [currentProject])
+
+  const handleNext = async () => {
+    if (stateStep == 2) {
+      setStateStep(3);
+      const res = await editProject(config, chain.id, formData);
+      if (res) setStateStep(4);
+      else setStateStep(2)
+    } 
+    if (stateStep < 2) {
+      setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : prevStep));
     }
-  }, [stateStep]);
-  const handleNext = () => {
-    setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 4));
   };
-  
+
   const handleBack = () => {
-    if(stateStep ===0){
-router.push("/projects");
+    if (stateStep === 0) {
+      router.push("/projects");
     }
-    setStateStep((prevStep) => (prevStep >0 &&  prevStep -1  ));
+    setStateStep((prevStep) => (prevStep > 0 && prevStep - 1));
   };
- 
+
   const steps = [
     { name: "Build Details", completed: true },
     { name: "Grant Mode", completed: false },
     { name: "Social Links", completed: false },
   ];
- 
+
   return (
     <div>
-<Banner
+      <Banner
         text="Edit your project."
         image="/svgs/proj/BannerProduct.svg"
         widthImage="206"
         heightImage="206"
       />
-      <Steps step={stateStep} steps={steps}/>
-      {stateStep === 0 && <FormFirstStep />}
-      {stateStep === 1 && <FormSecondStep />}
-      {stateStep === 2 && <FormThirdStep />}
+      <Steps step={stateStep} steps={steps} />
+      {stateStep === 0 && <FormFirstStep formData={formData} setFormData={setFormData}/>}
+      {stateStep === 1 && <FormSecondStep formData={formData} setFormData={setFormData}/>}
+      {stateStep === 2 && <FormThirdStep formData={formData} setFormData={setFormData}/>}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"40px"}}>
-    <button style={styleBtn} onClick={handleBack}>
-       Back
-      </button>
-      <button style={styleBtn} onClick={handleNext}>
-        {stateStep === 2 ? "Submit" : "Next"}
-      </button>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px" }}>
+        <button style={styleBtn} onClick={handleBack}>
+          Back
+        </button>
+        {
+          stateStep < 4 && (
+            <button style={styleBtn} onClick={handleNext}>
+              {stateStep == 2 ? "Submit" : "Next"}
+            </button>
+          )
+        }
       </div>
-      
+
     </div>
   );
 }

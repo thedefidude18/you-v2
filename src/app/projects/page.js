@@ -1,30 +1,43 @@
 "use client";
 import Banner from "@/components/Banner/Banner";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Projects.module.css";
 import Link from "next/link";
-import ProjeectCard from "@/components/projectCard/ProjeectCard";
 import { getProjects } from "@/utils";
 import ProjectCard from "@/components/projectCard/ProjectCard";
+import ProjectBand from "@/components/projectCard/ProjectBand";
+import { sharedState } from "../layout";
+import { useAccount } from "wagmi";
 function page() {
-  const [projects, setProjects] = useState([]);
+
+  const { address } = useAccount();
+
+  const stateRecived = useContext(sharedState);
+  const { isContributer } = stateRecived;
+
+  const [othersProjects, setOthersProjects] = useState([]);
+  const [myProjects, setMyProjects] = useState([]);
+
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("All");
 
   useEffect(() => {
     const loadProjects = async () => {
-      const projectsData = await getProjects();
-      setProjects(projectsData);
+      const projectsData = await getProjects(address);
+      setOthersProjects(projectsData.othersProjects);
+      setMyProjects(projectsData.myProjects);
     };
     loadProjects();
   }, []);
+
+
   return (
     <div>
       <Banner
         text="My Project "
         image="/svgs/proj/BannerSvg.svg"
       />
-     
+
       <div className={styles.main_Title}>
         <h2>Trending Buidls</h2>
         <div className={styles.process_cont}>
@@ -42,11 +55,9 @@ function page() {
                 <li>
                   <p
                     // href="#"
-
                     onClick={(e) => {
                       setValue("1");
                       setActive(!active);
-                      console.log(e.target);
                     }}
                   >
                     1
@@ -57,7 +68,6 @@ function page() {
                     onClick={(e) => {
                       setValue("2");
                       setActive(!active);
-                      console.log(e.target);
                     }}
                   >
                     2
@@ -68,7 +78,6 @@ function page() {
                     onClick={(e) => {
                       setValue("3");
                       setActive(!active);
-                      console.log(e.target);
                     }}
                   >
                     3
@@ -85,15 +94,28 @@ function page() {
           </button>
         </div>
       </div>
-      <ProjectCard/>
-      <div className={styles.divide}>
-        {projects.map((item, index) => (
-          <ProjeectCard
-            project={item}
-            key={index}
-          />
-        ))}
-      </div>
+      {
+        isContributer ? (
+          <div className={styles.divide}>
+            {othersProjects.map((item, index) => (
+              <ProjectCard
+                project={item}
+                key={index}
+              />
+            ))}
+          </div>
+        ) : (
+          <>
+            {myProjects.map((item, index) => (
+              <ProjectBand
+                project={item}
+                key={index}
+              />
+            ))}
+          </>
+        )
+      }
+
     </div>
   );
 }

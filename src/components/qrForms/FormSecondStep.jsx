@@ -23,8 +23,7 @@ function FormSecondStep({ formData = {}, setFormData = () => { } }) {
           <div style={{ display: "flex", gap: "10px", alignItems: "center", marginTop: 10 }}>
             <label htmlFor={item.title} >{item.title}</label>
             <div>
-
-              <input type="radio" id={`radio-${index}`} name="option" className={styles.radio_input} />
+              <input type="radio" id={`radio-${index}`} name="option" checked={ ((index == 0 && formData.target > 0) || (index == 1 && formData.target == 0)) ? true : false } className={styles.radio_input} />
               <label htmlFor={`radio-${index}`} className={styles.custom_radio} onClick={() => {
                 if (index === 0) {
                   setOpen(true)

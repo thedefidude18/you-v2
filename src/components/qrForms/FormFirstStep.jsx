@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./common.module.css";
 
 const CLOUDINARY_UPLOAD_URL =
@@ -110,15 +110,11 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
         // onDrop={handleDrop}
         className={styles.drag_Cont}
       >
-        {image ? (
-            <img
-              src={image?.previewUrl}
-              alt="image"
-              className={styles.cover_img}
-            />
-        ) : (
-          <></>
-        )}
+        <img
+          src={formData.coverURL}
+          alt="image"
+          className={styles.cover_img}
+        />
         <p className={styles.title__Lable}>Png, gif, WEBP. Max 10MB</p>
         <label htmlFor="file_Up" className={styles.special_Label}>
           Select Image

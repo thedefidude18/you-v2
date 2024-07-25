@@ -14,7 +14,7 @@ const getDataFromSubgraph = async (query, subgraphURL) => {
     }
 };
 
-export const getProjects = async () => {
+export const getProjects = async (account) => {
     const query = `{
         projects(where: {isVisible: true}, orderBy: blockTime, orderDirection: desc) {
           id
@@ -23,13 +23,15 @@ export const getProjects = async () => {
             amount
             token
           }
-          desc
+          description
           filterTags
           noOfContributors
-          projectCoverUrl
-          socialUrl
+          coverURL
+          socialURL
+          githubURL
           title
-          websiteUrl
+          target
+          websiteURL
           isVerified
           isVisible
           isBlocked
@@ -87,7 +89,7 @@ export const getProjects = async () => {
             })
         )
         projects = adminProjects.concat(otherProjects);
-        return projects
+        return { myProjects: projects.filter((proj) => proj.creator == account.toLowerCase()), othersProjects: projects.filter((proj) => proj.creator != account.toLowerCase()) };
     } catch (e) {
         console.log(e, "=========error in get projects============")
         return [];
@@ -98,21 +100,22 @@ export const getProject = async (projectContractAddress, chainId) => {
     const query = `{
         project(id: "${projectContractAddress}") {
           id
-          desc
+          description
           currentState
           currentAmount
           creator
           filterTags
           goalAmount
           noOfContributors
-          projectCoverUrl
+          coverURL
           projectDeadline
           qfRoundID
           qfMatched
-          socialUrl
-          githubUrl
+          githubURL
+          socialURL
+          githubURL
           title
-          websiteUrl
+          websiteURL
           isVerified
         }
         qfrounds(first: 1, orderBy: blockTime, orderDirection: desc) {
