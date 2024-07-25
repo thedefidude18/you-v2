@@ -7,15 +7,9 @@ import { getEllipsisTxt } from "@/utils";
 import { useAccount } from "wagmi";
 import { chainLogos } from "@/utils/constant";
 function ProjectCard({ project }) {
-  const { chain } = useAccount();
 
   const [hasCart, setHasCart] = useState(false)
 
-  useEffect(() => {
-    if (chain?.id ==project && project?.chainId) {
-      setHasCart(true);
-    }
-  }, [chain])
 
   return (
     <div

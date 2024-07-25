@@ -142,14 +142,14 @@ export const getProject = async (projectContractAddress, chainId) => {
                     return { ...data, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : data.qfMatched / qfRound.totalRootSum * qfRound.amount }
                 }
 
-                return { ...data, isOnQF: false, matchingPool: 0 };
+                return { ...data, chainId: chainId, isOnQF: false, matchingPool: 0 };
             }
             return null
         }
         return null;
     } catch (e) {
-        console.log(e, "=========error in get projects============")
-        return [];
+        console.log(e, "=========error in get project============")
+        return null;
     }
 }
 

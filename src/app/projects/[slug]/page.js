@@ -1,15 +1,26 @@
 "use client";
 import Banner from "@/components/Banner/Banner";
-import ProjeectCard from "@/components/projectCard/ProjeectCard";
+import ProjectCard from "@/components/projectCard/ProjectCard";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProjectsData from "../ProjectsData";
 import styles from "./page.module.css";
+import { getProject } from "@/utils";
+import { useAccount } from "wagmi";
 function page() {
   const pathName = usePathname();
-  let routeId = +pathName.split("/").slice(-1)[0];
-  let selectedProject = ProjectsData.find((item) => item.id === routeId);
-  console.log(selectedProject);
+  let project = +pathName.split("/").slice(-1)[0];
+
+  const { chain } = useAccount();
+  const [projectDetails, setProjectDetails] = useState(null)
+
+  const initProjectDetail = async () => {
+    const data = await getProject(project, chain?.id);
+    if (data) setProjectDetails(data);
+  }
+  useEffect(() => {
+    initProjectDetail();
+  }, [])
   return (
     <div>
       <Banner
@@ -17,10 +28,8 @@ function page() {
         image="/svgs/proj/BannerProduct.svg"
       />
       <div className={styles.page_cont}>
-        <ProjeectCard
-          image={selectedProject?.image}
-          height="589px"
-          imageHight="221px"
+        <ProjectCard
+          project={projectDetails}
         />
       </div>
       <p className={styles.lastCaption}>Fund this project to be able to vote</p>
