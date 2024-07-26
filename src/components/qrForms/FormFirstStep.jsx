@@ -110,11 +110,13 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
         // onDrop={handleDrop}
         className={styles.drag_Cont}
       >
-        <img
-          src={formData.coverURL}
-          alt="image"
-          className={styles.cover_img}
-        />
+        {formData.coverURL && (
+          <img
+            src={formData.coverURL}
+            alt="image"
+            className={styles.cover_img}
+          />
+        )}
         <p className={styles.title__Lable}>Png, gif, WEBP. Max 10MB</p>
         <label htmlFor="file_Up" className={styles.special_Label}>
           Select Image

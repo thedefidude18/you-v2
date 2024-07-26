@@ -25,3 +25,7 @@
 .active {
   display: block;
 }
+
+.tokenLogo {
+  width: 20px;
+}

@@ -15,11 +15,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [stateStep, setStateStep] = useState(0);
-  const [isContributer,setIsContributer] = useState(true)
-  const [currentProject, setCurrentProject] = useState(null)
+  const [isContributer,setIsContributer] = useState(true);
+  const [currentProject, setCurrentProject] = useState(null);
+  const [contriToken, setContriToken] = useState(null);
   return (
     <html lang="en">
-      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject}}>
+      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">
             <Aside />

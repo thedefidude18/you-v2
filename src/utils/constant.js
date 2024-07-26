@@ -67,6 +67,11 @@ export const tokenDecimals = {
     }
 }
 
+export const contriTokenLogos = {
+    "USDT": "/svgs/proj/usdt.svg",
+    "USDC": "/svgs/proj/usdc.png"
+}
+
 export const contriTokens = {
     [bscId]: [
         {

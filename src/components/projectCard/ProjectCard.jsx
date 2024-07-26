@@ -1,35 +1,37 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Project.module.css";
 // import Button from "../Button/Button";
+import Link from "next/link";
 import Button from "../Button/Button";
-import { getEllipsisTxt } from "@/utils";
-import { useAccount } from "wagmi";
+import DropDown from "../Dropdown/DropDown";
+import SocialIcon from "../Socialicon/SocialIcon";
 import { chainLogos } from "@/utils/constant";
-function ProjectCard({ project }) {
-
-  const [hasCart, setHasCart] = useState(false)
-
-
+import { getEllipsisTxt } from "@/utils";
+import { sharedState } from "@/app/layout";
+function ProjectCard({ project, height, imageHight }) {
+  const stateRecived = useContext(sharedState);
+  const { contriToken } = stateRecived;
+  const [amount, setAmount] = useState(0);
   return (
     <div
       className={styles.project_Card_cont}
+      style={{ height: height ? height : "", margin: height ? "20px 0" : "" }}
     >
       <div className={styles.image__cont}>
         <img
-          src={project?.coverURL}
+          src={project.coverURL}
           alt=""
           className={styles.view}
+          style={{ height: imageHight ? imageHight : "" }}
         />
         <div className={styles.tools}>
-          {/* <img src="/svgs/proj/tools.svg" alt="" /> */}
-          {project?.filterTags}
+          <img src="/svgs/proj/tools.svg" alt="" />
         </div>
       </div>
       <div className={styles.first__Row}>
-        <h2>{project?.title}</h2>
+        <h2>{project.title}</h2>
         <div className={styles.brands__cont}>
-          <img src={chainLogos[project?.chainId]} alt="brand" />
+          <img src={chainLogos[project.chainId]} alt="brand" />
           <img
             src="/svgs/proj/Share.svg"
             style={{ marginInlineStart: "8px" }}
@@ -38,50 +40,73 @@ function ProjectCard({ project }) {
         </div>
       </div>
 
-
-      <p className={styles.description}>
-        {project?.description}
-      </p>
+      {height ? (
+        <p className={styles.description} style={{ margin: "25px auto" }}>
+          {project.description}
+        </p>
+      ) : (
+        <p className={styles.description}>
+          {project.description}
+        </p>
+      )}
 
       <div
         className={styles.prices}
+        style={{
+          marginBottom: `${height && "25px"}`,
+          gridTemplateColumns: `${height && "repeat(4,1fr)"}`,
+        }}
       >
         <div>
           <p className={styles.price_Num_cont}>
-            <span style={{ color: "#00A3FF" }}>${project?.currentRaised}</span>
+            <span style={{ color: "#00A3FF" }}>${project.currentRaised}</span>
             <span className={styles.point}>
-              <img
-                src={"/svgs/proj/GreenPoint.svg"}
+              {/* <img
+                src={`${
+                  !red ? "/svgs/proj/GreenPoint.svg" : "/svgs/proj/RedPoint.svg"
+                }`}
                 alt=""
-              />
+              /> */}
             </span>
           </p>
           <p className={styles.small_Caption}>Raised</p>
         </div>
         <div className={styles.middle}>
-          <p className={styles.price_Num_cont}>5000</p>
+          <p className={styles.price_Num_cont}>{project.noOfContributors}</p>
           <p className={styles.small_Caption}>Donations</p>
         </div>
-        <div
-
-        >
-          <p className={styles.price_Num_cont}>$10,000</p>
-          <p className={styles.small_Caption}>Target</p>
-        </div>
-
+        {project.target > 0 && (
+          <div
+          >
+            <p className={styles.price_Num_cont}>${project.target}</p>
+            <p className={styles.small_Caption}>Target</p>
+          </div>
+        )}
       </div>
-      <div className={styles.last__Row}>
-        <div className={styles.left}>
-          <img src="/svgs/proj/ByImage.svg" alt="" />
-          <p>By {getEllipsisTxt(project?.creator, 3)}</p>
-        </div>
-        <div className={styles.left}>
-          {hasCart && (
+      {!height ? (
+        <div className={styles.last__Row}>
+          <div className={styles.left}>
+            <img src="/svgs/proj/ByImage.svg" alt="" />
+            <p>By {getEllipsisTxt(project.creator, 4)}</p>
+          </div>
+          <div className={styles.left}>
             <img src="/svgs/proj/Cartcard.svg" alt="" />
-          )}
-          <Button path={`/projects/${project?.id}`} type="link" text="Donate Now" />
+            <Button path={`/projects/${project.id}`} type="link" text="Donate Now" />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.last__Row}>
+          <SocialIcon project={project} />
+          <div style={{ display: "flex", gap: "8px" }}>
+            <input type="text" placeholder="Enter Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <DropDown />
+          </div>
+          <div className={styles.left}>
+            <img src="/svgs/proj/Cartcard.svg" alt="" />
+            <Button path="#" type="link" text="Contribute" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

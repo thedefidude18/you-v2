@@ -1,47 +1,44 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./DrobStyle.module.css";
+import { sharedState } from "@/app/layout";
+import { useAccount } from "wagmi";
+import { contriTokenLogos, contriTokens } from "@/utils/constant";
 function DropDown() {
+  const stateRecived = useContext(sharedState);
+  const { contriToken, setContriToken } = stateRecived;
+
+  const { chainId } = useAccount();
   const [active, setActive] = useState(false);
-  const [value, setValue] = useState(
-    <img src="/svgs/proj/Brand1.svg" alt="" />
-  );
+
+  const [tokens, setTokens] = useState([]);
+
+  useEffect(() => {
+    if (chainId) {
+      setContriToken(contriTokens[chainId][0]);
+      setTokens(contriTokens[chainId]);
+    }
+  }, [chainId])
   return (
     <div className={styles.filter__btn__cont}>
-      <button onClick={() => setActive(!active)} defaultValue={value}>
-        {value} <img src="/svgs/Arrow.svg" />
+      <button onClick={() => setActive(!active)}>
+        <img className={styles.tokenLogo} src={contriTokenLogos[contriToken?.name]} alt="" /> <img src="/svgs/Arrow.svg" />
       </button>
       <div className={`${styles.dropdown} ${active ? styles.active : ""}`}>
         <ul>
-          <li>
-            <p
-              onClick={() => {
-                setValue(<img src="/svgs/proj/Brand1.svg" alt="" />);
-                setActive(!active);
-              }}
-            >
-              <img src="/svgs/proj/Brand1.svg" alt="" />
-            </p>
-          </li>
-          <li>
-            <p
-              onClick={() => {
-                setValue(<img src="/svgs/proj/Brand2.svg" alt="" />);
-                setActive(!active);
-              }}
-            >
-              <img src="/svgs/proj/Brand2.svg" alt="" />
-            </p>
-          </li>
-          <li>
-            <p
-              onClick={() => {
-                setValue(<img src="/svgs/proj/Brand3.svg" alt="" />);
-                setActive(!active);
-              }}
-            >
-              <img src="/svgs/proj/Brand3.svg" alt="" />
-            </p>
-          </li>
+          {
+            tokens.map((token, index) => (
+              <li key={index}>
+                <p
+                  onClick={() => {
+                    setContriToken(token);
+                    setActive(!active);
+                  }}
+                >
+                  <img className={styles.tokenLogo} src={contriTokenLogos[token.name]} alt="" />
+                </p>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>

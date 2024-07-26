@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./Socilstyle.module.css";
-function SocialIcon() {
+function SocialIcon({project}) {
   return (
     <div className={styles.cont}>
-      <img src="/svgs/proj/Icon1.svg" alt="" />
-      <img src="/svgs/proj/Github.svg" alt="" />
-      <img src="/svgs/proj/Discord.svg" alt="" />
-      <img src="/svgs/proj/X.svg" alt="" />
+      <a href={project.websiteURL} target="blank"><img src="/svgs/proj/Icon1.svg" alt="" /></a>
+      <a href={project.githubURL} target="blank"><img src="/svgs/proj/Github.svg" alt="" /></a>
+      <a href={project.socialURL} target="blank"><img src="/svgs/proj/X.svg" alt="" /></a>
     </div>
   );
 }

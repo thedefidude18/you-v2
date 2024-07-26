@@ -99,24 +99,25 @@ export const getProjects = async (account) => {
 export const getProject = async (projectContractAddress, chainId) => {
     const query = `{
         project(id: "${projectContractAddress}") {
-          id
-          description
-          currentState
-          currentAmount
-          creator
-          filterTags
-          goalAmount
-          noOfContributors
-          coverURL
-          projectDeadline
-          qfRoundID
-          qfMatched
-          githubURL
-          socialURL
-          githubURL
-          title
-          websiteURL
-          isVerified
+            id
+            description
+            currentAmount {
+            token
+            amount
+            }
+            creator
+            filterTags
+            noOfContributors
+            coverURL
+            qfRoundID
+            qfMatched
+            githubURL
+            socialURL
+            githubURL
+            title
+            websiteURL
+            isVerified
+            target
         }
         qfrounds(first: 1, orderBy: blockTime, orderDirection: desc) {
           id
@@ -133,7 +134,6 @@ export const getProject = async (projectContractAddress, chainId) => {
             const project = res.data.project;
             if (project) {
                 const data = project;
-                if (data.filterTags == "popular") data.filterTags = "hackathons"
                 const qfRounds = res.data.qfrounds;
                 const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
                 if (qfRound && qfRound.id == data.qfRoundID) {
@@ -142,7 +142,15 @@ export const getProject = async (projectContractAddress, chainId) => {
                     return { ...data, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : data.qfMatched / qfRound.totalRootSum * qfRound.amount }
                 }
 
-                return { ...data, chainId: chainId, isOnQF: false, matchingPool: 0 };
+                let currentAmount = 0;
+                for (const token of project.currentAmount) {
+                    currentAmount += +formatUnits(
+                        token.amount,
+                        tokenDecimals[key][token.token]
+                    )
+                }
+
+                return { ...data, currentRaised: currentAmount, chainId: chainId, isOnQF: false, matchingPool: 0 };
             }
             return null
         }

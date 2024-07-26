@@ -9,7 +9,7 @@ import { getProject } from "@/utils";
 import { useAccount } from "wagmi";
 function page() {
   const pathName = usePathname();
-  let project = +pathName.split("/").slice(-1)[0];
+  let project = pathName.split("/").slice(-1)[0];
 
   const { chain } = useAccount();
   const [projectDetails, setProjectDetails] = useState(null)
@@ -28,9 +28,13 @@ function page() {
         image="/svgs/proj/BannerProduct.svg"
       />
       <div className={styles.page_cont}>
-        <ProjectCard
-          project={projectDetails}
-        />
+        {projectDetails && (
+          <ProjectCard
+            project={projectDetails}
+            height="589px"
+            imageHight="221px"
+          />
+        )}
       </div>
       <p className={styles.lastCaption}>Fund this project to be able to vote</p>
     </div>
