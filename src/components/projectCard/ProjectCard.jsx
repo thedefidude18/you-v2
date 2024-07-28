@@ -19,13 +19,15 @@ function ProjectCard({ project, height, imageHight }) {
   const { address, chainId } = useAccount();
 
   const contribute = async () => {
-    const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
-    const allowance = await getAllowance(config, address, project.id, contriToken.address);
+    if (+amount > 0) {
+      const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
+      const allowance = await getAllowance(config, address, project.id, contriToken.address);
 
-    if (allowance < deciAmount) {
-      const res = await approve(config, project.id, contriToken.address, deciAmount);
-      if (res) {
-        await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+      if (allowance < deciAmount) {
+        const res = await approve(config, project.id, contriToken.address, deciAmount);
+        if (res) {
+          await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+        }
       }
     }
   }

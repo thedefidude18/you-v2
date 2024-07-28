@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 import Link from "next/link";
-function Button({ text, type, path, color, confirm = () => { } }) {
+function Button({ text = "", type = null, path = null, color = null, confirm = () => { } }) {
   if (type) {
     return (
       <Link

@@ -54,7 +54,7 @@ export const defaultEthLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.1.1",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.0.7",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",
@@ -66,6 +66,14 @@ export const tokenDecimals = {
         ["0x5c2d5798ba7d59c381faed3a7a3565c0d51b81a8"]: 18
     }
 }
+
+export const contriTokenLogosByAddress = {
+    [bscId]: {
+        ["0x11e3008c59b8a55b7525150c61b12b3fd2415a77"]: "/svgs/proj/usdt.svg",
+        ["0x5c2d5798ba7d59c381faed3a7a3565c0d51b81a8"]: "/svgs/proj/usdc.png"
+    }
+}
+
 
 export const contriTokenLogos = {
     "USDT": "/svgs/proj/usdt.svg",

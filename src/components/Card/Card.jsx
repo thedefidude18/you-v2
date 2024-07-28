@@ -24,8 +24,8 @@ function Card({ image, title, subTitle, description, bars ,id }) {
       </div>
       {!bars && (
         <div className={styles.row__three}>
-          <Button text="For" />
-          <Button text="Against" />
+          <button className={styles.btn}>for</button>
+          <button className={styles.btn}>Against</button>
         </div>
       )}
       {bars && (
