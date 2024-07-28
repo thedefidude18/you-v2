@@ -40,3 +40,33 @@ export const editProject = async (config, chainId, formData) => {
     }
     return false;
 }
+
+export const contributeToken = async (config, chainId, account, project, token, amount) => {
+    try {
+        let contriList = [];
+        contriList.push({
+            project: project,
+            referrer: account,
+            token: token,
+            amount: amount
+        })
+
+        console.log(contriList)
+
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "contribute",
+            args: [contriList]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+    }
+    return false;
+}

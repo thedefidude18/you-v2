@@ -5,13 +5,24 @@ import Link from "next/link";
 import Button from "../Button/Button";
 import DropDown from "../Dropdown/DropDown";
 import SocialIcon from "../Socialicon/SocialIcon";
-import { chainLogos } from "@/utils/constant";
+import { chainLogos, tokenDecimals } from "@/utils/constant";
 import { getEllipsisTxt } from "@/utils";
 import { sharedState } from "@/app/layout";
+import { useAccount, useConfig } from "wagmi";
+import { parseUnits } from "viem";
+import { contributeToken } from "@/utils/interact";
 function ProjectCard({ project, height, imageHight }) {
   const stateRecived = useContext(sharedState);
+  const config = useConfig();
   const { contriToken } = stateRecived;
   const [amount, setAmount] = useState(0);
+  const { address, chainId } = useAccount();
+
+  const contribute = async () => {
+    const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
+
+    await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+  }
   return (
     <div
       className={styles.project_Card_cont}
@@ -103,7 +114,7 @@ function ProjectCard({ project, height, imageHight }) {
           </div>
           <div className={styles.left}>
             <img src="/svgs/proj/Cartcard.svg" alt="" />
-            <Button path="#" type="link" text="Contribute" />
+            <Button text="Contribute" confirm={contribute} />
           </div>
         </div>
       )}

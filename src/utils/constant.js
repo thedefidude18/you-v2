@@ -76,11 +76,11 @@ export const contriTokens = {
     [bscId]: [
         {
             "name": "USDT",
-            "address": "0x11E3008c59b8A55B7525150c61b12b3Fd2415a77"
+            "address": "0x11e3008c59b8a55b7525150c61b12b3fd2415a77"
         },
         {
             "name": "USDC",
-            "address": "0x5C2D5798Ba7D59C381FaED3A7A3565c0d51b81a8"
+            "address": "0x5c2d5798ba7d59c381faed3a7a3565c0d51b81a8"
         }
     ],
     [polygonId]: [
