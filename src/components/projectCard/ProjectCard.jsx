@@ -10,7 +10,7 @@ import { getEllipsisTxt } from "@/utils";
 import { sharedState } from "@/app/layout";
 import { useAccount, useConfig } from "wagmi";
 import { parseUnits } from "viem";
-import { contributeToken } from "@/utils/interact";
+import { approve, contributeToken, getAllowance } from "@/utils/interact";
 function ProjectCard({ project, height, imageHight }) {
   const stateRecived = useContext(sharedState);
   const config = useConfig();
@@ -20,8 +20,14 @@ function ProjectCard({ project, height, imageHight }) {
 
   const contribute = async () => {
     const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
+    const allowance = await getAllowance(config, address, project.id, contriToken.address);
 
-    await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+    if (allowance < deciAmount) {
+      const res = await approve(config, project.id, contriToken.address, deciAmount);
+      if (res) {
+        await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+      }
+    }
   }
   return (
     <div

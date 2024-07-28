@@ -20,9 +20,9 @@ const ProjectBand = ({ project }) => {
         </div>
         <div className={styles.actions}>
           <p style={{ fontWeight: "700" }}>Raised </p>
-          <p style={{ fontWeight: "700" }}> $100</p>
+          <p style={{ fontWeight: "700" }}> ${project.currentRaised}</p>
           <button className={styles.btn1} onClick={() => { setCurrentProject(project); router.push("/projects/edit") }}>Edit</button>
-          <button className={styles.btn1} onClick={() => router.push("/projects/withdrawal")}>Request Withdrawal</button>
+          <button className={styles.btn1} onClick={() => { setCurrentProject(project); router.push("/projects/withdrawal")}}>Request Withdrawal</button>
           <FaTrashAlt className={styles.trash_icon} />
         </div>
       </div>

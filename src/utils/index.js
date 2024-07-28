@@ -146,7 +146,7 @@ export const getProject = async (projectContractAddress, chainId) => {
                 for (const token of project.currentAmount) {
                     currentAmount += +formatUnits(
                         token.amount,
-                        tokenDecimals[key][token.token]
+                        tokenDecimals[chainId][token.token]
                     )
                 }
 
