@@ -267,6 +267,132 @@ export const getContributionDetails = async (address, chainId) => {
     }
 }
 
+export const getRequets = async (address, chainId) => {
+    const query = `{
+        withdrawRequests(where: {project_: {contriList_contains: ["${address.toLowerCase()}"]}} orderBy: time) {
+            reqID
+            description
+            isSucceed
+            time
+            project {
+                id
+                title
+                creator
+                coverURL
+                noOfContributors
+            }
+            votes {
+                choice
+                voter {
+                    id
+                }
+            }
+            tokens {
+                amount
+                token
+            }
+        }
+        votes(where: {voter: "${address}"}) {
+            choice
+        }
+      }`;
+    try {
+        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
+        if (res.isSuccess) {
+            const requests = res.data.withdrawRequests;
+            const votes = res.data.votes;
+
+            let requestList = [];
+            for (const request of requests) {
+                const votes = request.votes;
+                let numOfFor = 0;
+                let numOfAgainst = 0;
+
+                let reqAmount = 0;
+                for (const token of request.tokens) {
+                    reqAmount += +formatUnits(
+                        token.amount,
+                        tokenDecimals[chainId][token.token]
+                    )
+                }
+                let isVote = false;
+                if (votes.length > 0) {
+                    numOfFor = votes.filter((vote) => vote.choice).length;
+                    numOfAgainst = votes.filter((vote) => !vote.choice).length;
+                    isVote = votes.filter((vote) => vote.voter.id == address.toLowerCase()).length > 0;
+                }
+
+                requestList.push({ reqId: request.reqID, requestDesc: request.description, isSucceed: request.isSucceed, time: request.time, project: request.project, tokens: request.tokens, numOfFor: numOfFor, numOfAgainst: numOfAgainst, isVote: isVote, reqAmount: reqAmount })
+            };
+
+            const myRequests = requestList.filter((req) => req.project.creator == address.toLowerCase());
+            const othersRequests = requestList.filter((req) => req.project.creator != address.toLowerCase());
+
+            const numFor = votes.filter((vote) => vote.choice).length;
+            const numAgainst = votes.filter((vote) => !vote.choice).length;
+
+            return { myRequests: myRequests, othersRequests: othersRequests, numFor: numFor, numAgainst: numAgainst };
+        }
+
+        return null
+    } catch (e) {
+        console.log(e, "=========error in get requests============")
+        return null;
+    }
+}
+
+export const getRecentWithdrawals = async (chainId) => {
+    const query = `{
+        withdrawRequests(
+             first: 5
+             orderBy: time
+             orderDirection: desc
+             where: {isSucceed: true}
+         ) {
+             project {
+                title
+                coverURL
+                creator
+             }
+             tokens {
+                amount
+                token
+             }
+             votes {
+                choice
+             }
+         }
+       }`;
+    try {
+        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
+        if (res.isSuccess) {
+            const requests = res.data.withdrawRequests;
+
+            let requestList = [];
+            for (const request of requests) {
+
+                let reqAmount = 0;
+                for (const token of request.tokens) {
+                    reqAmount += +formatUnits(
+                        token.amount,
+                        tokenDecimals[chainId][token.token]
+                    )
+                }
+
+                requestList.push({ project: request.project, reqAmount: reqAmount, voteNum: request.votes.length })
+            };
+
+
+            return requestList;
+        }
+
+        return []
+    } catch (e) {
+        console.log(e, "=========error in get recent requests============")
+        return [];
+    }
+}
+
 export const getEllipsisTxt = (str, n = 6) => {
     if (str) {
         return `${str.slice(0, n)}...${str.slice(str.length - n)}`;

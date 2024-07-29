@@ -33,17 +33,24 @@ export const categoryIcons = {
 }
 
 export const contractAddresses = {
-    [bscId]: "0x7B89912eA9b4274f4716754206301769D498403A",
+    [bscId]: "0x9eFb0E888FE8350B95fD2B9Ad01f8ee780F80FAf",
     [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
 }
 
 export const qfRoundsAddresses = {
-    [bscId]: "0xCA54E5BDad475b03CDCbd09E60554beECEE75653",
+    [bscId]: "0x1D4b3314C5FF6ea35F46f13cf100F6d2a2e73Bf2",
     [polygonId]: "0x5eFb24436C00938d3b7c4e1c5EBB1CD0AC99Dc0b",
     [arbitrumId]: "0x789f71868a6fa58f1354e1226f807c51edbee3d6",
     [optimismId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
+}
+
+export const votingAddresses = {
+    [bscId]: "0x111DaD2624352a0AbC73eB936c4C8C1474CA1f80",
+    [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
+    [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
+    [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
 }
 
 export const defaultEthLink = {
@@ -54,7 +61,7 @@ export const defaultEthLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.0.7",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.2.6",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",

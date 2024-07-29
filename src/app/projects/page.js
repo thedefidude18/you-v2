@@ -27,8 +27,9 @@ function page() {
       setOthersProjects(projectsData.othersProjects);
       setMyProjects(projectsData.myProjects);
     };
-    loadProjects();
-  }, []);
+    if (address)
+      loadProjects();
+  }, [address]);
 
 
   return (

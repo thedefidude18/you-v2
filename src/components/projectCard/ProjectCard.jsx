@@ -28,6 +28,8 @@ function ProjectCard({ project, height, imageHight }) {
         if (res) {
           await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
         }
+      } else {
+        await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
       }
     }
   }

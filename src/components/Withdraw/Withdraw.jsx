@@ -1,15 +1,14 @@
 import React from "react";
 import WithdrawOperation from "./WithdrawOperation";
 import styles from "./witdraw.module.css";
-function Withdraw() {
+function Withdraw({withdrawals = []}) {
   return (
     <div className={styles.withdraw_Card}>
       <h3>Recent Withdrawals</h3>
-      <WithdrawOperation />
-      <WithdrawOperation />
-      <WithdrawOperation />
-      <WithdrawOperation />
-      <WithdrawOperation />
+
+      {withdrawals.map((withdraw, index) => (
+        <WithdrawOperation key={index} withdraw={withdraw}/>
+      ))}
     </div>
   );
 }

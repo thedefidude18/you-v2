@@ -1,19 +1,19 @@
 import React from "react";
 import styles from "./withdrawOperation.module.css";
-function WithdrawOperation() {
+function WithdrawOperation({withdraw}) {
   return (
     <div className={styles.wdraw_oper_cont}>
-      <img src="/profile.jpeg" alt="" />
+      <img src={withdraw.project.coverURL} alt="" />
       <div className={styles.content}>
         <div className={styles.first_Row}>
-          <h4>GAMEION</h4>
+          <h4>{withdraw.project.title}</h4>
           <p>
-            Votes: <span>50</span>
+            Votes: <span>{withdraw.voteNum}</span>
           </p>
         </div>
         <p>
           Amount:
-          <span className={styles.price}>$200</span>
+          <span className={styles.price}>${withdraw.reqAmount}</span>
         </p>
       </div>
     </div>

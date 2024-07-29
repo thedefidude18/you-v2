@@ -1,121 +1,69 @@
+"use client";
+
 import Banner from "@/components/Banner/Banner";
 import Card from "@/components/Card/Card";
 import styles from './Vote.module.css'
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Withdraw from "@/components/Withdraw/Withdraw";
 import Voting from "@/components/Voting/Voting";
+import { useAccount, useConfig } from "wagmi";
+import { getRecentWithdrawals, getRequets } from "@/utils";
+import { voteOnRequest, withdrawRequest } from "@/utils/interact";
+import { sharedState } from "../layout";
 
 function Page() {
-  const cardData = [
-    {
-      id: 1,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 2,
-      image: "/ava2.jpg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: true,
-    },
-    {
-      id: 3,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 4,
-      image: "/ava2.jpg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: true,
-    },
-    {
-      id: 5,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 6,
-      image: "/ava2.jpg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: true,
-    },
-    {
-      id: 7,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 8,
-      image: "/ava2.jpg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: true,
-    },
-    {
-      id: 9,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 10,
-      image: "/ava2.jpg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: true,
-    },
-    {
-      id: 11,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-    {
-      id: 12,
-      image: "/profile.jpeg",
-      title: "GAMION",
-      subTitle: "Milestone Description:",
-      description:
-        "Defi Promises to Revolutionize how People engage in economic activities. in the web 3 space.",
-      bars: false,
-    },
-  ];
+
+  const config = useConfig()
+  const { address, chainId } = useAccount();
+
+  const stateRecived = useContext(sharedState);
+  const { isContributer } = stateRecived;
+
+  const [myRequests, setMyRequests] = useState([]);
+  const [othersRequests, setOthersRequests] = useState([]);
+  const [withdrawals, setWithdrawals] = useState([]);
+  const [numFor, setNumFor] = useState(0);
+  const [numAgainst, setNumAgainst] = useState(0);
+
+  const vote = async (project, reqId, decision) => {
+    const res = await voteOnRequest(config, chainId, project, reqId, decision)
+    if (res) {
+      await initRequests();
+    }
+  }
+
+  const withdraw = async (project, reqId) => {
+    const res = await withdrawRequest(config, chainId, project, reqId);
+    if (res) {
+      await initRequests();
+      await getRWithdrawals();
+    }
+  }
+
+  const initRequests = async () => {
+    const data = await getRequets(address, chainId);
+    if (data) {
+      setMyRequests(data.myRequests);
+      setOthersRequests(data.othersRequests);
+      setNumFor(data.numFor);
+      setNumAgainst(data.numAgainst);
+    }
+  }
+
+  const getRWithdrawals = async () => {
+    const data = await getRecentWithdrawals(chainId);
+    if (data) {
+      setWithdrawals(data);
+    }
+  }
+  useEffect(() => {
+
+    if (address) {
+      initRequests();
+      getRWithdrawals();
+    }
+
+  }, [address])
   return (
     <div>
       <Banner
@@ -124,21 +72,29 @@ function Page() {
       />
       <div className={styles.divide__Cont}>
         <div className={styles.cards__cont}>
-          {cardData.map((item, index) => (
-            <Card
-              key={index}
-              image={item.image}
-              title={item.title}
-              subTitle={item.subTitle}
-              description={item.description}
-              bars={item.bars}
-              id={item.id}
-            />
-          ))}
+          {isContributer ? (
+            othersRequests.map((item, index) => (
+              <Card
+                key={index}
+                isContributer={isContributer}
+                request={item}
+                confirm={vote}
+              />
+            ))) : (
+            myRequests.map((item, index) => (
+              <Card
+                key={index}
+                isContributer={isContributer}
+                request={item}
+                confirm={withdraw}
+              />
+            ))
+          )}
+
         </div>
         <div>
-          <Withdraw />
-          <Voting />
+          <Withdraw withdrawals={withdrawals} />
+          <Voting numFor={numFor} numAgainst={numAgainst}/>
         </div>
       </div>
     </div>

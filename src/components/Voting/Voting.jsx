@@ -1,22 +1,22 @@
 import React from "react";
 import styles from "./Voting.module.css";
 import VotingElement from "./VotingElement";
-function Voting() {
+function Voting({numFor, numAgainst}) {
   const votingStatics = [
     {
       icon: "/svgs/Vote1.svg",
       title: "Num of votes",
-      votNum: "24",
+      votNum: numFor + numAgainst,
     },
     {
       icon: "/svgs/Vote2.svg",
       title: "Voted For",
-      votNum: "10 times",
+      votNum: numFor,
     },
     {
       icon: "/svgs/Vote3.svg",
       title: "Voted Against",
-      votNum: "14 times",
+      votNum: numAgainst,
     },
   ];
   return (

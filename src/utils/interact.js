@@ -1,7 +1,8 @@
 import { writeContract, readContract, waitForTransactionReceipt } from "@wagmi/core";
 import CrowdfundingABI from "../abis/Crowdfunding.json";
+import VotingABI from "../abis/Voting.json";
 import ERC20ABI from "../abis/ERC20.json";
-import { contractAddresses } from "./constant";
+import { contractAddresses, votingAddresses } from "./constant";
 
 
 export const createProject = async (config, chainId, formData) => {
@@ -108,6 +109,47 @@ export const requestWithdraw = async (config, chainId, project, desc, receiver, 
             abi: CrowdfundingABI,
             functionName: "createWithdrawRequest",
             args: [project, desc, receiver, tokens]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+    }
+    return false;
+}
+
+export const voteOnRequest = async (config, chainId, project, requestId, vote) => {
+    try {
+        console.log(chainId, project, requestId, vote,votingAddresses[chainId])
+        const hash = await writeContract(config, {
+            address: votingAddresses[chainId],
+            abi: VotingABI,
+            functionName: "voteWithdrawRequest",
+            args: [project, requestId, vote]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+    }
+    return false;
+}
+
+export const withdrawRequest = async (config, chainId, project, reqId) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "withdrawRequestedAmount",
+            args: [project, reqId]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });
