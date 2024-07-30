@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./common.module.css";
+import ReactLoading from "react-loading";
 
 const CLOUDINARY_UPLOAD_URL =
   "https://api.cloudinary.com/v1_1/dvwdyqvzt/image/upload";
 
 function FormFirstStep({ formData = {}, setFormData = () => { } }) {
 
-  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dragZone = useRef(null);
   // function handleDragOver(e) {
@@ -24,6 +25,7 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
   // }
 
   const handleImageUpload = async (e) => {
+    setIsLoading(true);
     if (e.target.files) {
       // setImage(e.target.files[0]);
       const image = e.target.files[0];
@@ -33,14 +35,6 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
       form.append("upload_preset", "sjcclscl");
 
       const reader = new FileReader();
-
-      reader.onloadend = () => {
-        // Set the selected image and its preview
-        setImage({
-          file: image,
-          previewUrl: reader.result,
-        });
-      };
 
       reader.readAsDataURL(image);
       try {
@@ -57,7 +51,6 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
         const parsedData = JSON.parse(data);
         const cloudinaryImgUrl = parsedData.url;
 
-        console.log(cloudinaryImgUrl, "===========")
         setFormData({
           ...formData,
           coverURL: cloudinaryImgUrl,
@@ -68,62 +61,70 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
         // Handle error or set an error state
       }
     }
+    setIsLoading(false);
   };
 
   return (
-    <div className={styles.form_Cont}>
-      <div className={styles.elemen_Cont}>
-        <label className={styles.title__Lable}>Project name</label>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Enter your project name here"
-          value={formData.title}
-          onChange={(e) => {
-            setFormData({
-              ...formData,
-              title: e.target.value
-            })
-          }}
-        />
-      </div>
-      <div className={styles.elemen_Cont}>
-        <label className={styles.title__Lable}>Project description</label>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Enter your project description here"
-          value={formData.description}
-          onChange={(e) => {
-            setFormData({
-              ...formData,
-              description: e.target.value
-            })
-          }}
-        />
-      </div>
-      <label className={styles.title__Lable}>Project Cover Image</label>
-      <div
-        ref={dragZone}
-        // onDragOver={handleDragOver}
-        // onDragLeave={handleDragLeave}
-        // onDrop={handleDrop}
-        className={styles.drag_Cont}
-      >
-        {formData.coverURL && (
-          <img
-            src={formData.coverURL}
-            alt="image"
-            className={styles.cover_img}
-          />
+    <>
+      <div className={styles.form_Cont}>
+        {isLoading && (
+          <div className="fixed left-0 right-0 top-[100px] bottom-[0px] md:bottom-[0px] flex justify-center items-center backdrop-blur-sm bg-white/5 z-50">
+            <ReactLoading type="spinningBubbles" color="#000" />
+          </div>
         )}
-        <p className={styles.title__Lable}>Png, gif, WEBP. Max 10MB</p>
-        <label htmlFor="file_Up" className={styles.special_Label}>
-          Select Image
-        </label>
-        <input type="file" id="file_Up" style={{ display: "none" }} onChange={handleImageUpload} />
+        <div className={styles.elemen_Cont}>
+          <label className={styles.title__Lable}>Project name</label>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Enter your project name here"
+            value={formData.title}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                title: e.target.value
+              })
+            }}
+          />
+        </div>
+        <div className={styles.elemen_Cont}>
+          <label className={styles.title__Lable}>Project description</label>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Enter your project description here"
+            value={formData.description}
+            onChange={(e) => {
+              setFormData({
+                ...formData,
+                description: e.target.value
+              })
+            }}
+          />
+        </div>
+        <label className={styles.title__Lable}>Project Cover Image</label>
+        <div
+          ref={dragZone}
+          // onDragOver={handleDragOver}
+          // onDragLeave={handleDragLeave}
+          // onDrop={handleDrop}
+          className={styles.drag_Cont}
+        >
+          {formData.coverURL && (
+            <img
+              src={formData.coverURL}
+              alt="image"
+              className={styles.cover_img}
+            />
+          )}
+          <p className={styles.title__Lable}>Png, gif, WEBP. Max 10MB</p>
+          <label htmlFor="file_Up" className={styles.special_Label}>
+            Select Image
+          </label>
+          <input type="file" id="file_Up" style={{ display: "none" }} onChange={handleImageUpload} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

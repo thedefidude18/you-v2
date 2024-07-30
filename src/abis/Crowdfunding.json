@@ -74,10 +74,10 @@
         "type": "address"
       },
       {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "contributedAmount",
-        "type": "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "contributor",
+        "type": "address"
       },
       {
         "indexed": true,
@@ -86,10 +86,16 @@
         "type": "address"
       },
       {
-        "indexed": true,
-        "internalType": "address",
-        "name": "contributor",
-        "type": "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "contributedAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "usdValueWithAccuracy",
+        "type": "uint256"
       }
     ],
     "name": "ContributionReceived",
@@ -508,6 +514,25 @@
         "internalType": "address",
         "name": "",
         "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "project",
+        "type": "address"
+      }
+    ],
+    "name": "canContribute",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",

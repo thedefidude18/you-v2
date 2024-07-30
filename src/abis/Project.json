@@ -84,7 +84,13 @@
       }
     ],
     "name": "contribute",
-    "outputs": [],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -377,6 +383,54 @@
       }
     ],
     "name": "setVisibility",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_target",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_websiteUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_githubUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_socialUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_coverUrl",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_filterTags",
+        "type": "string"
+      }
+    ],
+    "name": "updateProject",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

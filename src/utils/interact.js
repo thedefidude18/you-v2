@@ -71,6 +71,17 @@ export const contributeToken = async (config, chainId, account, project, token, 
     return false;
 }
 
+export const canContribute = async (config, chainId, project) => {
+    const res = await readContract(config, {
+        address: contractAddresses[chainId],
+        abi: CrowdfundingABI,
+        functionName: "canContribute",
+        args: [project]
+    })
+
+    return res;
+}
+
 export const getAllowance = async (config, account, project, token) => {
     const res = await readContract(config, {
         address: token,
@@ -124,7 +135,7 @@ export const requestWithdraw = async (config, chainId, project, desc, receiver, 
 
 export const voteOnRequest = async (config, chainId, project, requestId, vote) => {
     try {
-        console.log(chainId, project, requestId, vote,votingAddresses[chainId])
+        console.log(chainId, project, requestId, vote, votingAddresses[chainId])
         const hash = await writeContract(config, {
             address: votingAddresses[chainId],
             abi: VotingABI,

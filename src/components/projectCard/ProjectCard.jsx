@@ -10,34 +10,60 @@ import { getEllipsisTxt } from "@/utils";
 import { sharedState } from "@/app/layout";
 import { useAccount, useConfig } from "wagmi";
 import { parseUnits } from "viem";
-import { approve, contributeToken, getAllowance } from "@/utils/interact";
+import { approve, canContribute, contributeToken, getAllowance } from "@/utils/interact";
+import { useRouter } from 'next/navigation';
+import ReactLoading from "react-loading";
+
 function ProjectCard({ project, height, imageHight }) {
   const stateRecived = useContext(sharedState);
   const config = useConfig();
   const { contriToken } = stateRecived;
   const [amount, setAmount] = useState(0);
   const { address, chainId } = useAccount();
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false);
 
   const contribute = async () => {
-    if (+amount > 0) {
-      const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
-      const allowance = await getAllowance(config, address, project.id, contriToken.address);
+    setIsLoading(true)
 
-      if (allowance < deciAmount) {
-        const res = await approve(config, project.id, contriToken.address, deciAmount);
-        if (res) {
-          await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+    const isAbleToContribute = await canContribute(config, chainId, project.id);
+    if (isAbleToContribute) {
+      if (+amount > 0) {
+        const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
+        const allowance = await getAllowance(config, address, project.id, contriToken.address);
+
+        let result;
+        if (allowance < deciAmount) {
+          const res = await approve(config, project.id, contriToken.address, deciAmount);
+          if (res) {
+            result = await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+          }
+        } else {
+          result = await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
         }
-      } else {
-        await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+        if (result) {
+          setTimeout(() => {
+            router.push("/projects");
+          }, 3000);
+        }
       }
+    } else {
+      alert("That project already reached out the target!");
     }
+
+
+    setIsLoading(false);
   }
   return (
     <div
       className={styles.project_Card_cont}
       style={{ height: height ? height : "", margin: height ? "20px 0" : "" }}
     >
+      {isLoading && (
+        <div className="fixed left-0 right-0 top-0 bottom-[0px] md:bottom-[0px] flex justify-center items-center backdrop-blur-sm bg-white/5 z-50">
+          <ReactLoading type="spinningBubbles" color="#000" />
+        </div>
+      )}
       <div className={styles.image__cont}>
         <img
           src={project.coverURL}
