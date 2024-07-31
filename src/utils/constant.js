@@ -61,7 +61,7 @@ export const defaultEthLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.2.8",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.2.9",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",

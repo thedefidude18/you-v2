@@ -32,7 +32,8 @@ function HomePage() {
   const { chain } = useAccount();
 
   const stateRecived = useContext(sharedState);
-  const { stateStep, setStateStep } = stateRecived;
+  const { stateStep, setStateStep, setReferral } = stateRecived;
+
   const [formData, setFormData] = useState(
     {
       title: "",
@@ -61,6 +62,15 @@ function HomePage() {
   const handleBack = () => {
     setStateStep((prevStep) => (prevStep - 1));
   };
+
+  useEffect(() => {
+    const pathName = window.location.href;
+    const pieces = pathName.split("?r=");
+    if (pieces.length == 2) {
+      const referral = pieces[1];
+      setReferral(referral);
+    }
+  }, [])
 
 
   const steps = [

@@ -17,7 +17,7 @@ import ReactLoading from "react-loading";
 function ProjectCard({ project, height, imageHight }) {
   const stateRecived = useContext(sharedState);
   const config = useConfig();
-  const { contriToken } = stateRecived;
+  const { contriToken, referral } = stateRecived;
   const [amount, setAmount] = useState(0);
   const { address, chainId } = useAccount();
   const router = useRouter()
@@ -25,7 +25,7 @@ function ProjectCard({ project, height, imageHight }) {
 
   const contribute = async () => {
     setIsLoading(true)
-
+    const referralAddr = referral != "" ? window.atob(referral) : address;
     const isAbleToContribute = await canContribute(config, chainId, project.id);
     if (isAbleToContribute) {
       if (+amount > 0) {
@@ -36,10 +36,10 @@ function ProjectCard({ project, height, imageHight }) {
         if (allowance < deciAmount) {
           const res = await approve(config, project.id, contriToken.address, deciAmount);
           if (res) {
-            result = await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+            result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount);
           }
         } else {
-          result = await contributeToken(config, chainId, address, project.id, contriToken.address, deciAmount);
+          result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount);
         }
         if (result) {
           setTimeout(() => {

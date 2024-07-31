@@ -173,3 +173,23 @@ export const withdrawRequest = async (config, chainId, project, reqId) => {
     }
     return false;
 }
+
+export const claimUserReward = async (config, chainId, isBuidl) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "withdrawUserRewards",
+            args: [isBuidl]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+    }
+    return false;
+}

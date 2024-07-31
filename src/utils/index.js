@@ -221,7 +221,7 @@ export const getContributors = async (chainId) => {
           referralNumber
           totalContribution
           totalBuidlPointRewards
-          totalUSDTRewards
+          totalStableRewards
           totalBuidlPointReferralRewards
         }
       }`;
@@ -241,23 +241,34 @@ export const getContributors = async (chainId) => {
 export const getContributionDetails = async (address, chainId) => {
     const query = `{
         contributor(id: "${address}") {
-          referralNumber
-          totalBuidlPointReferralRewards
-          totalBuidlPointRewards
-          totalContribution
-          totalUSDTRewards
-          claimableBuidlPointReferralRewards
-          claimableBuidlPointRewards
-          claimableUSDTRewards
-          contributions {
-            id
-          }
+            referralNumber
+            totalBuidlPointReferralRewards
+            totalBuidlPointRewards
+            totalContribution
+            claimableBuidlPointReferralRewards
+            claimableBuidlPointRewards
+            totalStableRewards
+            claimableStableRewards
+            contributions {
+                project {
+                    id
+                }
+            }
         }
       }`;
     try {
         const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
         if (res.isSuccess) {
-            return res.data.contributor;
+            const contributor = res.data.contributor;
+            const contributions = contributor.contributions;
+            let projectsNum = 0;
+            if (contributions.length > 0) {
+                const uniqueProjects = Array.from(new Set(contributions.map(a => JSON.stringify(a))))
+                    .map(str => JSON.parse(str));
+                projectsNum = uniqueProjects.length;
+            }
+
+            return {...contributor, projectsNum: projectsNum};
         }
 
         return null
