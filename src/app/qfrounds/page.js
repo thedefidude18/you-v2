@@ -1,76 +1,28 @@
-"use client";
-import Banner from "@/components/Banner/Banner";
-import FormFirstStep from "@/components/qrForms/FormFirstStep";
-import Steps from "@/components/steps/Steps";
-import React, { useContext, useEffect, useState } from "react";
-import { sharedState } from "../layout";
-import FormSecondStep from "@/components/qrForms/FormSecondStep";
-import FormThirdStep from "@/components/qrForms/FormThirdStep";
-import Loader from "@/components/Loader/Loader";
-import SuccessCard from "@/components/SuccessCard/SuccessCard";
-
-function page() {
-  const styleBtn = {
-    width: "164px",
-    height: "40px",
-    // position: "absolute",
-    // top: "823px",
-    // left: "1170px",
-    padding: "8px 18px",
-    gap: "8px",
-    borderRadius: "4px",
-    backgroundColor: "var(--primary-color)",
-    color: "var(--secondary-color)",
-    fontSize: "16px",
-    fontWeight: "600",
-  };
- 
-  const [stateStep,setStateStep] = useState(0)
-  useEffect(() => {
-    if (stateStep === 3) {
-      setTimeout(() => {
-        setStateStep(4);
-      }, 1000);
-    }
-  }, [stateStep]);
-  const handleNext = () => {
-    setStateStep((prevStep) => (prevStep <= 1 ? prevStep + 1 : 4));
-  };
-  const handleBack = () => {
-    setStateStep((prevStep) => (  prevStep -1  ));
-  };
- 
-  const steps = [
-    { name: "Build Details", completed: true },
-    { name: "Grant Mode", completed: false },
-    { name: "Social Links", completed: false },
-  ];
- 
+import React from 'react'
+import '../../styles/styles.css';
+import SummaryCard from '@/components/Donation/SummaryCard';
+import DonationTable from '@/components/Donation/DonationTable';
+import Banner from '@/components/Banner/Banner';
+const page = () => {
+    const donations = [
+        { round: 'GAMEION', donations: '25.43532 ARB / $356', transactionInfo: '0xXDGET46RG37FD...', voted: false },
+        { round: 'GAMEION', donations: '25.43532 ARB / $356', transactionInfo: '0xXDGET46RG37FD...', voted: true },
+        { round: 'GAMEION', donations: '25.43532 ARB / $356', transactionInfo: '0xXDGET46RG37FD...', voted: false },
+      ];
   return (
     <div>
-{/* <Banner
-        text="Submit your <br/> project."
-        image="/svgs/proj/BannerProduct.svg"
-        widthImage="206"
-        heightImage="206"
+         <Banner
+       text="Check Out Your <br/> Contributed projects "
+        image="/svgs/proj/BannerSvg.svg"
       />
-      <Steps step={stateStep} steps={steps}/>
-      {stateStep === 0 && <FormFirstStep />}
-      {stateStep === 1 && <FormSecondStep />}
-      {stateStep === 2 && <FormThirdStep />}
-      {stateStep === 3 && <Loader />}
-      {stateStep === 4 && <SuccessCard />}
-      <div style={{display:"flex",justifyContent:`${stateStep >0 ?" space-between":"flex-end"}`,alignItems:"center",marginTop:"40px"}}>
-    {stateStep !=0 && <button style={styleBtn} onClick={handleBack}>
-       Back
-      </button>}
-      <button style={styleBtn} onClick={handleNext}>
-        {stateStep === 2 ? "Submit" : "Next"}
-      </button>
-      </div> */}
-      
+      <div className="summary-cards">
+        <SummaryCard title="Total Donations" value="$50" />
+        <SummaryCard title="Total Donations" value="7" />
+        <SummaryCard title="Projects Funded" value="7" />
+      </div>
+      <DonationTable donations={donations} />
     </div>
-  );
+  )
 }
 
-export default page;
+export default page
