@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import Button from "../Button/Button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { sharedState } from "@/app/layout";
+import Link from "next/link";
 function Header() {
   const stateRecived = useContext(sharedState);
   const { stateStep } = stateRecived;
@@ -21,9 +22,9 @@ function Header() {
         />
       </div>
       <div className={styles.divide}>
-        <div className={stateStep > 0 ? styles.cart : ""}>
+      <Link className={stateStep > 0 ? styles.cart : ""} href={"/cart"} >
           <img src="/svgs/Cart.svg" alt="Cart" />
-        </div>
+        </Link>
         {/* {stateStep === 0 ? (
           <>
             <div className="Notification">

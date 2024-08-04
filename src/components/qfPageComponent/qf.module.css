@@ -1,0 +1,30 @@
+
+
+.cardContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  .card {
+    background: linear-gradient(99.87deg, #0f1222 38.62%, rgba(0, 0, 0, 0) 93.5%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    width: 30%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card .subtitle {
+    font-size: 16px;
+    color: #ccc;
+  }
+  
