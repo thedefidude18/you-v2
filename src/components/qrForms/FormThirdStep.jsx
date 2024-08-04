@@ -14,7 +14,7 @@ function FormThirdStep({ formData = {}, setFormData = () => { } }) {
     {
       icon: "/svgs/proj/X.svg",
       label: "X Link",
-      value: formData.socialURL,
+      value: formData?.socialURL,
       setValue: (e) => setFormData({
         ...formData,
         socialURL: e.target.value,
@@ -23,7 +23,7 @@ function FormThirdStep({ formData = {}, setFormData = () => { } }) {
     {
       icon: "/svgs/proj/Github.svg",
       label: "Git Hub",
-      value: formData.githubURL,
+      value: formData?.githubURL,
       setValue: (e) => setFormData({
         ...formData,
         githubURL: e.target.value,
