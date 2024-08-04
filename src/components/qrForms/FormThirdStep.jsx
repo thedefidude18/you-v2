@@ -5,7 +5,7 @@ function FormThirdStep({ formData = {}, setFormData = () => { } }) {
     {
       icon: "/svgs/proj/icon1.svg",
       label: " Project website",
-      value: formData.websiteURL,
+      value: formData?.websiteURL,
       setValue: (e) => setFormData({
         ...formData,
         websiteURL: e.target.value,

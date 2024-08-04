@@ -11,7 +11,7 @@ export const createProject = async (config, chainId, formData) => {
             address: contractAddresses[chainId],
             abi: CrowdfundingABI,
             functionName: "createProject",
-            args: [formData.title, formData.description, formData.target, formData.websiteURL, formData.socialURL, formData.githubURL, formData.coverURL, formData.filterTags]
+            args: [formData.title, formData.description, formData.target, formData?.websiteURL, formData.socialURL, formData.githubURL, formData.coverURL, formData.filterTags]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });
@@ -29,7 +29,7 @@ export const editProject = async (config, chainId, formData) => {
             address: contractAddresses[chainId],
             abi: CrowdfundingABI,
             functionName: "editProject",
-            args: [formData.id, formData.title, formData.description, formData.target, formData.websiteURL, formData.socialURL, formData.githubURL, formData.coverURL, formData.filterTags]
+            args: [formData.id, formData.title, formData.description, formData.target, formData?.websiteURL, formData.socialURL, formData.githubURL, formData.coverURL, formData.filterTags]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });

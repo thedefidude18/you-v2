@@ -10,11 +10,9 @@ function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {}
   const config = useConfig();
   const { address, chainId } = useAccount();
 
-  const referralURL =
-    "http://" +
-    (window.location.host ?? "no-host") +
-    "?r=" +
-    window.btoa(address ?? "");
+  const referralURL = typeof window !== "undefined"
+  ? "http://" + (window.location.host ?? "no-host") + "?r=" + window.btoa(address ?? "")
+  : "http://no-host?r=";
 
   const textURI = encodeURIComponent(
     "Use my referral code to take part in the grant platform."
