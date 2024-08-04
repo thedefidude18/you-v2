@@ -25,7 +25,7 @@ function ProjectCard({ project, height, imageHight }) {
 
   const contribute = async () => {
     setIsLoading(true)
-    const referralAddr = referral != "" ? window.atob(referral) : address;
+    const referralAddr = referral != "" ? window?.atob(referral) : address;
     const isAbleToContribute = await canContribute(config, chainId, project.id);
     if (isAbleToContribute) {
       if (+amount > 0) {

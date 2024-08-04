@@ -39,7 +39,7 @@ function HomePage() {
       title: "",
       description: "",
       target: 0,
-      websiteURL: "",
+      websiteURL: "/",
       socialURL: "",
       githubURL: "",
       coverURL: "",
@@ -64,7 +64,7 @@ function HomePage() {
   };
 
   useEffect(() => {
-    const pathName = window.location.href;
+    const pathName = window?.location?.href;
     const pieces = pathName.split("?r=");
     if (pieces.length == 2) {
       const referral = pieces[1];

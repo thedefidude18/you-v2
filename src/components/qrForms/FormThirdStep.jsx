@@ -8,7 +8,7 @@ function FormThirdStep({ formData = {}, setFormData = () => { } }) {
       value: formData?.websiteURL,
       setValue: (e) => setFormData({
         ...formData,
-        websiteURL: e.target.value,
+        websiteURL: e?.target?.value,
       })
     },
     {
