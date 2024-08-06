@@ -23,6 +23,24 @@ export const createProject = async (config, chainId, formData) => {
     return false;
 }
 
+export const deleteProject = async (config, chainId, project) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "deleteProject",
+            args: [project]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch { }
+    return false;
+}
+
 export const editProject = async (config, chainId, formData) => {
     try {
         const hash = await writeContract(config, {
@@ -186,6 +204,27 @@ export const withdrawRequest = async (config, chainId, project, reqId) => {
             abi: CrowdfundingABI,
             functionName: "withdrawRequestedAmount",
             args: [project, reqId]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+        return false;
+    }
+    return false;
+}
+
+export const instantWithdraw = async (config, chainId, project) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "instantWithdraw",
+            args: [project]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });

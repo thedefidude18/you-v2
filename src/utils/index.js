@@ -16,7 +16,7 @@ const getDataFromSubgraph = async (query, subgraphURL) => {
 
 export const getProjects = async (account) => {
     const query = `{
-        projects(where: {isVisible: true}, orderBy: blockTime, orderDirection: desc) {
+        projects(where: {and: [{isVisible: true}, {isDeleted: false}]}, orderBy: blockTime, orderDirection: desc) {
           id
           creator
           currentAmount {
@@ -254,7 +254,7 @@ export const getQFRound = async (chainId) => {
                     )
                 }
 
-                return {qfRound: qfRounds[0], leftTime: leftTime, usdAmount: usdAmount};
+                return { qfRound: qfRounds[0], leftTime: leftTime, usdAmount: usdAmount };
             }
         }
 
@@ -311,17 +311,18 @@ export const getContributionDetails = async (address, chainId) => {
         const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
         if (res.isSuccess) {
             const contributor = res.data.contributor;
-            const contributions = contributor.contributions;
-            let projectsNum = 0;
-            if (contributions.length > 0) {
-                const uniqueProjects = Array.from(new Set(contributions.map(a => JSON.stringify(a))))
-                    .map(str => JSON.parse(str));
-                projectsNum = uniqueProjects.length;
+            if (contributor) {
+                const contributions = contributor.contributions;
+                let projectsNum = 0;
+                if (contributions.length > 0) {
+                    const uniqueProjects = Array.from(new Set(contributions.map(a => JSON.stringify(a))))
+                        .map(str => JSON.parse(str));
+                    projectsNum = uniqueProjects.length;
+                }
+
+                return { ...contributor, projectsNum: projectsNum };
             }
-
-            return { ...contributor, projectsNum: projectsNum };
         }
-
         return null
     } catch (e) {
         console.log(e, "=========error in get contributor============")

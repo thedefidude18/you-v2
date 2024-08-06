@@ -7,7 +7,6 @@ import { chainLogos } from "@/utils/constant";
 
 function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {} }) {
 
-  const config = useConfig();
   const { address, chainId } = useAccount();
 
   const referralURL = typeof window !== "undefined"

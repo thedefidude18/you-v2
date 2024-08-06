@@ -30,8 +30,9 @@ function OddComponent() {
   }
 
   const initContriDetail = async () => {
-    const contriData = await getContributionDetails(address, chainId);
-    setContriDetail(contriData);
+    const contriData = await getContributionDetails(address.toLowerCase(), chainId);
+    if (contriData)
+      setContriDetail(contriData);
   }
   useEffect(() => {
     if (address) {
