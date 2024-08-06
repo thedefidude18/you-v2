@@ -33,7 +33,7 @@ export const categoryIcons = {
 }
 
 export const contractAddresses = {
-    [bscId]: "0xCA65ad6DBF237252e3dB399ef8ED6776782dF1b3",
+    [bscId]: "0xC4da3E2CAF5C060CB9B042E47e95E83075044FC5",
     [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
@@ -47,7 +47,7 @@ export const qfRoundsAddresses = {
 }
 
 export const votingAddresses = {
-    [bscId]: "0xC609F677c80e87791Ea46429492393BDf3B9Ec23",
+    [bscId]: "0x4dC5595C5992f45cABab2d5ebe0B29e603B46a6d",
     [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
@@ -61,7 +61,7 @@ export const defaultEthLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.2.9",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.0",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",

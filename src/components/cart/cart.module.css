@@ -119,7 +119,7 @@
   }
   
   .donationInput {
-    width: 60px;
+    width: 80px;
     margin-right: 10px;
     padding: 5px;
     border-radius: 4px;
@@ -129,6 +129,9 @@
   .price {
     margin-right: 10px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
   
   .deleteButton {
@@ -141,7 +144,6 @@
   
   .summary {
     margin-top: 30px;
-    padding: 15px;
     background-color: #F3F6FB;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
