@@ -18,10 +18,12 @@ export default function RootLayout({ children }) {
   const [isContributer,setIsContributer] = useState(true);
   const [currentProject, setCurrentProject] = useState(null);
   const [contriToken, setContriToken] = useState(null);
+  const [cartToken, setCartToken] = useState(null);
   const [referral, setReferral] = useState('');
+  const [cartItems, setCartItems] = useState({});
   return (
     <html lang="en">
-      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral}}>
+      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral, cartItems, setCartItems, cartToken, setCartToken}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">
            <div className="aside"><Aside /></div> 

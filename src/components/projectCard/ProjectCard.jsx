@@ -5,7 +5,7 @@ import Link from "next/link";
 import Button from "../Button/Button";
 import DropDown from "../Dropdown/DropDown";
 import SocialIcon from "../Socialicon/SocialIcon";
-import { chainLogos, tokenDecimals } from "@/utils/constant";
+import { chainLogos, contriTokens, tokenDecimals } from "@/utils/constant";
 import { getEllipsisTxt } from "@/utils";
 import { sharedState } from "@/app/layout";
 import { useAccount, useConfig } from "wagmi";
@@ -15,9 +15,9 @@ import { useRouter } from 'next/navigation';
 import ReactLoading from "react-loading";
 
 function ProjectCard({ project, height, imageHight }) {
-  const stateRecived = useContext(sharedState);
   const config = useConfig();
-  const { contriToken, referral } = stateRecived;
+  const stateRecived = useContext(sharedState);
+  const { contriToken, referral, cartItems, setCartItems } = stateRecived;
   const [amount, setAmount] = useState(0);
   const { address, chainId } = useAccount();
   const router = useRouter()
@@ -25,16 +25,16 @@ function ProjectCard({ project, height, imageHight }) {
 
   const contribute = async () => {
     setIsLoading(true)
-    const referralAddr = referral != "" ? window.atob(referral) : address;
+    const referralAddr = referral != "" ? window?.atob(referral) : address;
     const isAbleToContribute = await canContribute(config, chainId, project.id);
     if (isAbleToContribute) {
       if (+amount > 0) {
         const deciAmount = parseUnits(amount, tokenDecimals[chainId][contriToken.address]);
-        const allowance = await getAllowance(config, address, project.id, contriToken.address);
+        const allowance = await getAllowance(config, chainId, address, contriToken.address);
 
         let result;
         if (allowance < deciAmount) {
-          const res = await approve(config, project.id, contriToken.address, deciAmount);
+          const res = await approve(config, chainId, contriToken.address, deciAmount);
           if (res) {
             result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount);
           }
@@ -50,10 +50,17 @@ function ProjectCard({ project, height, imageHight }) {
     } else {
       alert("That project already reached out the target!");
     }
-
-
     setIsLoading(false);
   }
+
+  const updateCart = () => {
+    if (cartItems.hasOwnProperty(project.id)) {
+      alert("It has already added!")
+    } else {
+      setCartItems((current) => ({ ...current, [project.id]: { title: project.title, description: project.description, coverURL: project.coverURL, token: contriTokens[chainId][0], amount: 0 } }));
+    }
+  }
+
   return (
     <div
       className={styles.project_Card_cont}
@@ -137,7 +144,7 @@ function ProjectCard({ project, height, imageHight }) {
             <p>By {getEllipsisTxt(project.creator, 4)}</p>
           </div>
           <div className={styles.left}>
-            <img src="/svgs/proj/Cartcard.svg" alt="" />
+            <img className="cursor-pointer" src="/svgs/proj/Cartcard.svg" alt="" onClick={updateCart} />
             <Button path={`/projects/${project.id}`} type="link" text="Donate Now" />
           </div>
         </div>
@@ -146,10 +153,9 @@ function ProjectCard({ project, height, imageHight }) {
           <SocialIcon project={project} />
           <div style={{ display: "flex", gap: "8px" }}>
             <input type="text" placeholder="Enter Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <DropDown />
+            <DropDown isCart={false}/>
           </div>
           <div className={styles.left}>
-            <img src="/svgs/proj/Cartcard.svg" alt="" />
             <Button text="Contribute" confirm={contribute} />
           </div>
         </div>

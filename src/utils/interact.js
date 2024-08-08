@@ -23,6 +23,24 @@ export const createProject = async (config, chainId, formData) => {
     return false;
 }
 
+export const deleteProject = async (config, chainId, project) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "deleteProject",
+            args: [project]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch { }
+    return false;
+}
+
 export const editProject = async (config, chainId, formData) => {
     try {
         const hash = await writeContract(config, {
@@ -39,6 +57,27 @@ export const editProject = async (config, chainId, formData) => {
         }
     } catch {
 
+    }
+    return false;
+}
+
+export const contributeBatch = async (config, chainId, contriData) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "contribute",
+            args: [contriData]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+        return false;
     }
     return false;
 }
@@ -67,6 +106,7 @@ export const contributeToken = async (config, chainId, account, project, token, 
         }
     } catch (e) {
         console.log(e)
+        return false;
     }
     return false;
 }
@@ -82,24 +122,24 @@ export const canContribute = async (config, chainId, project) => {
     return res;
 }
 
-export const getAllowance = async (config, account, project, token) => {
+export const getAllowance = async (config, chainId, account, token) => {
     const res = await readContract(config, {
         address: token,
         abi: ERC20ABI,
         functionName: "allowance",
-        args: [account, project]
+        args: [account, contractAddresses[chainId]]
     })
 
     return res;
 }
 
-export const approve = async (config, project, token, amount) => {
+export const approve = async (config, chainId, token, amount) => {
     try {
         const hash = await writeContract(config, {
             address: token,
             abi: ERC20ABI,
             functionName: "approve",
-            args: [project, amount]
+            args: [contractAddresses[chainId], amount]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });
@@ -109,6 +149,7 @@ export const approve = async (config, project, token, amount) => {
         }
     } catch (e) {
         console.log(e)
+        return false;
     }
     return false;
 }
@@ -129,6 +170,7 @@ export const requestWithdraw = async (config, chainId, project, desc, receiver, 
         }
     } catch (e) {
         console.log(e)
+        return false;
     }
     return false;
 }
@@ -150,6 +192,7 @@ export const voteOnRequest = async (config, chainId, project, requestId, vote) =
         }
     } catch (e) {
         console.log(e)
+        return false;
     }
     return false;
 }
@@ -170,6 +213,28 @@ export const withdrawRequest = async (config, chainId, project, reqId) => {
         }
     } catch (e) {
         console.log(e)
+        return false;
+    }
+    return false;
+}
+
+export const instantWithdraw = async (config, chainId, project) => {
+    try {
+        const hash = await writeContract(config, {
+            address: contractAddresses[chainId],
+            abi: CrowdfundingABI,
+            functionName: "instantWithdraw",
+            args: [project]
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+        return false;
     }
     return false;
 }
@@ -190,6 +255,7 @@ export const claimUserReward = async (config, chainId, isBuidl) => {
         }
     } catch (e) {
         console.log(e)
+        return false;
     }
     return false;
 }

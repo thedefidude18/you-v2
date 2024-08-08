@@ -16,7 +16,7 @@ const getDataFromSubgraph = async (query, subgraphURL) => {
 
 export const getProjects = async (account) => {
     const query = `{
-        projects(where: {isVisible: true}, orderBy: blockTime, orderDirection: desc) {
+        projects(where: {and: [{isVisible: true}, {isDeleted: false}]}, orderBy: blockTime, orderDirection: desc) {
           id
           creator
           currentAmount {
@@ -214,6 +214,57 @@ export const getQFRounds = async () => {
     }
 };
 
+export const getQFRound = async (chainId) => {
+    const query = `{
+        qfrounds(first: 1, orderBy: blockTime, orderDirection: desc) {
+            id
+            title
+            imgUrl
+            desc
+            amount
+            contributions {
+                amount
+                token
+            }
+            contriNumber
+            token
+            projectNum
+            startTime
+            endTime
+        }
+      }`;
+    try {
+        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
+        if (res.isSuccess) {
+            const qfRounds = res.data.qfrounds;
+            if (qfRounds.length > 0) {
+                const currentTime = Math.floor(Date.now() / 1000)
+                let leftTime;
+                if (currentTime >= +qfRounds[0].endTime) {
+                    leftTime = 0;
+                } else {
+                    leftTime = +qfRounds[0].endTime - currentTime;
+                }
+
+                let usdAmount = 0;
+                for (const contri of qfRounds[0].contributions) {
+                    currentAmount += +formatUnits(
+                        contri.amount,
+                        contri[chainId][token.token]
+                    )
+                }
+
+                return { qfRound: qfRounds[0], leftTime: leftTime, usdAmount: usdAmount };
+            }
+        }
+
+        return null
+    } catch (e) {
+        console.log(e, "=========error in get qfRoundsList============")
+        return null;
+    }
+};
+
 export const getContributors = async (chainId) => {
     const query = `{
         contributors(orderBy: totalContribution, orderDirection: desc) {
@@ -260,17 +311,18 @@ export const getContributionDetails = async (address, chainId) => {
         const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
         if (res.isSuccess) {
             const contributor = res.data.contributor;
-            const contributions = contributor.contributions;
-            let projectsNum = 0;
-            if (contributions.length > 0) {
-                const uniqueProjects = Array.from(new Set(contributions.map(a => JSON.stringify(a))))
-                    .map(str => JSON.parse(str));
-                projectsNum = uniqueProjects.length;
+            if (contributor) {
+                const contributions = contributor.contributions;
+                let projectsNum = 0;
+                if (contributions.length > 0) {
+                    const uniqueProjects = Array.from(new Set(contributions.map(a => JSON.stringify(a))))
+                        .map(str => JSON.parse(str));
+                    projectsNum = uniqueProjects.length;
+                }
+
+                return { ...contributor, projectsNum: projectsNum };
             }
-
-            return {...contributor, projectsNum: projectsNum};
         }
-
         return null
     } catch (e) {
         console.log(e, "=========error in get contributor============")

@@ -21,12 +21,13 @@ function page() {
   const [active, setActive] = useState(false);
   const [value, setValue] = useState("All");
 
+  const loadProjects = async () => {
+    const projectsData = await getProjects(address);
+    setOthersProjects(projectsData.othersProjects);
+    setMyProjects(projectsData.myProjects);
+  };
+
   useEffect(() => {
-    const loadProjects = async () => {
-      const projectsData = await getProjects(address);
-      setOthersProjects(projectsData.othersProjects);
-      setMyProjects(projectsData.myProjects);
-    };
     if (address)
       loadProjects();
   }, [address]);
@@ -111,6 +112,7 @@ function page() {
               <ProjectBand
                 project={item}
                 key={index}
+                refresh={loadProjects}
               />
             ))}
           </>
