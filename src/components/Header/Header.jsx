@@ -1,15 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Header.module.css";
 import Button from "../Button/Button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { sharedState } from "@/app/layout";
 import Link from "next/link";
+import { Menu } from "@mui/icons-material";
+import { Drawer } from "@mui/material";
+import Aside from "../Aside/Aside";
 function Header() {
   const stateRecived = useContext(sharedState);
   const { stateStep } = stateRecived;
+  const [ open,setOpen] = useState(false)
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
   return (
     <header className={styles.header__cont}>
+      <div className={styles.menubar}>
+
+      <Menu style={{fontSize:"30px"}} onClick={()=>setOpen(true)}/>
+      </div>
+
       <div className={styles.input__cont}>
+        
         <input
           type="text"
           placeholder="Search for projects"
@@ -50,6 +63,9 @@ function Header() {
           <ConnectButton />
         </div>
       </div>
+      <Drawer open={open} onClose={toggleDrawer(false)} sx={{width:"50%"}}>
+ <Aside setOpen={setOpen}/>
+</Drawer>
     </header>
   );
 }

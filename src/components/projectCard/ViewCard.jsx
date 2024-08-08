@@ -110,7 +110,7 @@ function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {}
           className={styles.last_Row}
           style={{ justifyContent: "flex-end", gap: "16px" }}
         >
-          <button className="rounded-[4px] flex-1 bg-[#12d69b] font-bold py-1 w-full sm:py-2 text-white">
+          <button className="rounded-[4px] flex-1 bg-[#12d69b] font-bold py-2 w-full sm:py-2 text-white">
             <a href={tweetIntent} target="_new">
               {" "}
               Tweet Link
@@ -121,7 +121,7 @@ function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {}
               navigator.clipboard.writeText(referralURL);
               alert("Copied!")
             }}
-            className="rounded-[4px] flex-1 bg-[#12d69b] py-1 w-full font-bold sm:py-2 text-white"
+            className="rounded-[4px] flex-1 bg-[#12d69b] py-2 w-full font-bold sm:py-2 text-white"
           >
             Copy Referral
           </button>

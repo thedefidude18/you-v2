@@ -62,3 +62,14 @@
     width: 100%;
   }
 }
+
+@media (max-width:550px) {
+  .steps_container {
+    width: auto;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 30px;
+  }
+}

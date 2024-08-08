@@ -49,3 +49,15 @@
   gap: 4px;
   padding: 16px 12px;
 }
+@media (max-width:540px) {
+  .aside__cont {
+    width: 100%;
+    height: 900px;
+    border-right: 1px solid #efeff1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* justify-content: center; */
+    padding: 2rem;
+  }
+}

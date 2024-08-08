@@ -65,3 +65,13 @@ input {
 
   border-radius: 4px;
 }
+
+.aside{
+  display: block;
+    }
+  
+    @media (max-width: 550px) {
+      .aside {
+        display: none;
+      }
+    }

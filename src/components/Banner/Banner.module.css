@@ -20,3 +20,14 @@
 .banner__cont img {
   margin-top: -20px;
 }
+
+@media (max-width:550px) {
+  .banner__cont h1 {
+    width: auto;
+  
+    color: var(--secondary-color);
+    font-size: 30px;
+    word-wrap: normal;
+    font-weight: 700;
+  }
+}

@@ -1,7 +1,7 @@
 .view_cont {
   height: 230px;
   display: grid;
-  grid-template-columns: repeat(3, 344px);
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 15px;
   gap: 15px;
 }
@@ -11,4 +11,15 @@
   margin: auto;
   margin-top: 15px;
   width: 985px;
+}
+@media (max-width:550px) {
+  .view_cont {
+    padding: 0px 20px;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 15px;
+    gap: 15px;
+  }
 }

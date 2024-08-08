@@ -93,7 +93,7 @@ function HomePage() {
       {stateStep === 2 && <FormThirdStep formData={formData} setFormData={setFormData} />}
       {stateStep === 3 && <Loader />}
       {stateStep === 4 && <SuccessCard />}
-      <div style={{ display: "flex", justifyContent: `${stateStep > 0 ? " space-between" : "flex-end"}`, alignItems: "center", marginTop: "40px" }}>
+      <div style={{ display: "flex", justifyContent: `${stateStep > 0 ? " space-between" : "flex-end"}`, alignItems: "center", marginTop: "40px",padding:"20px" }}>
         {stateStep != 0 && <button style={styleBtn} onClick={handleBack}>
           Back
         </button>}

@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">
-            <Aside />
+           <div className="aside"><Aside /></div> 
             <main>
               <Providers>
                 <Header />

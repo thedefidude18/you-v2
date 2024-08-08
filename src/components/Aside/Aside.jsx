@@ -13,7 +13,7 @@ import DonationSvg from "../../../public/svgs/DonationSvg";
 import DocsSvg from "../../../public/svgs/DocsSvg";
 import LogoutSvg from "../../../public/svgs/LogoutSvg";
 import DoubleButton from "./DoubleButton";
-function Aside() {
+function Aside({setOpen}) {
   const pathName = usePathname();
 
   let show1;
@@ -88,7 +88,7 @@ function Aside() {
                   item.path.length !== 1;
 
             return (
-              <li key={index} className={isActive ? styles.active : ""}>
+              <li key={index} className={isActive ? styles.active : ""} onClick={()=>setOpen &&setOpen(false)}>
                 <Link href={`${item.path}`}>
                   <span className={styles.icon}> {item.icon}</span>
                   {item.name}

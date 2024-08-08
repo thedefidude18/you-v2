@@ -264,4 +264,47 @@
   .submitButton:hover {
     background-color: #005bb5;
   }
+
+
+  @media (max-width:550px) {
+    .container1 {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column-reverse;
+      padding: 20px;
+      gap: 40px;
+      border-radius: 10px;
+      align-items: flex-start;
+    }
+    .summaryContainer {
+      flex: 4;
+      width: 100%;
+       padding: 20px;
+       height: auto;
+       background-color: #F3F6FB;
+       border-radius: 12px;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       border: 1px solid #e0e0e0;
+       font-family: 'Arial', sans-serif;
+     }
+     .item {
+      display: flex;
+      width: 100%;
+      background-color: #F3F6FB;
+      padding: 15px;
+      border-radius: 8px;
+      align-items: center;
+      border: 1px solid #e0e0e0;
+    }
+    .items {
+      flex: 4;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      height: auto;
+    }
+  }
   

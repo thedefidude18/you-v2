@@ -3,8 +3,10 @@
   height: 48px;
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
   gap: 50px;
+  padding: 0px 20px;
 }
 .input__cont {
   position: relative;
@@ -76,6 +78,38 @@
   background-color: var(--third-color);
   border-radius: 0 8px 8px 0;
   justify-content: center;
+}
+.menubar{
+  display: none;
+  font-weight: 700;
+}
+@media (max-width:550px) {
+  .menubar{
+    display: block;
+  }
+  .header__cont{
+    gap: 20px;
+  }
+  .header__cont input {
+    width: auto;
+    height: 48px;
+    border-radius: 4px;
+    background-color: var(--third-color);
+    padding: 12px;
+    color: #949aaf;
+    font-size: 14px;
+  }
+  .buttonGroup p {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.8em 1.3em 0.8em 1.3em;
+    font-size: 1rem;
+    font-weight: 600;
+    width: auto;
+  }
 }
 
 /* .wallet{
