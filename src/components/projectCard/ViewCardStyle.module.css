@@ -1,7 +1,7 @@
 .view_card_cont {
   background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
     linear-gradient(0deg, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54));
-  width: 344px;
+  width: 100%;
 
   border-radius: 8px;
   position: relative;
@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: inset;
 }
 .view_card_cont h3 {
   font-size: 24px;
@@ -20,7 +21,7 @@
 .view_card_cont .description {
   /* font-family: Manrope; */
   margin-top: 10px;
-  width: 241px;
+  width: 75%;
   font-size: 16px;
   font-weight: 400;
   color: #f0f0f0;
@@ -50,7 +51,7 @@
     background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
       linear-gradient(0deg, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54));
     width: 100%;
-    height: 230px;
+    min-height: 230px;
     border-radius: 8px;
     position: relative;
     padding: 10px;

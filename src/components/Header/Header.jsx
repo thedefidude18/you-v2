@@ -15,28 +15,29 @@ function Header() {
     setOpen(newOpen);
   };
   return (
-    <header className={styles.header__cont}>
-      <div className={styles.menubar}>
+    <div className=" flex justify-between items-center w-full  p-2  py-4 border-b ">
+      <div className="block sm:hidden text-xl">
 
       <Menu style={{fontSize:"30px"}} onClick={()=>setOpen(true)}/>
       </div>
 
-      <div className={styles.input__cont}>
+      <div className="p-2 border bg-[var(--third-color)] rounded-md relative sm:w-1/3  sm:block hidden placeholder:text-[#949aaf]">
         
         <input
           type="text"
           placeholder="Search for projects"
           suppressHydrationWarning={true}
+          className="bg-[var(--third-color)] w-full p-1"
         />
         <img
-          className={styles.icon__search}
+          className="absolute right-[12px] top-[25%]"
           src="/svgs/Search.svg"
           alt="Search"
         />
       </div>
-      <div className={styles.divide}>
-      <Link className={stateStep > 0 ? styles.cart : ""} href={"/cart"} >
-          <img src="/svgs/Cart.svg" alt="Cart" />
+      <div className=" flex items-center gap-4 sm:w-2/3 justify-end">
+      <Link className={stateStep > 0 ? " text-xl" : ""} href={"/cart"} >
+          <img src="/svgs/Cart.svg" alt="Cart"  className=" h-[40px] object-cover"/>
         </Link>
         {/* {stateStep === 0 ? (
           <>
@@ -51,22 +52,22 @@ function Header() {
         ) 
         : 
         ( */}
-          <div className={styles.buttonGroup}>
-            <p className={styles.leftBtn}>
+          <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
+            <p className="flex p-3 items-center  ">
               <img src="./svgs/qf/Star.svg" alt="star" />
               Star
             </p>
-            <p className={styles.rightBtn}>1000</p>
+            <p className="p-4 px-6 border-l-2 bg-[var(--third-color)]">1000</p>
           </div>
         {/* )} */}
-        <div className="wallet">
+        <div className="">
           <ConnectButton />
         </div>
       </div>
       <Drawer open={open} onClose={toggleDrawer(false)} sx={{width:"50%"}}>
  <Aside setOpen={setOpen}/>
 </Drawer>
-    </header>
+    </div>
   );
 }
 

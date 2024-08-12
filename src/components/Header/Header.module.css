@@ -86,6 +86,7 @@
 @media (max-width:550px) {
   .menubar{
     display: block;
+    font-size: 40px;
   }
   .header__cont{
     gap: 20px;
@@ -109,6 +110,9 @@
     font-size: 1rem;
     font-weight: 600;
     width: auto;
+  }
+  .input__cont{
+    display: none;
   }
 }
 

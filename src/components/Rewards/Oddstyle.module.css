@@ -5,6 +5,7 @@
   margin-top: 15px;
   gap: 15px;
 }
+
 .last_Cont {
   display: flex;
   flex-direction: column;
@@ -12,14 +13,18 @@
   margin-top: 15px;
   width: 985px;
 }
-@media (max-width:550px) {
+
+@media (max-width: 550px) {
   .view_cont {
-    padding: 0px 20px;
+    padding: 0 10px; /* Add padding for better spacing */
     width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    margin-top: 15px;
-    gap: 15px;
+    height: auto; /* Allow height to adjust based on content */
+    grid-template-columns: repeat(2, 1fr); /* Adjust grid to 2 columns on mobile */
+    gap: 10px; /* Reduce gap between items for smaller screens */
+  }
+
+  .last_Cont {
+    width: 100%; /* Full width on mobile */
+    padding: 0 10px; /* Add padding for better spacing */
   }
 }

@@ -15,7 +15,7 @@ const page = () => {
        text="Check Out Your <br/> Contributed projects "
         image="/svgs/proj/BannerSvg.svg"
       />
-      <div className="summary-cards">
+      <div className="grid sm:grid-cols-3 gap-4 w-full grid-cols-2 p-4">
         <SummaryCard title="Total Donations" value="$50" />
         <SummaryCard title="Total Donations" value="7" />
         <SummaryCard title="Projects Funded" value="7" />

@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "./Banner.module.css";
-function Banner({ text, image, heightImage, widthImage }) {
+import Image from "next/image";
+function Banner({ text, image }) {
   /***if this image have special width or height */
-  const style = widthImage &&
-    heightImage && {
-      width: widthImage + "px",
-      height: heightImage + "px",
-      marginTop: "-4px",
-    };
+ 
   return (
-    <div className={styled.banner__cont}>
-        <h1 style={{ whiteSpace: "nowrap" }} dangerouslySetInnerHTML={{ __html: text }} />
-      <img src={image} alt="bannerImage" style={style} />
+    <div className=" flex justify-between items-center custom-gradient-bg  px-4 w-full  ">
+        <h1 style={{ whiteSpace: "nowrap", }} className=" text-white sm:text-[40px] text-[20px]" dangerouslySetInnerHTML={{ __html: text }} />
+        
+  <img
+    src={image}
+    alt="bannerImage"
+className="sm:h-[160px] sm:w-[180px] h-[80px] w-[90px] "
+  />
+
+
+
     </div>
   );
 }

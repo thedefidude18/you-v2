@@ -21,15 +21,12 @@ ul {
 a {
   text-decoration: none;
 }
-.main__Wrapper {
-  display: grid;
-  grid-template-columns: 288px 1fr;
-}
 
-main {
+
+/* main {
   width: 1064px;
   margin: 0 auto;
-}
+} */
 button {
   border: none;
   outline: none;
@@ -50,13 +47,13 @@ input {
   width: 5px;
 }
 
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   background: rgba(217, 217, 217, 0.2);
   width: 5px;
   height: 583px;
   border-radius: 4px;
   opacity: 0.2;
-}
+} */
 
 ::-webkit-scrollbar-thumb {
   background: #d9d9d9;
@@ -66,12 +63,34 @@ input {
   border-radius: 4px;
 }
 
-.aside{
-  display: block;
-    }
-  
-    @media (max-width: 550px) {
-      .aside {
-        display: none;
-      }
+.main__Wrapper {
+  display: grid;
+  grid-template-columns: 288px 1fr;
+  height: 100vh; /* Makes the layout take full viewport height */
+}
+
+@media (max-width: 1024px) {
+  .main__Wrapper {
+    grid-template-columns: 240px 1fr; /* Adjust the width of the aside for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .main__Wrapper {
+    grid-template-columns: 200px 1fr; /* Further adjust the aside width */
+  }
+}
+
+@media (max-width: 550px) {
+  .main__Wrapper {
+    grid-template-columns: 1fr; /* Full width for the main content */
+  }
+  .aside {
+    display: none; /* Hide the aside component */
+  }
+}
+
+    .custom-gradient-bg {
+      background-image: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
+                        linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
     }

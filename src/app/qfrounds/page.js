@@ -28,7 +28,10 @@ function page() {
         widthImage="180"
         heightImage="160"
       />
+      {/* <div className=" grid sm:grid-cols-3 grid-cols-1 w-full gap-2 p-2"> */}
+
       <Card qfRound={qfRound} />
+      {/* </div> */}
     </div>
   );
 }
