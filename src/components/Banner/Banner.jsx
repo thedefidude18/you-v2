@@ -6,7 +6,7 @@ function Banner({ text, image }) {
  
   return (
     <div className=" flex justify-between items-center custom-gradient-bg  px-4 w-full  ">
-        <h1 style={{ whiteSpace: "nowrap", }} className=" text-white sm:text-[40px] text-[20px]" dangerouslySetInnerHTML={{ __html: text }} />
+        <h1  className=" text-white sm:text-[40px] text-[20px]" dangerouslySetInnerHTML={{ __html: text }} />
         
   <img
     src={image}

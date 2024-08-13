@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { sharedState } from "@/app/layout";
 import Link from "next/link";
-import { Menu } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
 import { Drawer } from "@mui/material";
 import Aside from "../Aside/Aside";
 function Header() {
@@ -16,9 +16,9 @@ function Header() {
   };
   return (
     <div className=" flex justify-between items-center w-full  p-2  py-4 border-b ">
-      <div className="block sm:hidden text-xl">
+      <div className="block sm:hidden text-xxl">
 
-      <Menu style={{fontSize:"30px"}} onClick={()=>setOpen(true)}/>
+      <Menu style={{fontSize:"40px"}} onClick={()=>setOpen(true)}/>
       </div>
 
       <div className="p-2 border bg-[var(--third-color)] rounded-md relative sm:w-1/3  sm:block hidden placeholder:text-[#949aaf]">
@@ -64,9 +64,19 @@ function Header() {
           <ConnectButton />
         </div>
       </div>
-      <Drawer open={open} onClose={toggleDrawer(false)} sx={{width:"50%"}}>
- <Aside setOpen={setOpen}/>
+      <Drawer
+  open={open}
+  onClose={toggleDrawer(false)}
+  sx={{
+    width: "50%",
+  }}
+>
+  
+  <Aside setOpen={setOpen} open={open} />
 </Drawer>
+
+
+
     </div>
   );
 }

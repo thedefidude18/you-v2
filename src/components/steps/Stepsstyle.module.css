@@ -2,6 +2,7 @@
   width: 569px;
   height: 44px;
   display: flex;
+  padding: 0px 20px;
   align-items: center;
   justify-content: center;
   margin: 20px auto 30px;
@@ -65,11 +66,22 @@
 
 @media (max-width:550px) {
   .steps_container {
-    width: auto;
+    width: 100%;
+    padding:0px 20px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 20px auto 30px;
+  }
+  .line {
+    height: 6px;
+    width: 30%;
+    border-radius: 3px;
+    background-color: #eff0f6;
+    margin-inline-end: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+    /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; */
   }
 }

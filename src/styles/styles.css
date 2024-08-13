@@ -14,6 +14,12 @@
     border-radius: 8px;
     padding: 20px;
     text-align: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
     flex: 1;
     margin: 0 10px;
   }
@@ -24,7 +30,7 @@
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
   margin-top: 20px;
   width: 100%; /* Full width of the parent container */
-  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+  max-width: 100%; 
 }
 
 /* Ensure the table width is enough to accommodate its content */
@@ -32,8 +38,12 @@
   width: 100%;
   min-width: 600px; /* Minimum width for the table */
   border-collapse: collapse;
+  max-width: 100%;
 }
 
+@media (max-width:"550px") {
+  
+}
 .table th, .table td {
   padding: 12px;
   text-align: left;
@@ -60,6 +70,7 @@
   margin-top: 40px;
   width: 100%;
   font-weight: bold;
+  min-height: 200px;
 }
 
 .summary-card {

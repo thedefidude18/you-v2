@@ -2,7 +2,7 @@ import DonationRow from './DonationRow';
 
 const DonationTable = ({ donations }) => {
   return (
-    <table className="table">
+    <table className="table-auto">
       <thead>
         <tr>
           <th>Round</th>

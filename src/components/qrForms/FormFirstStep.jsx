@@ -67,7 +67,7 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
   };
 
   return (
-    <>
+    <div className=" px-4">
       <div className={styles.form_Cont}>
         {isLoading && (
           <div className="fixed left-0 right-0 top-[100px] bottom-[0px] md:bottom-[0px] flex justify-center items-center backdrop-blur-sm bg-white/5 z-50">
@@ -126,7 +126,7 @@ function FormFirstStep({ formData = {}, setFormData = () => { } }) {
           <input type="file" id="file_Up" style={{ display: "none" }} onChange={handleImageUpload} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

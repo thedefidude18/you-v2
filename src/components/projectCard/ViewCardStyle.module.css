@@ -2,6 +2,7 @@
   background: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
     linear-gradient(0deg, rgba(0, 0, 0, 0.54), rgba(0, 0, 0, 0.54));
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
   border-radius: 8px;
   position: relative;
@@ -9,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: inset;
+ 
 }
 .view_card_cont h3 {
   font-size: 24px;
@@ -54,8 +55,10 @@
     min-height: 230px;
     border-radius: 8px;
     position: relative;
+    margin-top: 20px;
     padding: 10px;
     display: flex;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     flex-direction: column;
     justify-content: space-between;
   }

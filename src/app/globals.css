@@ -44,7 +44,7 @@ input {
   outline: none;
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
 }
 
 /* ::-webkit-scrollbar-track {
@@ -94,3 +94,4 @@ input {
       background-image: linear-gradient(99.87deg, #0f1222 26.62%, rgba(0, 0, 0, 0) 93.5%),
                         linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
     }
+    

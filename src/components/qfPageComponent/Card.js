@@ -24,8 +24,8 @@ const Card = ({ qfRound = null }) => {
   ]
   return (
     <div>
-      <div className="w-full grid sm:grid-cols-3 gap-2 grid-cols-2 p-2 ">
-        {data.map((item, index) => (<div className="w-full custom-gradient-bg p-4 py-8 sm:min-h-[150px] flex flex-col items-center justify-center rounded-lg shadow-md text-white text-center font-bold" key={index}>
+      <div className="w-full grid sm:grid-cols-3 gap-2 grid-cols-1  p-4 ">
+        {data.map((item, index) => (<div className="w-full custom-gradient-bg shadow-xl p-4 py-8 sm:min-h-[150px] flex flex-col items-center justify-center rounded-lg   text-white text-center font-bold" key={index}>
           <div className={styles.title}>{item.title}</div>
           <div className={styles.subtitle}>{item.subTitle}</div>
         </div>))}

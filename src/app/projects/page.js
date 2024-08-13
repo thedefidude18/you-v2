@@ -26,7 +26,7 @@ function page() {
     setOthersProjects(projectsData.othersProjects);
     setMyProjects(projectsData.myProjects);
   };
-
+console.log(othersProjects)
   useEffect(() => {
     if (address)
       loadProjects();
@@ -40,7 +40,7 @@ function page() {
         image="/svgs/proj/BannerSvg.svg"
       />
 
-      <div className={styles.main_Title}>
+      <div className={`${styles.main_Title} px-4`}>
         <h2>Trending Buidls</h2>
         <div className={styles.process_cont}>
           <div className={styles.filter__btn__cont}>

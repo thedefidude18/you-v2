@@ -13,7 +13,8 @@ import DonationSvg from "../../../public/svgs/DonationSvg";
 import DocsSvg from "../../../public/svgs/DocsSvg";
 import LogoutSvg from "../../../public/svgs/LogoutSvg";
 import DoubleButton from "./DoubleButton";
-function Aside({setOpen}) {
+import { Close } from "@mui/icons-material";
+function Aside({setOpen,open}) {
   const pathName = usePathname();
 
   let show1;
@@ -72,8 +73,17 @@ function Aside({setOpen}) {
     },
   ];
   return (
-    <aside className={styles.aside__cont}>
+    <aside className={`${styles.aside__cont} relative w-full `} >
       <div className={styles.divide}>
+      {open && (
+    <div
+      className=" absolute right-[0px] top-4 p-2 rounded-full shadow-xl z-[1100] bg-white border-2 border-black flex justify-center items-center"
+      style={{ width: "40px", height: "40px" }}
+      onClick={()=>setOpen(false)} 
+    >
+      <Close />
+    </div>
+  )}
         <img
           style={{ width: "185px", height: "50px", margin: " 0 auto" }}
           src="/svgs/Logo.svg"

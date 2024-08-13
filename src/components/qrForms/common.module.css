@@ -113,10 +113,11 @@
 }
 
 @media (max-width:550px) {
+ 
   .form_Cont {
-    width: auto;
-    
-    margin: 10px 40px;
+   width: 100%;
+   
+    margin: auto;
     padding: 25px;
     background-color: var(--third-color);
     box-shadow: 0px 4px 11px 0px #7e7ce93d;

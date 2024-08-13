@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import styles from "./ViewCardStyle.module.css";
 import { useAccount, useConfig } from "wagmi";
 import { chainLogos } from "@/utils/constant";
+import { Card } from "@mui/material";
 
 function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {} }) {
 
@@ -21,8 +22,8 @@ function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {}
   const tweetIntent = `https://twitter.com/intent/tweet?text=${textURI}&url=${urlURI}`;
 
   return (
-    <div
-      className={styles.view_card_cont}
+    <Card
+      className={`${styles.view_card_cont} `}
     >
       <div>
         <h3>{title}</h3>
@@ -126,7 +127,7 @@ function ViewCard({ title, id, num = 0, total = 0, claimable = 0, claim=() => {}
           </button>
         </div>
       )}
-    </div>
+    </Card>
   );
 }
 
