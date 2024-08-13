@@ -26,7 +26,7 @@ function page() {
     setOthersProjects(projectsData.othersProjects);
     setMyProjects(projectsData.myProjects);
   };
-console.log(othersProjects)
+
   useEffect(() => {
     if (address)
       loadProjects();

@@ -36,14 +36,11 @@
 /* Ensure the table width is enough to accommodate its content */
 .table {
   width: 100%;
-  min-width: 600px; /* Minimum width for the table */
+  min-width: 650px; /* Minimum width for the table */
   border-collapse: collapse;
   max-width: 100%;
 }
 
-@media (max-width:"550px") {
-  
-}
 .table th, .table td {
   padding: 12px;
   text-align: left;
@@ -92,6 +89,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  
 }
 
 .vote-btn.disabled {

@@ -1,12 +1,12 @@
 
-import { FaEthereum } from 'react-icons/fa';
+
 
 
 const DonationRow = ({ round, donations, transactionInfo, voted }) => {
   return (
-    <tr className=' row-auto'>
+    <tr className=' row-auto gap-3'>
       <td>
-        <div className="round-info">
+        <div className="round-info margin-r-2">
           <img src="/token.png" alt="Round Icon" className="round-icon" />
           <div>
             <div className="round-text">{round}</div>

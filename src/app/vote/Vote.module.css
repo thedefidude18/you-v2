@@ -1,12 +1,41 @@
 .divide__Cont {
   display: grid;
-  grid-template-columns: 571px 256px;
-  column-gap: 60px;
-  width: fit-content;
+  grid-template-columns: 1fr;
+  column-gap: 0;
+  width: 100%;
   margin: 15px auto;
+  padding: 20px;
 }
+
 .cards__cont {
-  height: 583px;
-  width: 571px;
-  overflow-y: scroll;
+  height: auto;
+  width: 100%;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .divide__Cont {
+    grid-template-columns: 1fr;
+    column-gap: 20px;
+    width: 100%;
+  }
+
+  .cards__cont {
+    height: 400px; 
+    width: 100%;
+    overflow-y: scroll;
+  }
+}
+
+@media (min-width: 1024px) {
+  .divide__Cont {
+    grid-template-columns: 571px 256px;
+    column-gap: 60px;
+    width: fit-content;
+  }
+
+  .cards__cont {
+    height: 583px;
+    width: 571px;
+  }
 }
