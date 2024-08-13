@@ -14,7 +14,7 @@ const DonationRow = ({ round, donations, transactionInfo, voted }) => {
           </div>
         </div>
       </td>
-      <td>{donations}</td>
+      <td className="mx-2 px-1">{donations}</td>
       <td>
         <div className="transaction-link">
           
