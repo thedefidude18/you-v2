@@ -92,7 +92,7 @@ function Page() {
           )}
 
         </div>
-        <div>
+        <div className="w-full">
           <Withdraw withdrawals={withdrawals} />
           <Voting numFor={numFor} numAgainst={numAgainst}/>
         </div>

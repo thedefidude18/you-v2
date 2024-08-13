@@ -11,6 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-inline-start: 4px;
+  width: 100%;
 }
 .content h4 {
   font-size: 12px;
@@ -37,4 +38,10 @@
   font-weight: 700 !important;
   color: var(--fourth-color) !important;
   opacity: 1 !important;
+}
+@media (max-width: 550px) {
+  .wdraw_oper_cont {
+    display: flex;
+    width: 100%;
+  }
 }
