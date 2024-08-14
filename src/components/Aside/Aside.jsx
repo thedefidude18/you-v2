@@ -33,25 +33,27 @@ function Aside({setOpen,open}) {
       icon: <HomeSvg />,
     },
     {
+      name: "Projects",
+      path: "/projects",
+      icon: <Projects />,
+    },
+    {
       name: "QF Rounds",
       path: "/qfrounds",
       icon: <QFround />,
     },
+    
     {
-      name: "Projects",
-      path: "/projects",
-      icon: <Projects />,
+      name: "Donation",
+      path: "/donation",
+      icon: <DonationSvg />,
     },
     {
       name: "Rewards",
       path: "/rewards",
       icon: <RewardsSvg />,
     },
-    {
-      name: "Donation",
-      path: "/donation",
-      icon: <DonationSvg />,
-    },
+    
     {
       name: "Vote",
       path: "/vote",

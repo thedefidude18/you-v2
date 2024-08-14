@@ -1,7 +1,3 @@
-
-
-
-
 const DonationRow = ({ round, donations, transactionInfo, voted }) => {
   return (
     <tr className=' row-auto '>
