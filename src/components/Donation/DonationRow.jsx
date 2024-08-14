@@ -4,7 +4,7 @@
 
 const DonationRow = ({ round, donations, transactionInfo, voted }) => {
   return (
-    <tr className=' row-auto gap-3'>
+    <tr className=' row-auto !gap-4'>
       <td>
         <div className="round-info margin-r-2">
           <img src="/token.png" alt="Round Icon" className="round-icon" />
@@ -14,7 +14,7 @@ const DonationRow = ({ round, donations, transactionInfo, voted }) => {
           </div>
         </div>
       </td>
-      <td className="mx-2 px-1">{donations}</td>
+      <td className="!mx-2 !px-1">{donations}</td>
       <td>
         <div className="transaction-link">
           
