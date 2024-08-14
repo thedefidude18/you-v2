@@ -17,7 +17,7 @@ import { Close } from "@mui/icons-material";
 import Vote from "../../../public/svgs/Vote";
 function Aside({setOpen,open}) {
   const pathName = usePathname();
-
+  
   let show1;
   pathName === "/rewards" ? (show1 = true) : "";
   pathName === "/projects" ? (show1 = true) : "";
