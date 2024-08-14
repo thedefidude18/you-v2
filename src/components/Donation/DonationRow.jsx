@@ -19,11 +19,11 @@ const DonationRow = ({ round, donations, transactionInfo, voted }) => {
         <div className="transaction-link">
           
         <img src="/etherium.png" alt="Round Icon" className="round-icon" />
-          <a href="#"><p className="ml-4 sm:ml-0">{transactionInfo}</p></a>
+          <a href="#">{transactionInfo}</a>
         </div>
       </td>
       <td>
-        <button className={`vote-btn whitespace-nowrap ${voted ? 'disabled' : ''}`} disabled={voted}>
+        <button className={`vote-btn ${voted ? 'disabled' : ''}`} disabled={voted}>
           {voted ? 'Voted' : 'Vote now'}
         </button>
       </td>
