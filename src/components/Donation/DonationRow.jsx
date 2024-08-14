@@ -14,16 +14,16 @@ const DonationRow = ({ round, donations, transactionInfo, voted }) => {
           </div>
         </div>
       </td>
-      <td className=""><p className="ml-4">{donations}</p></td>
+      <td className=""><p className="ml-4 sm:ml-0">{donations}</p></td>
       <td>
         <div className="transaction-link">
           
         <img src="/etherium.png" alt="Round Icon" className="round-icon" />
-          <a href="#">{transactionInfo}</a>
+          <a href="#"><p className="ml-4 sm:ml-0">{transactionInfo}</p></a>
         </div>
       </td>
       <td>
-        <button className={`vote-btn ${voted ? 'disabled' : ''}`} disabled={voted}>
+        <button className={`vote-btn whitespace-nowrap ${voted ? 'disabled' : ''}`} disabled={voted}>
           {voted ? 'Voted' : 'Vote now'}
         </button>
       </td>

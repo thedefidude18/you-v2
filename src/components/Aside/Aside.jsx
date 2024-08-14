@@ -14,6 +14,7 @@ import DocsSvg from "../../../public/svgs/DocsSvg";
 import LogoutSvg from "../../../public/svgs/LogoutSvg";
 import DoubleButton from "./DoubleButton";
 import { Close } from "@mui/icons-material";
+import Vote from "../../../public/svgs/Vote";
 function Aside({setOpen,open}) {
   const pathName = usePathname();
 
@@ -27,7 +28,7 @@ function Aside({setOpen,open}) {
 
   const Links = [
     {
-      name: "Home",
+      name: "Submit A Project",
       path: "/",
       icon: <HomeSvg />,
     },
@@ -47,6 +48,16 @@ function Aside({setOpen,open}) {
       icon: <RewardsSvg />,
     },
     {
+      name: "Donation",
+      path: "/donation",
+      icon: <DonationSvg />,
+    },
+    {
+      name: "Vote",
+      path: "/vote",
+      icon:<Vote/>,
+    },
+    {
       name: "Bridge",
       path: "/bridge",
       icon: <BridgeSvg />,
@@ -56,21 +67,13 @@ function Aside({setOpen,open}) {
       path: "/mintdomain",
       icon: <MintDomain />,
     },
-    {
-      name: "Donation",
-      path: "/donation",
-      icon: <DonationSvg />,
-    },
+    
     {
       name: "Docs",
       path: "/docs",
       icon: <DocsSvg />,
     },
-    {
-      name: "Vote",
-      path: "/vote",
-      icon:"",
-    },
+    
   ];
   return (
     <aside className={`${styles.aside__cont} relative w-full `} >
