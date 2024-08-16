@@ -52,13 +52,13 @@ function Header() {
         ) 
         : 
         ( */}
-          <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
+          {/* <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
             <p className="flex p-3 items-center  ">
               <img src="./svgs/qf/Star.svg" alt="star" />
               Star
             </p>
             <p className="p-4 px-6 border-l-2 bg-[var(--third-color)]">1000</p>
-          </div>
+          </div> */}
         {/* )} */}
         <div className="">
           <ConnectButton />
