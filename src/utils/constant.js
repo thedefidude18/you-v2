@@ -60,8 +60,15 @@ export const defaultEthLink = {
     [optimismId]: "https://optimistic.etherscan.io/address/"
 }
 
+export const txBaseLink = {
+    [bscId]: "https://testnet.bscscan.com/tx/",
+    [polygonId]: "https://polygonscan.com/address/",
+    [arbitrumId]: "https://arbiscan.io/address/",
+    [optimismId]: "https://optimistic.etherscan.io/address/"
+}
+
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.1",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.5",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",
