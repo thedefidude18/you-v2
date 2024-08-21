@@ -456,6 +456,38 @@ export const getRecentWithdrawals = async (chainId) => {
     }
 }
 
+export const getDonations = async (chainId, address) => {
+    const query = `{
+        contributor(id: "${address.toLowerCase()}") {
+            contributions(orderBy: time, orderDirection: desc) {
+            token
+            amount
+            txHash
+            time
+            project {
+                    id
+                    title
+                    coverURL
+                }
+            }
+            numOfDonation
+            numOfProjects
+            totalContribution
+        }
+    }`;
+    try {
+        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
+        if (res.isSuccess) {
+            return res.data.contributor;
+        }
+
+        return null
+    } catch (e) {
+        console.log(e, "=========error in get donations============")
+        return null;
+    }
+}
+
 export const getEllipsisTxt = (str, n = 6) => {
     if (str) {
         return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
