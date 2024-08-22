@@ -11,7 +11,7 @@ const page = () => {
         widthImage="206"
         heightImage="206"
       />
-<Cart/>
+      <Cart />
     </div>
   )
 }

@@ -3,7 +3,6 @@ import Banner from "@/components/Banner/Banner";
 import ProjectCard from "@/components/projectCard/ProjectCard";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import ProjectsData from "../ProjectsData";
 import styles from "./page.module.css";
 import { getProject } from "@/utils";
 import { useAccount } from "wagmi";
@@ -11,16 +10,18 @@ function page() {
   const pathName = usePathname();
   let project = pathName.split("/").slice(-1)[0];
 
-  const { chain } = useAccount();
+  const { chainId } = useAccount();
   const [projectDetails, setProjectDetails] = useState(null)
 
   const initProjectDetail = async () => {
-    const data = await getProject(project, chain?.id);
+    const data = await getProject(project, chainId);
     if (data) setProjectDetails(data);
   }
+
   useEffect(() => {
-    initProjectDetail();
-  }, [])
+    if (chainId)
+      initProjectDetail();
+  }, [chainId])
   return (
     <div>
       <Banner

@@ -15,16 +15,14 @@ import LogoutSvg from "../../../public/svgs/LogoutSvg";
 import DoubleButton from "./DoubleButton";
 import { Close } from "@mui/icons-material";
 import Vote from "../../../public/svgs/Vote";
-function Aside({setOpen,open}) {
+function Aside({ setOpen, open }) {
   const pathName = usePathname();
-  
+
   let show1;
   pathName === "/rewards" ? (show1 = true) : "";
   pathName === "/projects" ? (show1 = true) : "";
   pathName === "/donation" ? (show1 = true) : "";
-  let show2 =
-    +pathName.split("/").slice(-1) % 2 === 0 && pathName.includes("/rewards");
-  console.log(show1, show2, pathName);
+
 
   const Links = [
     {
@@ -42,7 +40,7 @@ function Aside({setOpen,open}) {
       path: "/qfrounds",
       icon: <QFround />,
     },
-    
+
     {
       name: "Donation",
       path: "/donation",
@@ -53,11 +51,11 @@ function Aside({setOpen,open}) {
       path: "/rewards",
       icon: <RewardsSvg />,
     },
-    
+
     {
       name: "Vote",
       path: "/vote",
-      icon:<Vote/>,
+      icon: <Vote />,
     },
     {
       name: "Bridge",
@@ -69,26 +67,26 @@ function Aside({setOpen,open}) {
       path: "/mintdomain",
       icon: <MintDomain />,
     },
-    
+
     {
       name: "Docs",
       path: "/docs",
       icon: <DocsSvg />,
     },
-    
+
   ];
   return (
     <aside className={`${styles.aside__cont} relative w-full `} >
       <div className={styles.divide}>
-      {open && (
-    <div
-      className=" absolute right-[0px] top-4 p-2 rounded-full shadow-xl z-[1100] bg-white border-2 border-black flex justify-center items-center"
-      style={{ width: "40px", height: "40px" }}
-      onClick={()=>setOpen(false)} 
-    >
-      <Close />
-    </div>
-  )}
+        {open && (
+          <div
+            className=" absolute right-[0px] top-4 p-2 rounded-full shadow-xl z-[1100] bg-white border-2 border-black flex justify-center items-center"
+            style={{ width: "40px", height: "40px" }}
+            onClick={() => setOpen(false)}
+          >
+            <Close />
+          </div>
+        )}
         <img
           style={{ width: "185px", height: "50px", margin: " 0 auto" }}
           src="/svgs/Logo.svg"
@@ -100,10 +98,10 @@ function Aside({setOpen,open}) {
               item.path === "/"
                 ? pathName === "/"
                 : pathName.includes(item.path.substring(1)) &&
-                  item.path.length !== 1;
+                item.path.length !== 1;
 
             return (
-              <li key={index} className={isActive ? styles.active : ""} onClick={()=>setOpen &&setOpen(false)}>
+              <li key={index} className={isActive ? styles.active : ""} onClick={() => setOpen && setOpen(false)}>
                 <Link href={`${item.path}`}>
                   <span className={styles.icon}> {item.icon}</span>
                   {item.name}
@@ -112,9 +110,9 @@ function Aside({setOpen,open}) {
             );
           })}
           {/* {(show1 || show2) && ( */}
-            <li>
-              <DoubleButton />
-            </li>
+          <li>
+            <DoubleButton />
+          </li>
           {/* )} */}
         </ul>
       </div>

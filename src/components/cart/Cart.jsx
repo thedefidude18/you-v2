@@ -82,16 +82,26 @@ const Cart = () => {
       }
 
       if (isApproved) {
-        let contriList = [];
+        let normalContriList = [];
+        let qfContriList = [];
         Object.entries(cartItems).map(([key, item]) => {
-          contriList.push({
-            project: key,
-            referrer: referralAddr,
-            token: item.token.address,
-            amount: parseUnits(item.amount, tokenDecimals[chain.id][item.token.address])
-          })
+          if (item.isOnQF) {
+            qfContriList.push({
+              project: key,
+              referrer: referralAddr,
+              token: item.token.address,
+              amount: parseUnits(item.amount, tokenDecimals[chain.id][item.token.address])
+            })
+          } else {
+            normalContriList.push({
+              project: key,
+              referrer: referralAddr,
+              token: item.token.address,
+              amount: parseUnits(item.amount, tokenDecimals[chain.id][item.token.address])
+            })
+          }
         })
-        await contributeBatch(config, chain.id, contriList);
+        await contributeBatch(config, chain.id, normalContriList, qfContriList);
       }
     }
   }

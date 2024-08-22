@@ -75,9 +75,9 @@ export const getProjects = async (account) => {
                             const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
                             projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : project.qfMatched / qfRound.totalRootSum * qfRound.amount };
 
+                        } else {
+                            projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
                         }
-
-                        projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
 
                         if (project.creator == adminWallet)
                             adminProjects.push(projectData);
@@ -136,11 +136,6 @@ export const getProject = async (projectContractAddress, chainId) => {
                 const data = project;
                 const qfRounds = res.data.qfrounds;
                 const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
-                if (qfRound && qfRound.id == data.qfRoundID) {
-                    const currentTime = Math.floor(Date.now() / 1000)
-                    const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
-                    return { ...data, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : data.qfMatched / qfRound.totalRootSum * qfRound.amount }
-                }
 
                 let currentAmount = 0;
                 for (const token of project.currentAmount) {
@@ -148,6 +143,12 @@ export const getProject = async (projectContractAddress, chainId) => {
                         token.amount,
                         tokenDecimals[chainId][token.token]
                     )
+                }
+
+                if (qfRound && qfRound.id == data.qfRoundID) {
+                    const currentTime = Math.floor(Date.now() / 1000)
+                    const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
+                    return { ...data, currentRaised: currentAmount, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : data.qfMatched / qfRound.totalRootSum * qfRound.amount }
                 }
 
                 return { ...data, currentRaised: currentAmount, chainId: chainId, isOnQF: false, matchingPool: 0 };
@@ -248,9 +249,9 @@ export const getQFRound = async (chainId) => {
 
                 let usdAmount = 0;
                 for (const contri of qfRounds[0].contributions) {
-                    currentAmount += +formatUnits(
+                    usdAmount += +formatUnits(
                         contri.amount,
-                        contri[chainId][token.token]
+                        tokenDecimals[chainId][contri.token]
                     )
                 }
 
@@ -260,7 +261,7 @@ export const getQFRound = async (chainId) => {
 
         return null
     } catch (e) {
-        console.log(e, "=========error in get qfRoundsList============")
+        console.log(e, "=========error in get qfRound============")
         return null;
     }
 };

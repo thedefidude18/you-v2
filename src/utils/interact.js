@@ -1,8 +1,9 @@
 import { writeContract, readContract, waitForTransactionReceipt } from "@wagmi/core";
 import CrowdfundingABI from "../abis/Crowdfunding.json";
+import QFRoundsABI from "../abis/QFRounds.json";
 import VotingABI from "../abis/Voting.json";
 import ERC20ABI from "../abis/ERC20.json";
-import { contractAddresses, votingAddresses } from "./constant";
+import { contractAddresses, qfRoundsAddresses, votingAddresses } from "./constant";
 
 
 export const createProject = async (config, chainId, formData) => {
@@ -61,13 +62,13 @@ export const editProject = async (config, chainId, formData) => {
     return false;
 }
 
-export const contributeBatch = async (config, chainId, contriData) => {
+export const contributeBatch = async (config, chainId, nContriData, qfContriData) => {
     try {
         const hash = await writeContract(config, {
-            address: contractAddresses[chainId],
-            abi: CrowdfundingABI,
-            functionName: "contribute",
-            args: [contriData]
+            address: qfRoundsAddresses[chainId],
+            abi: QFRoundsABI,
+            functionName: "cartBatchContribute",
+            args: [qfContriData, nContriData]
         })
 
         const res = await waitForTransactionReceipt(config, { hash });
@@ -82,7 +83,7 @@ export const contributeBatch = async (config, chainId, contriData) => {
     return false;
 }
 
-export const contributeToken = async (config, chainId, account, project, token, amount) => {
+export const contributeToken = async (config, chainId, account, project, token, amount, isQF) => {
     try {
         let contriList = [];
         contriList.push({
@@ -92,12 +93,22 @@ export const contributeToken = async (config, chainId, account, project, token, 
             amount: amount
         })
 
-        const hash = await writeContract(config, {
-            address: contractAddresses[chainId],
-            abi: CrowdfundingABI,
-            functionName: "contribute",
-            args: [contriList]
-        })
+        let hash;
+        if (isQF) {
+            hash = await writeContract(config, {
+                address: qfRoundsAddresses[chainId],
+                abi: QFRoundsABI,
+                functionName: "qfContribute",
+                args: [contriList]
+            })
+        } else {
+            hash = await writeContract(config, {
+                address: contractAddresses[chainId],
+                abi: CrowdfundingABI,
+                functionName: "contribute",
+                args: [contriList]
+            })
+        }
 
         const res = await waitForTransactionReceipt(config, { hash });
 

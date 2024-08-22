@@ -40,7 +40,7 @@ export const contractAddresses = {
 }
 
 export const qfRoundsAddresses = {
-    [bscId]: "0x1D4b3314C5FF6ea35F46f13cf100F6d2a2e73Bf2",
+    [bscId]: "0x6AEe7760eb44F3694e3F7f9db64159c7B19367F3",
     [polygonId]: "0x5eFb24436C00938d3b7c4e1c5EBB1CD0AC99Dc0b",
     [arbitrumId]: "0x789f71868a6fa58f1354e1226f807c51edbee3d6",
     [optimismId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
@@ -68,7 +68,7 @@ export const txBaseLink = {
 }
 
 export const subgraphURLs = {
-    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.5",
+    [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.7",
     // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",

@@ -36,10 +36,10 @@ function ProjectCard({ project, height, imageHight }) {
         if (allowance < deciAmount) {
           const res = await approve(config, chainId, contriToken.address, deciAmount);
           if (res) {
-            result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount);
+            result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount, project.isOnQF);
           }
         } else {
-          result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount);
+          result = await contributeToken(config, chainId, referralAddr, project.id, contriToken.address, deciAmount, project.isOnQF);
         }
         if (result) {
           setTimeout(() => {
@@ -57,7 +57,7 @@ function ProjectCard({ project, height, imageHight }) {
     if (cartItems.hasOwnProperty(project.id)) {
       alert("It has already added!")
     } else {
-      setCartItems((current) => ({ ...current, [project.id]: { title: project.title, description: project.description, coverURL: project.coverURL, token: contriTokens[chainId][0], amount: 0 } }));
+      setCartItems((current) => ({ ...current, [project.id]: { title: project.title, isOnQF: project.isOnQF, description: project.description, coverURL: project.coverURL, token: contriTokens[chainId][0], amount: 0 } }));
     }
   }
 
@@ -85,7 +85,7 @@ function ProjectCard({ project, height, imageHight }) {
       <div className={styles.first__Row}>
         <h2>{project.title}</h2>
         <div className={styles.brands__cont}>
-          <img src={chainLogos[project.chainId]} alt="brand" />
+          <img src={chainLogos[chainId]} alt="brand" />
           <img
             src="/svgs/proj/Share.svg"
             style={{ marginInlineStart: "8px" }}

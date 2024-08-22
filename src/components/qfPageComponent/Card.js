@@ -3,18 +3,18 @@
 import React from 'react'
 import styles from "../qfPageComponent/qf.module.css"
 import { useAccount } from 'wagmi';
-import { bscId } from '@/utils/constant';
+import { tokenDecimals } from '@/utils/constant';
 import { formatUnits } from 'viem';
 const Card = ({ qfRound = null }) => {
   const { chainId } = useAccount();
 
   const data = [
     {
-      title: +formatUnits(qfRound ? qfRound.qfRound.amount : "0", (chainId == bscId ? 18 : 6)),
+      title: +formatUnits(qfRound ? qfRound.qfRound.amount : "0", qfRound ? tokenDecimals[chainId][qfRound.qfRound.token] : 0),
       subTitle: "Total Matching Pools"
     },
     {
-      title: `${qfRound ? qfRound.usdAmount : 0} USDT`,
+      title: `$ ${qfRound ? qfRound.usdAmount : 0}`,
       subTitle: "Total Contributions"
     },
     {

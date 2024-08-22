@@ -24,16 +24,13 @@ function page() {
   return (
     <div className="p-4">
       <Banner
-        text={qfRound ? qfRound.leftTime > 0 ? `${qfRound.qfRound.title} has started, it will end in ${Math.floor(qfRound.leftTime / (24 * 60 * 60))} days.` : `${qfRound.qfRound.title} has ended` : ""}
+        text={qfRound ? qfRound.leftTime > 0 ? `${qfRound.qfRound.title} has started, it will end in ${Math.ceil(qfRound.leftTime / (24 * 60 * 60))} days.` : `${qfRound.qfRound.title} has ended` : ""}
         image={qfRound ? qfRound.qfRound.imgUrl : "/svgs/proj/BannerProduct.svg"}
         widthImage="180"
         heightImage="160"
       />
-      {/* <div className=" grid sm:grid-cols-3 grid-cols-1 w-full gap-2 p-2"> */}
-
       <Card qfRound={qfRound} />
-      <QfCard/>
-      {/* </div> */}
+      <QfCard qfRound={qfRound}/>
     </div>
   );
 }
