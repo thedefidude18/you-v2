@@ -81,7 +81,8 @@ export const tokenDecimals = {
     },
     [polygonId]: {
         ["0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"]: 18,
-        ["0x253335b231f840428d692740edb288ce87a0ddd1"]: 6
+        ["0x253335b231f840428d692740edb288ce87a0ddd1"]: 6,
+        ["0x98e607b3c6d16d42412f174a00221d7bccdc7c77"]: 18
     },
 }
 
@@ -92,14 +93,16 @@ export const contriTokenLogosByAddress = {
     },
     [polygonId]: {
         ["0x253335b231f840428d692740edb288ce87a0ddd1"]: "/svgs/proj/usdt.svg",
-        ["0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"]: "/svgs/proj/usdc.png"
+        ["0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"]: "/svgs/proj/usdc.png",
+        ["0x98e607b3c6d16d42412f174a00221d7bccdc7c77"]: "/svgs/proj/GloDollar.png"
     }
 }
 
 
 export const contriTokenLogos = {
     "USDT": "/svgs/proj/usdt.svg",
-    "USDC": "/svgs/proj/usdc.png"
+    "USDC": "/svgs/proj/usdc.png",
+    "USDGLO": "/svgs/proj/GloDollar.png"
 }
 
 export const contriTokens = {
@@ -121,6 +124,10 @@ export const contriTokens = {
         {
             "name": "USDC",
             "address": "0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"
+        },
+        {
+            "name": "USDGLO",
+            "address": "0x98e607b3c6d16d42412f174a00221d7bccdc7c77"
         }
     ],
     [optimismId]: [

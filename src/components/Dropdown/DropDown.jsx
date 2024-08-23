@@ -36,7 +36,7 @@ function DropDown({ isCart = false }) {
         <ul>
           {
             tokens.map((token, index) => (
-              <li key={index}>
+              <li key={index}  className="my-1">
                 <p
                   onClick={() => {
                     setToken(token);
