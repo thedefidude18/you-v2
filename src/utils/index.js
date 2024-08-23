@@ -14,7 +14,7 @@ const getDataFromSubgraph = async (query, subgraphURL) => {
     }
 };
 
-export const getProjects = async (account) => {
+export const getProjects = async (account, chainId) => {
     const query = `{
         projects(where: {and: [{isVisible: true}, {isDeleted: false}]}, orderBy: blockTime, orderDirection: desc) {
           id
@@ -50,45 +50,42 @@ export const getProjects = async (account) => {
         let projects = []
         let adminProjects = []
         let otherProjects = []
-        await Promise.all(
-            Object.entries(subgraphURLs).map(async ([key, value]) => {
-                const res = await getDataFromSubgraph(query, value);
-                if (res.isSuccess) {
-                    let index = 0;
-                    let projectsList = res.data.projects;
-                    const qfRounds = res.data.qfrounds;
-                    const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
+        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
+        if (res.isSuccess) {
+            let index = 0;
+            let projectsList = res.data.projects;
+            const qfRounds = res.data.qfrounds;
+            const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
 
-                    projectsList = projectsList.map((project) => {
-                        const currentTime = Math.floor(Date.now() / 1000)
+            projectsList = projectsList.map((project) => {
+                const currentTime = Math.floor(Date.now() / 1000)
 
-                        let currentAmount = 0;
-                        for (const token of project.currentAmount) {
-                            currentAmount += +formatUnits(
-                                token.amount,
-                                tokenDecimals[key][token.token]
-                            )
-                        }
-
-                        let projectData;
-                        if (qfRound && qfRound.id == project.qfRoundID) {
-                            const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
-                            projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : project.qfMatched / qfRound.totalRootSum * qfRound.amount };
-
-                        } else {
-                            projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
-                        }
-
-                        if (project.creator == adminWallet)
-                            adminProjects.push(projectData);
-                        else
-                            otherProjects.push(projectData)
-                    }
+                let currentAmount = 0;
+                for (const token of project.currentAmount) {
+                    currentAmount += +formatUnits(
+                        token.amount,
+                        tokenDecimals[chainId][token.token]
                     )
                 }
-            })
-        )
+
+                let projectData;
+                if (qfRound && qfRound.id == project.qfRoundID) {
+                    const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
+                    projectData = { ...project, currentRaised: currentAmount, index: index++, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : project.qfMatched / qfRound.totalRootSum * qfRound.amount };
+
+                } else {
+                    projectData = { ...project, currentRaised: currentAmount, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
+                }
+
+                if (project.creator == adminWallet)
+                    adminProjects.push(projectData);
+                else
+                    otherProjects.push(projectData)
+            }
+            )
+        }
         projects = adminProjects.concat(otherProjects);
+
         return { myProjects: projects.filter((proj) => proj.creator == account.toLowerCase()), othersProjects: projects.filter((proj) => proj.creator != account.toLowerCase()) };
     } catch (e) {
         console.log(e, "=========error in get projects============")
@@ -161,59 +158,6 @@ export const getProject = async (projectContractAddress, chainId) => {
         return null;
     }
 }
-
-export const getQFRounds = async () => {
-    const query = `{
-        qfrounds(first: 1, orderBy: blockTime, orderDirection: desc) {
-            id
-            title
-            imgUrl
-            desc
-            amount
-            totalContributions
-            contriNumber
-            token
-            projectNum
-            startTime
-            endTime
-        }
-      }`;
-    try {
-        let qfRoundsList = []
-        let totalMatchingPool = 0;
-        let totalContributions = 0;
-        let contriNumber = 0;
-        await Promise.all(
-            Object.entries(subgraphURLs).map(async ([key, value]) => {
-                const res = await getDataFromSubgraph(query, value);
-                if (res.isSuccess) {
-                    const qfRounds = res.data.qfrounds;
-                    if (qfRounds.length > 0) {
-                        const currentTime = Math.floor(Date.now() / 1000)
-                        let leftTime;
-                        if (currentTime >= +qfRounds[0].endTime) {
-                            leftTime = 0;
-                        } else {
-                            leftTime = +qfRounds[0].endTime - currentTime;
-                        }
-                        totalMatchingPool += +formatUnits(qfRounds[0].amount, (key == bscId ? 18 : 6))
-                        totalContributions += +formatUnits(qfRounds[0].totalContributions, (key == bscId ? 18 : 6))
-                        contriNumber += qfRounds[0].contriNumber;
-
-                        const daysLeft = Math.floor(leftTime / (24 * 60 * 60));
-                        const hoursLeft = Math.floor((leftTime % (24 * 60 * 60)) / 3600);
-                        qfRoundsList.push({ ...qfRounds[0], chainId: key, leftDays: daysLeft, leftHours: hoursLeft });
-                    }
-                }
-            })
-        )
-
-        return { qfRoundsList: qfRoundsList, totalMatchingPool: totalMatchingPool, totalContributions: totalContributions, contriNumber: contriNumber }
-    } catch (e) {
-        console.log(e, "=========error in get qfRoundsList============")
-        return { qfRoundsList: [], totalMatchingPool: 0, totalContributions: 0, contriNumber: 0 };
-    }
-};
 
 export const getQFRound = async (chainId) => {
     const query = `{

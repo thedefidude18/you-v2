@@ -85,7 +85,7 @@ function ProjectCard({ project, height, imageHight }) {
       <div className={styles.first__Row}>
         <h2>{project.title}</h2>
         <div className={styles.brands__cont}>
-          <img src={chainLogos[chainId]} alt="brand" />
+          <img className="w-[20px]" src={chainLogos[chainId]} alt="brand" />
           <img
             src="/svgs/proj/Share.svg"
             style={{ marginInlineStart: "8px" }}

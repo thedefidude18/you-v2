@@ -34,21 +34,21 @@ export const categoryIcons = {
 
 export const contractAddresses = {
     [bscId]: "0xB2f69C54A366fB1BC4d8b892F7c6e34e368A241b",
-    [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
+    [polygonId]: "0x01970Df11cB5CEed537EEA0aB6D6Dc7366e8DF17",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
 }
 
 export const qfRoundsAddresses = {
     [bscId]: "0x6AEe7760eb44F3694e3F7f9db64159c7B19367F3",
-    [polygonId]: "0x5eFb24436C00938d3b7c4e1c5EBB1CD0AC99Dc0b",
+    [polygonId]: "0x1D4b3314C5FF6ea35F46f13cf100F6d2a2e73Bf2",
     [arbitrumId]: "0x789f71868a6fa58f1354e1226f807c51edbee3d6",
     [optimismId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
 }
 
 export const votingAddresses = {
     [bscId]: "0xc7DDbBE4cF9d6b4A8461FD7FfB592443664a7f55",
-    [polygonId]: "0x34f6C5ac104568E98535Cb8c91C5c23AB2d26cAb",
+    [polygonId]: "0xC52383b7A22e9687b4863B74D92c3d6c8Cd70F11",
     [arbitrumId]: "0xcFB8Bf1d64bf4baE08582B5EF464E53326E5bCd4",
     [optimismId]: "0x187a9763FCC7EcFFA9bc50B0fE5BbAe71cDA7b59",
 }
@@ -62,14 +62,14 @@ export const defaultEthLink = {
 
 export const txBaseLink = {
     [bscId]: "https://testnet.bscscan.com/tx/",
-    [polygonId]: "https://polygonscan.com/address/",
+    [polygonId]: "https://amoy.polygonscan.com/tx/",
     [arbitrumId]: "https://arbiscan.io/address/",
     [optimismId]: "https://optimistic.etherscan.io/address/"
 }
 
 export const subgraphURLs = {
     [bscId]: "https://api.studio.thegraph.com/query/72239/youbuidl-bsc/v0.3.7",
-    // [polygonId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildpolygon",
+    [polygonId]: "https://api.studio.thegraph.com/query/72239/youbuidl-amoy/v0.0.1",
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",
 }
@@ -78,13 +78,21 @@ export const tokenDecimals = {
     [bscId]: {
         ["0x11e3008c59b8a55b7525150c61b12b3fd2415a77"]: 18,
         ["0x5c2d5798ba7d59c381faed3a7a3565c0d51b81a8"]: 18
-    }
+    },
+    [polygonId]: {
+        ["0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"]: 18,
+        ["0x253335b231f840428d692740edb288ce87a0ddd1"]: 6
+    },
 }
 
 export const contriTokenLogosByAddress = {
     [bscId]: {
         ["0x11e3008c59b8a55b7525150c61b12b3fd2415a77"]: "/svgs/proj/usdt.svg",
         ["0x5c2d5798ba7d59c381faed3a7a3565c0d51b81a8"]: "/svgs/proj/usdc.png"
+    },
+    [polygonId]: {
+        ["0x253335b231f840428d692740edb288ce87a0ddd1"]: "/svgs/proj/usdt.svg",
+        ["0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"]: "/svgs/proj/usdc.png"
     }
 }
 
@@ -108,11 +116,11 @@ export const contriTokens = {
     [polygonId]: [
         {
             "name": "USDT",
-            "address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+            "address": "0x253335b231f840428d692740edb288ce87a0ddd1"
         },
         {
             "name": "USDC",
-            "address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
+            "address": "0xd194db06a4b2fcf3134c46984f3d3c8770eb4255"
         }
     ],
     [optimismId]: [

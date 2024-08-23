@@ -39,7 +39,7 @@ function HomePage() {
       title: "",
       description: "",
       target: 0,
-      websiteURL: "/",
+      websiteURL: "",
       socialURL: "",
       githubURL: "",
       coverURL: "",

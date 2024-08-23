@@ -10,7 +10,7 @@ import { sharedState } from "../layout";
 import { useAccount } from "wagmi";
 function page() {
 
-  const { address } = useAccount();
+  const { address, chainId } = useAccount();
 
   const stateRecived = useContext(sharedState);
   const { isContributer } = stateRecived;
@@ -22,16 +22,15 @@ function page() {
   const [value, setValue] = useState("All");
 
   const loadProjects = async () => {
-    const projectsData = await getProjects(address);
+    const projectsData = await getProjects(address, chainId);
     setOthersProjects(projectsData.othersProjects);
     setMyProjects(projectsData.myProjects);
   };
 
   useEffect(() => {
-    if (address)
+    if (chainId)
       loadProjects();
-  }, [address]);
-
+  }, [chainId]);
 
   return (
     <div>
