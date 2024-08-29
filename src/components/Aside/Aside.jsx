@@ -31,6 +31,11 @@ function Aside({ setOpen, open }) {
       icon: <HomeSvg />,
     },
     {
+      name: "PG Store",
+      path: "/store",
+      icon: <HomeSvg />,
+    },
+    {
       name: "Projects",
       path: "/projects",
       icon: <Projects />,
