@@ -2,7 +2,6 @@
 import Banner from "@/components/Banner/Banner";
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Projects.module.css";
-import Link from "next/link";
 import { getProjects } from "@/utils";
 import ProjectCard from "@/components/projectCard/ProjectCard";
 import ProjectBand from "@/components/projectCard/ProjectBand";
@@ -10,7 +9,7 @@ import { sharedState } from "../layout";
 import { useAccount } from "wagmi";
 function page() {
 
-  const { address, chainId } = useAccount();
+  const { address } = useAccount();
 
   const stateRecived = useContext(sharedState);
   const { isContributer } = stateRecived;
@@ -22,15 +21,15 @@ function page() {
   const [value, setValue] = useState("All");
 
   const loadProjects = async () => {
-    const projectsData = await getProjects(address, chainId);
+    const projectsData = await getProjects(address);
     setOthersProjects(projectsData.othersProjects);
     setMyProjects(projectsData.myProjects);
   };
 
   useEffect(() => {
-    if (chainId)
-      loadProjects();
-  }, [chainId]);
+    loadProjects();
+  }, [address]);
+
 
   return (
     <div>

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from "./Project.module.css";
 // import Button from "../Button/Button";
-import Link from "next/link";
 import Button from "../Button/Button";
 import DropDown from "../Dropdown/DropDown";
 import SocialIcon from "../Socialicon/SocialIcon";
@@ -9,17 +8,20 @@ import { chainLogos, contriTokens, tokenDecimals } from "@/utils/constant";
 import { getEllipsisTxt } from "@/utils";
 import { sharedState } from "@/app/layout";
 import { useAccount, useConfig } from "wagmi";
+import { connect, switchChain } from '@wagmi/core'
+import { injected } from '@wagmi/connectors'
 import { parseUnits } from "viem";
 import { approve, canContribute, contributeToken, getAllowance } from "@/utils/interact";
 import { useRouter } from 'next/navigation';
 import ReactLoading from "react-loading";
 
 function ProjectCard({ project, height, imageHight }) {
+
   const config = useConfig();
+  const { address, chainId, isConnected } = useAccount();
   const stateRecived = useContext(sharedState);
   const { contriToken, referral, cartItems, setCartItems } = stateRecived;
   const [amount, setAmount] = useState(0);
-  const { address, chainId } = useAccount();
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,11 +55,38 @@ function ProjectCard({ project, height, imageHight }) {
     setIsLoading(false);
   }
 
-  const updateCart = () => {
-    if (cartItems.hasOwnProperty(project.id)) {
-      alert("It has already added!")
+  const cntWallet = async () => {
+    try {
+      await connect(config, { chainId: +project.chainId, connector: injected() });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  const switchNet = async () => {
+    try {
+      await switchChain(config, { chainId: +project.chainId });
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  const updateCart = async () => {
+    if (!isConnected) {
+      await cntWallet();
     } else {
-      setCartItems((current) => ({ ...current, [project.id]: { title: project.title, isOnQF: project.isOnQF, description: project.description, coverURL: project.coverURL, token: contriTokens[chainId][0], amount: 0 } }));
+      if (chainId != +project.chainId) {
+        const res = await switchNet();
+        if (res) setCartItems({});
+      } else {
+        if (cartItems.hasOwnProperty(project.id)) {
+          alert("It has already added!")
+        } else {
+          setCartItems((current) => ({ ...current, [project.id]: { title: project.title, isOnQF: project.isOnQF, description: project.description, coverURL: project.coverURL, token: contriTokens[chainId][0], amount: 0 } }));
+        }
+      }
     }
   }
 
@@ -85,7 +114,7 @@ function ProjectCard({ project, height, imageHight }) {
       <div className={styles.first__Row}>
         <h2>{project.title}</h2>
         <div className={styles.brands__cont}>
-          <img className="w-[20px]" src={chainLogos[chainId]} alt="brand" />
+          <img className="w-[20px]" src={chainLogos[project?.chainId]} alt="brand" />
           <img
             src="/svgs/proj/Share.svg"
             style={{ marginInlineStart: "8px" }}
@@ -145,7 +174,14 @@ function ProjectCard({ project, height, imageHight }) {
           </div>
           <div className={styles.left}>
             <img className="cursor-pointer" src="/svgs/proj/Cartcard.svg" alt="" onClick={updateCart} />
-            <Button path={`/projects/${project.id}`} type="link" text="Donate Now" />
+            {isConnected ? chainId == project.chainId ? (
+              <Button path={`/projects/${project.id}`} type="link" text="Donate Now" />
+            ) : (
+              <Button confirm={switchNet} text="Donate Now" />
+            ) : (
+              <Button confirm={cntWallet} text="Donate Now" />
+
+            )}
           </div>
         </div>
       ) : (
@@ -153,7 +189,7 @@ function ProjectCard({ project, height, imageHight }) {
           <SocialIcon project={project} />
           <div style={{ display: "flex", gap: "8px" }}>
             <input type="text" placeholder="Enter Amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <DropDown isCart={false}/>
+            <DropDown isCart={false} />
           </div>
           <div className={styles.left}>
             <Button text="Contribute" confirm={contribute} />

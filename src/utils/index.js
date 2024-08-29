@@ -14,7 +14,7 @@ const getDataFromSubgraph = async (query, subgraphURL) => {
     }
 };
 
-export const getProjects = async (account, chainId) => {
+export const getProjects = async (account) => {
     const query = `{
         projects(where: {and: [{isVisible: true}, {isDeleted: false}]}, orderBy: blockTime, orderDirection: desc) {
           id
@@ -50,46 +50,49 @@ export const getProjects = async (account, chainId) => {
         let projects = []
         let adminProjects = []
         let otherProjects = []
-        const res = await getDataFromSubgraph(query, subgraphURLs[chainId]);
-        if (res.isSuccess) {
-            let index = 0;
-            let projectsList = res.data.projects;
-            const qfRounds = res.data.qfrounds;
-            const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
+        await Promise.all(
+            Object.entries(subgraphURLs).map(async ([key, value]) => {
+                const res = await getDataFromSubgraph(query, value);
+                if (res.isSuccess) {
+                    let index = 0;
+                    let projectsList = res.data.projects;
+                    const qfRounds = res.data.qfrounds;
+                    const qfRound = qfRounds.length > 0 ? qfRounds[0] : null;
 
-            projectsList = projectsList.map((project) => {
-                const currentTime = Math.floor(Date.now() / 1000)
+                    projectsList = projectsList.map((project) => {
+                        const currentTime = Math.floor(Date.now() / 1000)
 
-                let currentAmount = 0;
-                for (const token of project.currentAmount) {
-                    currentAmount += +formatUnits(
-                        token.amount,
-                        tokenDecimals[chainId][token.token]
+                        let currentAmount = 0;
+                        for (const token of project.currentAmount) {
+                            currentAmount += +formatUnits(
+                                token.amount,
+                                tokenDecimals[key][token.token]
+                            )
+                        }
+
+                        let projectData;
+                        if (qfRound && qfRound.id == project.qfRoundID) {
+                            const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
+                            projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : project.qfMatched / qfRound.totalRootSum * qfRound.amount };
+
+                        } else {
+                            projectData = { ...project, currentRaised: currentAmount, chainId: key, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
+                        }
+
+                        if (project.creator == adminWallet)
+                            adminProjects.push(projectData);
+                        else
+                            otherProjects.push(projectData)
+                    }
                     )
                 }
-
-                let projectData;
-                if (qfRound && qfRound.id == project.qfRoundID) {
-                    const isOnQF = currentTime >= +(qfRound.startTime) && currentTime <= +(qfRound.endTime);
-                    projectData = { ...project, currentRaised: currentAmount, index: index++, isOnQF: isOnQF, matchingPool: qfRound.amount, qfRaised: qfRound.totalRootSum == 0 ? 0 : project.qfMatched / qfRound.totalRootSum * qfRound.amount };
-
-                } else {
-                    projectData = { ...project, currentRaised: currentAmount, index: index++, isOnQF: false, matchingPool: 0, qfRaised: 0 }
-                }
-
-                if (project.creator == adminWallet)
-                    adminProjects.push(projectData);
-                else
-                    otherProjects.push(projectData)
-            }
-            )
-        }
+            })
+        )
         projects = adminProjects.concat(otherProjects);
-
-        return { myProjects: projects.filter((proj) => proj.creator == account.toLowerCase()), othersProjects: projects.filter((proj) => proj.creator != account.toLowerCase()) };
+        return { myProjects: account ? projects.filter((proj) => proj.creator == account.toLowerCase()) : [], othersProjects: account ? projects.filter((proj) => proj.creator != account.toLowerCase()) : projects };
     } catch (e) {
         console.log(e, "=========error in get projects============")
-        return [];
+        return null;
     }
 };
 

@@ -8,9 +8,7 @@ function Button({ text = "", type = null, path = null, color = null, confirm = (
         className={styles.btn}
         href={path}
         style={{
-          height: "40px",
-          padding: `${color ? "10px 18px" : "10px 26px"}`,
-          background: `${color && color}`,
+          height: "42px",
         }}
       >
         {text}
