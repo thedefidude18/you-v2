@@ -1,14 +1,26 @@
-"use client"
-import { ArrowDownward, KeyboardArrowDown } from "@mui/icons-material";
+"use client";
+import { KeyboardArrowDown } from "@mui/icons-material";
 import { Tab, Tabs, useMediaQuery } from "@mui/material";
 import React, { useState } from "react";
 
 const StoreHeader = () => {
   const [value, setValue] = useState(0);
+  const [isProjectDropdownOpen, setProjectDropdownOpen] = useState(false);
+  const [isChainDropdownOpen, setChainDropdownOpen] = useState(false);
   const isSmallScreen = useMediaQuery("(max-width: 450px)");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const toggleProjectDropdown = () => {
+    setProjectDropdownOpen(!isProjectDropdownOpen);
+    setChainDropdownOpen(false)
+  };
+
+  const toggleChainDropdown = () => {
+    setChainDropdownOpen(!isChainDropdownOpen);
+    setProjectDropdownOpen(false)
   };
 
   const data = [
@@ -18,9 +30,30 @@ const StoreHeader = () => {
     { title: "Qf Rounds", url: "/Ellipse.png" },
   ];
 
+  const categories = [
+    "DeFi",
+    "Games",
+    "Technology",
+    "Arts",
+    "Infrastructure",
+    "Community",
+    "NGO"
+  ];
+  
+ 
+  const chains = [
+    "Polygon",
+    "Optimism",
+    "Arbitrum",
+    "CELO",
+    "Base",
+    "Solana",
+    "Ethereum"
+  ];
+  
   return (
-    <div className="flex justify-between gap-2  w-[400px]  sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
-      <div className="overflow-x-auto w-full"> 
+    <div className="flex justify-between gap-2 w-[400px] sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
+      <div className="overflow-x-auto w-full">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -29,19 +62,21 @@ const StoreHeader = () => {
           allowScrollButtonsMobile
           aria-label="scrollable force tabs example"
           sx={{
-            "& .MuiTabs-indicator": { display: "none" }, 
+            "& .MuiTabs-indicator": { display: "none" },
             "& .MuiTab-root": {
-              minWidth: isSmallScreen ? "50%" : "auto", 
+              minWidth: isSmallScreen ? "40%" : "auto",
               flex: "1 1 auto",
-              padding: "0 8px",
-            }, 
+              padding: "0 4px",
+            },
             width: "100%",
           }}
         >
           <Tab
             label={
               <div className="flex items-center gap-1">
-                <p className="whitespace-nowrap text-sm text-gray-700">All Categories</p>
+                <p className="whitespace-nowrap text-sm text-gray-700">
+                  All Categories
+                </p>
                 <KeyboardArrowDown sx={{ fontSize: "10px", color: "gray" }} />
               </div>
             }
@@ -66,15 +101,53 @@ const StoreHeader = () => {
         </Tabs>
       </div>
 
+      {/* Buttons with Dropdowns */}
       <div className="flex gap-2 items-center whitespace-nowrap">
-        <button className="bg-[#EFF2F5] flex items-center gap-2 text-xs p-2 rounded-md ">
-          <span>Submit your project</span>
-          <KeyboardArrowDown sx={{ fontSize: "12px" }} />
-        </button>
-        <button className="bg-[#EFF2F5] flex items-center gap-2 text-xs p-2 rounded-md">
-          <span>Filter by chain</span>
-          <KeyboardArrowDown sx={{ fontSize: "12px" }} />
-        </button>
+        {/* Submit your project button with dropdown */}
+        <div className="relative">
+          <button
+            onClick={toggleProjectDropdown}
+            className="bg-[#EFF2F5] flex items-center gap-2 text-xs p-2 rounded-md"
+          >
+            <span>Submit your project</span>
+            <KeyboardArrowDown sx={{ fontSize: "12px" }} />
+          </button>
+          {isProjectDropdownOpen && (
+            <div className="absolute z-10 mt-2  px-2 w-full  bg-white shadow-xl rounded-md py-2">
+            {categories.map((item,i)=>(  <a
+                href="#"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#a4a1c7]  rounded-md"
+                onClick={()=>setProjectDropdownOpen(!isProjectDropdownOpen)}
+              >
+                {item}
+              </a>))}
+              
+            </div>
+          )}
+        </div>
+
+       
+        <div className="relative">
+          <button
+            onClick={toggleChainDropdown}
+            className="bg-[#EFF2F5] flex items-center gap-2 text-xs p-2 rounded-md"
+          >
+            <span>Filter by chain</span>
+            <KeyboardArrowDown sx={{ fontSize: "12px" }} />
+          </button>
+          {isChainDropdownOpen && (
+            <div className="absolute z-10 mt-2   px-2 w-full  bg-white shadow-lg rounded-md py-2">
+              {chains.map((item,i)=>(  <a
+                href="#"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#a4a1c7]  rounded-md"
+               
+                onClick={()=>setChainDropdownOpen(!isChainDropdownOpen)}
+              >
+                {item}
+              </a>))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

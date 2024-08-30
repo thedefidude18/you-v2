@@ -42,10 +42,10 @@ const Table = () => {
 
   return (
     <TableContainer sx={{ margin: "auto",border:"1px solid #F4F4F4", maxWidth: {sm:"100%",md:"100%",xs:400} }}>
-      <MUITable sx={{ minWidth: 650 }}>
+      <MUITable >
         <TableHead>
           <TableRow>
-            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 ,display:"flex",alignItems:"center",gap:"10px"}}>
+            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 170 ,display:"flex",alignItems:"center",gap:"10px"}}>
               <button  style={{ bgcolor: "#F1F6FE", fontWeight: "bold" }} className=" p-2 bg-[#F1F6FE] font-bold rounded-md">
                 Project Name
               </button>
@@ -69,17 +69,17 @@ const Table = () => {
         <TableBody>
           {projects.map((project, index) => (
             <TableRow key={index} hover>
-              <TableCell component="th" scope="row" sx={{ whiteSpace: "nowrap" }}>
+              <TableCell component="th" scope="row" sx={{  }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <img src="/image.png" alt="Project" style={{ width: 48, height: 48, marginRight: 8 }} />
                   <div>
                     <strong>{project.name}</strong>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4 }}>
-                      <span style={{ padding: "2px 8px", backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center" }}>
+                      <span style={{  backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center" }} className=" py-1 pl-2 pr-6">
                         <img src="/Ethereum.svg" alt="Ethereum"  />
                         Ethereum
                       </span>
-                      <span style={{ padding: "2px 8px", backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center",gap:"5px" }}>
+                      <span style={{ backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center",gap:"5px" }} className="py-1 pl-2 pr-6">
                         <img src="/coin.svg" alt="Ethereum"  />
                         Ethereum
                       </span>
@@ -88,10 +88,10 @@ const Table = () => {
                 </div>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "nowrap" }}>
-                <span style={{ padding: "4px 8px", border: "1px solid #ddd", borderRadius: 4, display: "flex", alignItems: "center" }}>
-                  <img src={project.ecosystemicon} alt="Ecosystem" style={{ width: 16, height: 16, marginRight: 4 }} />
+                <p className=" flex items-center gap-1 border py-2 pl-2 pr-6  rounded-full" >
+                  <img src={project.ecosystemicon} alt="Ecosystem"  />
                   {project.ecosystem}
-                </span>
+                </p>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "normal", wordWrap: "break-word" }}>
                 {project.about}
