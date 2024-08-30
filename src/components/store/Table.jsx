@@ -38,29 +38,45 @@ const Table = () => {
       socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
     },
+    {
+      name: "YOuBuild",
+      ecosystem: "Ton Grants",
+      ecosystemicon: "/coin.svg",
+      about: "Data prediction. AI and machine learning data.",
+      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
+      fund: "Donate",
+    },
+    {
+      name: "YOuBuild",
+      ecosystem: "Ton Grants",
+      ecosystemicon: "/coin.svg",
+      about: "Data prediction. AI and machine learning data.",
+      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
+      fund: "Donate",
+    },
   ];
 
   return (
-    <TableContainer sx={{ margin: "auto",border:"1px solid #F4F4F4", maxWidth: {sm:"100%",md:"100%",xs:400} }}>
+    <TableContainer sx={{ margin: "auto",border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:900,xs:400} }}>
       <MUITable >
         <TableHead>
           <TableRow>
-            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 170 ,display:"flex",alignItems:"center",gap:"10px"}}>
+            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 300 ,display:"flex",alignItems:"center",gap:"10px"}}>
               <button  style={{ bgcolor: "#F1F6FE", fontWeight: "bold" }} className=" p-2 bg-[#F1F6FE] font-bold rounded-md">
                 Project Name
               </button>
               <img src="/star.png" alt="" />
             </TableCell>
-            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 120 }}>
+            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 }}>
               Grant Ecosystem
             </TableCell>
             <TableCell align="center" sx={{ minWidth: 300 }}>
               About
             </TableCell>
-            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 100 }}>
+            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 }}>
               Socials
             </TableCell>
-            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 120 }}>
+            <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 }}>
               Fund this project
             </TableCell>
             <TableCell sx={{ whiteSpace: "nowrap", minWidth: 50 }} />
@@ -68,13 +84,13 @@ const Table = () => {
         </TableHead>
         <TableBody>
           {projects.map((project, index) => (
-            <TableRow key={index} hover>
+            <TableRow key={index} >
               <TableCell component="th" scope="row" sx={{  }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <img src="/Image.svg" alt="Project" style={{ width: 48, height: 48, marginRight: 8 }} />
                   <div>
-                    <strong>{project.name}</strong>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4 }}>
+                    <strong className=" text-[20px]">{project.name}</strong>
+                    <div style={{ display: "flex", gap: 4, marginTop: 4 }}>
                       <span style={{  backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center" }} className=" py-1 pl-2 pr-6">
                         <img src="/Ethereum.svg" alt="Ethereum"  />
                         Ethereum
@@ -94,7 +110,8 @@ const Table = () => {
                 </p>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "normal", wordWrap: "break-word" }}>
-                {project.about}
+              <p> <strong> {project.about}</strong> </p>
+              <p> {project.about}</p>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "nowrap" }}>
                 <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>

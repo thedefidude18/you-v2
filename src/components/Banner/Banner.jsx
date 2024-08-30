@@ -4,7 +4,7 @@ import Image from "next/image";
 function Banner({ text, image,subtitle }) {
 
   return (
-    <div className=" flex justify-between items-center custom-gradient-bg  px-4 w-full  ">
+    <div className=" flex justify-between items-center custom-gradient-bg  px-4 w-full rounded-md">
       <div>
 
       <h1 className=" text-white sm:text-[40px] text-[20px]" dangerouslySetInnerHTML={{ __html: text }} />
