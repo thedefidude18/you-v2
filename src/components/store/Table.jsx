@@ -57,7 +57,8 @@ const Table = () => {
   ];
 
   return (
-    <TableContainer sx={{ margin: "auto",border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:900,xs:400} }}>
+    <div className=" max-w-full">
+    <TableContainer sx={{border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:"70vw",xs:400} }}>
       <MUITable >
         <TableHead>
           <TableRow>
@@ -136,6 +137,7 @@ const Table = () => {
         </TableBody>
       </MUITable>
     </TableContainer>
+    </div>
   );
 };
 
