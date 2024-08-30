@@ -25,7 +25,7 @@ const Table = () => {
     {
       name: "XGames on Arbitrum",
       ecosystem: "YouBuild",
-      ecosystemicon: "youbuild.svg",
+      ecosystemicon: "/youbuild.svg",
       about: "Design software. Super lightweight design app.",
       socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
@@ -33,7 +33,7 @@ const Table = () => {
     {
       name: "YOuBuild",
       ecosystem: "Ton Grants",
-      ecosystemicon: "/coin.svg",
+      ecosystemicon: "/Coin.svg",
       about: "Data prediction. AI and machine learning data.",
       socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
@@ -41,7 +41,7 @@ const Table = () => {
     {
       name: "YOuBuild",
       ecosystem: "Ton Grants",
-      ecosystemicon: "/coin.svg",
+      ecosystemicon: "/Coin.svg",
       about: "Data prediction. AI and machine learning data.",
       socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
@@ -49,7 +49,7 @@ const Table = () => {
     {
       name: "YOuBuild",
       ecosystem: "Ton Grants",
-      ecosystemicon: "/coin.svg",
+      ecosystemicon: "/Coin.svg",
       about: "Data prediction. AI and machine learning data.",
       socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
@@ -66,7 +66,7 @@ const Table = () => {
               <button  style={{ bgcolor: "#F1F6FE", fontWeight: "bold" }} className=" p-2 bg-[#F1F6FE] font-bold rounded-md">
                 Project Name
               </button>
-              <img src="/star.png" alt="" />
+              <img src="/Star.png" alt="" />
             </TableCell>
             <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 }}>
               Grant Ecosystem
