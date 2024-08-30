@@ -105,7 +105,7 @@ const StoreHeader = () => {
         </Tabs>
       </div>
       {isProjectDropdownOpen && (
-                  <div className="absolute z-[200] top-8 left-3 mt-2 px-2 w-max bg-white shadow-xl rounded-md py-2">
+                  <div className="absolute z-[200] top-8 sm:left-3 left-[10%] mt-2 px-2 w-max bg-white shadow-xl rounded-md py-2">
                     {categories.map((item, i) => (
                       <a
                         key={i}
