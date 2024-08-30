@@ -19,7 +19,7 @@ const Table = () => {
       ecosystem: "Gitcoin Grants",
       ecosystemicon: "/gitcoin.svg",
       about: "Content curating app. Brings all your news into one place.",
-      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/group.svg"],
+      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
     },
     {
@@ -27,7 +27,7 @@ const Table = () => {
       ecosystem: "YouBuild",
       ecosystemicon: "youbuild.svg",
       about: "Design software. Super lightweight design app.",
-      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/group.svg"],
+      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
     },
     {
@@ -35,7 +35,7 @@ const Table = () => {
       ecosystem: "Ton Grants",
       ecosystemicon: "/coin.svg",
       about: "Data prediction. AI and machine learning data.",
-      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/group.svg"],
+      socials: ["/github.svg", "/x.svg", "/Telegram.svg", "/Discord.svg", "/Group.svg"],
       fund: "Donate",
     },
   ];
@@ -71,7 +71,7 @@ const Table = () => {
             <TableRow key={index} hover>
               <TableCell component="th" scope="row" sx={{  }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <img src="/image.png" alt="Project" style={{ width: 48, height: 48, marginRight: 8 }} />
+                  <img src="/Image.svg" alt="Project" style={{ width: 48, height: 48, marginRight: 8 }} />
                   <div>
                     <strong>{project.name}</strong>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4 }}>
@@ -80,7 +80,7 @@ const Table = () => {
                         Ethereum
                       </span>
                       <span style={{ backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center",gap:"5px" }} className="py-1 pl-2 pr-6">
-                        <img src="/coin.svg" alt="Ethereum"  />
+                        <img src="/Coin.svg" alt="Ethereum"  />
                         Ethereum
                       </span>
                     </div>
