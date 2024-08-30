@@ -5,8 +5,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className=' sm:p-4 p-2'>
-        <Banner text="Explore a world of <br/> Public Goods on youBuidl. " subtitle="Connecting you with web3 Opportunities to make impact."  image="/svgs/proj/BannerSvg.svg"/>
+    <div className=' sm:p-4 p-2 font '>
+        <Banner text="Explore a world of <br/> Public Goods on youBuidl. " subtitle="Connecting you with web3 Opportunities to make impact."  image=""/>
         <div >
 
      <StoreHeader/>

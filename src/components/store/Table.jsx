@@ -57,8 +57,8 @@ const Table = () => {
   ];
 
   return (
-    <div className=" max-w-full">
-    <TableContainer sx={{border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:"70vw",xs:400} }}>
+    <div className=" max-w-full font">
+    <TableContainer sx={{border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:"77vw",xs:400} }}>
       <MUITable >
         <TableHead>
           <TableRow>
@@ -85,18 +85,18 @@ const Table = () => {
         </TableHead>
         <TableBody>
           {projects.map((project, index) => (
-            <TableRow key={index} >
+            <TableRow key={index}  sx={{backgroundColor:`${index %2===0 ? "#F9FAFB":"#fff"}`}}>
               <TableCell component="th" scope="row" sx={{  }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <img src="/Image.svg" alt="Project" style={{ width: 48, height: 48, marginRight: 8 }} />
                   <div>
                     <strong className=" text-[20px]">{project.name}</strong>
                     <div style={{ display: "flex", gap: 4, marginTop: 4 }}>
-                      <span style={{  backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center" }} className=" py-1 pl-2 pr-6">
+                      <span style={{  backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center" }} className=" py-1 pl-2 pr-6 text-[#6941C6]">
                         <img src="/Ethereum.svg" alt="Ethereum"  />
                         Ethereum
                       </span>
-                      <span style={{ backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center",gap:"5px" }} className="py-1 pl-2 pr-6">
+                      <span style={{ backgroundColor: "#F9F5FF", borderRadius: 16, display: "flex", alignItems: "center",gap:"5px" }} className="py-1 pl-2 pr-6 text-[#6941C6]">
                         <img src="/Coin.svg" alt="Ethereum"  />
                         Ethereum
                       </span>
@@ -105,14 +105,14 @@ const Table = () => {
                 </div>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "nowrap" }}>
-                <p className=" flex items-center gap-1 border py-2 pl-2 pr-6  rounded-full" >
-                  <img src={project.ecosystemicon} alt="Ecosystem"  />
-                  {project.ecosystem}
-                </p>
-              </TableCell>
-              <TableCell align="center" sx={{ whiteSpace: "normal", wordWrap: "break-word" }}>
-              <p> <strong> {project.about}</strong> </p>
-              <p> {project.about}</p>
+  <div className="flex justify-center items-center gap-1 w-auto border-2 bg-white py-1 !px-0 rounded-lg">
+    <img src={project.ecosystemicon} alt="Ecosystem" />
+    {project.ecosystem}
+  </div>
+</TableCell>
+              <TableCell  sx={{ whiteSpace: "normal", wordWrap: "break-word" }}>
+              <p className=" text-sm text-[#101828]">  {project.about} </p>
+              <p className=" text-xs font-light text-[#475467]"> {project.about}</p>
               </TableCell>
               <TableCell align="center" sx={{ whiteSpace: "nowrap" }}>
                 <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>

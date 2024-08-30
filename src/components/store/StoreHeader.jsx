@@ -50,7 +50,7 @@ const StoreHeader = () => {
   ];
   
   return (
-    <div className="flex justify-between gap-2 w-[400px] sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
+    <div className="flex justify-between font gap-2 w-[400px] sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
       <div className=" relative sm:block hidden">
 
     
@@ -201,7 +201,7 @@ const StoreHeader = () => {
         <div className="relative">
           <button
             onClick={toggleChainDropdown}
-            className="bg-[#EFF2F5] flex items-center gap-2 text-xs p-2 rounded-md"
+            className="bg-[#EFF2F5] font flex items-center gap-2 text-xs p-2 rounded-md"
           >
             <span>Filter by chain</span>
             <KeyboardArrowDown sx={{ fontSize: "12px" }} />
