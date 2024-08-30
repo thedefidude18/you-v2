@@ -26,6 +26,11 @@ function Aside({ setOpen, open }) {
 
   const Links = [
     {
+      name: "Projects",
+      path: "/projects",
+      icon: <Projects />,
+    },
+    {
       name: "Submit A Project",
       path: "/",
       icon: <HomeSvg />,
@@ -35,11 +40,7 @@ function Aside({ setOpen, open }) {
       path: "/store",
       icon: <HomeSvg />,
     },
-    {
-      name: "Projects",
-      path: "/projects",
-      icon: <Projects />,
-    },
+   
     {
       name: "QF Rounds",
       path: "/qfrounds",
@@ -67,11 +68,11 @@ function Aside({ setOpen, open }) {
       path: "/bridge",
       icon: <BridgeSvg />,
     },
-    {
-      name: "Mint Domain",
-      path: "/mintdomain",
-      icon: <MintDomain />,
-    },
+    // {
+    //   name: "Mint Domain",
+    //   path: "/mintdomain",
+    //   icon: <MintDomain />,
+    // },
 
     {
       name: "Docs",
