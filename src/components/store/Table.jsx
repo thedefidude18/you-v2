@@ -80,7 +80,7 @@ const Table = () => {
             <TableCell align="center" sx={{ whiteSpace: "nowrap", minWidth: 150 }}>
               Fund this project
             </TableCell>
-            <TableCell sx={{ whiteSpace: "nowrap", minWidth: 50 }} />
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -127,11 +127,7 @@ const Table = () => {
                   <ArrowOutward sx={{ fontSize: "14px", marginLeft: 1 }} />
                 </Button>
               </TableCell>
-              <TableCell align="center" sx={{ whiteSpace: "nowrap" }}>
-                <IconButton>
-                  <MoreVert />
-                </IconButton>
-              </TableCell>
+             
             </TableRow>
           ))}
         </TableBody>
