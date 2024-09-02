@@ -8,9 +8,11 @@ const page = () => {
     <div className=' sm:p-4 p-2 font '>
         <Banner text="Explore a world of <br/> Public Goods on youBuidl. " subtitle="Connecting you with web3 Opportunities to make impact."  image=""/>
         <div >
+        <div className=' max-w-full flex justify-center'>
 
      <StoreHeader/>
-     <div className=' flex justify-center'>
+     </div>
+     <div className=' max-w-full flex justify-center'>
 
      <Table/>
      </div>

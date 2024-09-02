@@ -58,7 +58,7 @@ const Table = () => {
 
   return (
     <div className=" max-w-full font">
-    <TableContainer sx={{border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:"77vw",xs:400} }}>
+    <TableContainer sx={{border:"1px solid #F4F4F4",whiteSpace:"nowrap", maxWidth: {sm:900,md:"77vw",xs:360} }}>
       <MUITable >
         <TableHead>
           <TableRow>

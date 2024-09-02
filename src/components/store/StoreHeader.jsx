@@ -50,29 +50,29 @@ const StoreHeader = () => {
   ];
   
   return (
-    <div className="flex justify-between font gap-2 w-[400px] sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
+    <div className="flex justify-between font gap-2 w-[350px] sm:w-full mx-auto sm:items-center items-start sm:flex-row flex-col my-4">
       <div className=" relative sm:block hidden">
 
     
-      <div className="overflow-auto w-full">
+      <div className="overflow-x-auto w-full ">
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons="auto" 
-          aria-label="scrollable slider-like tabs example"
+          scrollButtons
+          allowScrollButtonsMobile
+          aria-label="scrollable force tabs example"
           sx={{
-            '& .MuiTabs-indicator': {
-              display: 'none',
+            "& .MuiTabs-indicator": { display: "none" },
+            "& .MuiTab-root": {
+              minWidth: isSmallScreen ? "40%" : "auto",
+              flex: "1 1 auto",
+              padding: "0 20px",
             },
-            '& .MuiTabs-scrollButtons.Mui-disabled': {
-              opacity: 0.3, 
-            },
-  
+            width: "100%",
           }}
         >
           <Tab
-          
             label={
               <div className=" relative">
               <div className="flex items-center gap-1" onClick={toggleProjectDropdown}>
@@ -84,7 +84,7 @@ const StoreHeader = () => {
               
               </div>
             }
-            sx={{ fontSize: "12px", textTransform: "none",minWidth: '120px' }}
+            sx={{ fontSize: "12px", textTransform: "none" }}
           />
           {data.map((item, index) => (
             <Tab
@@ -98,7 +98,6 @@ const StoreHeader = () => {
               sx={{
                 fontSize: "12px",
                 textTransform: "none",
-                minWidth: '120px',
                 "&.Mui-selected": { color: "black" },
               }}
             />
