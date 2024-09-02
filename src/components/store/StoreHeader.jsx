@@ -54,25 +54,25 @@ const StoreHeader = () => {
       <div className=" relative sm:block hidden">
 
     
-      <div className="overflow-x-auto w-full ">
+      <div className="overflow-auto w-full">
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
-          scrollButtons
-          allowScrollButtonsMobile
-          aria-label="scrollable force tabs example"
+          scrollButtons="auto" 
+          aria-label="scrollable slider-like tabs example"
           sx={{
-            "& .MuiTabs-indicator": { display: "none" },
-            "& .MuiTab-root": {
-              minWidth: isSmallScreen ? "40%" : "auto",
-              flex: "1 1 auto",
-              padding: "0 20px",
+            '& .MuiTabs-indicator': {
+              display: 'none',
             },
-            width: "100%",
+            '& .MuiTabs-scrollButtons.Mui-disabled': {
+              opacity: 0.3, 
+            },
+  
           }}
         >
           <Tab
+          
             label={
               <div className=" relative">
               <div className="flex items-center gap-1" onClick={toggleProjectDropdown}>
@@ -84,7 +84,7 @@ const StoreHeader = () => {
               
               </div>
             }
-            sx={{ fontSize: "12px", textTransform: "none" }}
+            sx={{ fontSize: "12px", textTransform: "none",minWidth: '120px' }}
           />
           {data.map((item, index) => (
             <Tab
@@ -98,6 +98,7 @@ const StoreHeader = () => {
               sx={{
                 fontSize: "12px",
                 textTransform: "none",
+                minWidth: '120px',
                 "&.Mui-selected": { color: "black" },
               }}
             />

@@ -10,7 +10,7 @@ const page = () => {
         <div >
 
      <StoreHeader/>
-     <div className='max-w-full flex justify-center'>
+     <div className=' flex justify-center'>
 
      <Table/>
      </div>

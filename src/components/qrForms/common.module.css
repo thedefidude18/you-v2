@@ -54,6 +54,7 @@
   text-align: center;
   padding: 8px 18px;
   margin-top: 8px;
+  margin-bottom: 10px;
   border-radius: 4px;
   background: linear-gradient(136.86deg, #4459a9 5.64%, #402383 118.93%);
   color: var(--secondary-color);
