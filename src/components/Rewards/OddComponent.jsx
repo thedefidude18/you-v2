@@ -42,10 +42,10 @@ function OddComponent() {
 
   return (
     <div className=" mb-6">
-      <Banner
+      {/* <Banner
         text="Claim and keep Track of Rewards"
         image="/svgs/RewardBanner.svg"
-      />
+      /> */}
       <div className=" grid sm:grid-cols-3 w-full grid-cols-1 gap-3 rounded-md p-4  ">
         <ViewCard title="Buildpoints" num={contriDetail?.projectsNum} total={formatEther(contriDetail?.totalBuidlPointRewards)} claimable={formatEther(contriDetail?.claimableBuidlPointRewards)} id={1}  />
         <ViewCard title="Contribution Rewards" num={contriDetail?.projectsNum} total={formatEther(contriDetail?.totalStableRewards)} claimable={formatEther(contriDetail?.claimableStableRewards)} id={2} claim={claimUSDT} />

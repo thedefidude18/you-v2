@@ -96,7 +96,7 @@ function page() {
       </div>
       {
         isContributer ? (
-          <div className={styles.divide}>
+          <div className=" grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full sm:p-4 p-2">
             {othersProjects.map((item, index) => (
               <ProjectCard
                 project={item}
@@ -105,7 +105,7 @@ function page() {
             ))}
           </div>
         ) : (
-          <>
+          <div className=" w-full ">
             {myProjects.map((item, index) => (
               <ProjectBand
                 project={item}
@@ -113,7 +113,7 @@ function page() {
                 refresh={loadProjects}
               />
             ))}
-          </>
+          </div>
         )
       }
 

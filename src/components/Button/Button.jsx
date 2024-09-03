@@ -16,7 +16,7 @@ function Button({ text = "", type = null, path = null, color = null, confirm = (
     );
   } else {
     return (
-      <button className={styles.btn} onClick={confirm}>
+      <button className={`${styles.btn} sm:text-base text-sm`} onClick={confirm}>
         {text}
       </button>
     );

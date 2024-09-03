@@ -31,10 +31,10 @@ const Page = () => {
 
   return (
     <div className="w-full overflow-x-hidden">
-      <Banner
+      {/* <Banner
         text="Check Out Your <br/> Contributed projects "
         image="/svgs/proj/BannerSvg.svg"
-      />
+      /> */}
       <div className="grid sm:grid-cols-3 gap-4 w-full grid-cols-1 p-4">
         <SummaryCard title="Total Donations" value={+donation?.totalContribution / 10 ** 5} />
         <SummaryCard title="Total Donations" value={donation?.numOfDonation} />
