@@ -4,14 +4,15 @@ import { WagmiProvider, http } from "wagmi";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { polygonAmoy } from "viem/chains";
+import { baseSepolia, polygonAmoy } from "viem/chains";
 import { bscTestnet } from "@/utils/network";
 
 const config = getDefaultConfig({
     appName: 'YouBuidl',
     projectId: 'a1dd57ddaed16cfb376bd7066679449f',
-    chains: [bscTestnet, polygonAmoy],
+    chains: [baseSepolia, bscTestnet, polygonAmoy],
     transports: {
+      [baseSepolia.id]: http(),
       [bscTestnet.id]: http(),
       [polygonAmoy.id]: http(),
     },
