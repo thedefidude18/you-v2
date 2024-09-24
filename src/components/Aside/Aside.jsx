@@ -13,8 +13,11 @@ import DonationSvg from "../../../public/svgs/DonationSvg";
 import DocsSvg from "../../../public/svgs/DocsSvg";
 import LogoutSvg from "../../../public/svgs/LogoutSvg";
 import DoubleButton from "./DoubleButton";
-import { Close } from "@mui/icons-material";
+import { Close, Search } from "@mui/icons-material";
+import KeyboardArrowDownTwoToneIcon from '@mui/icons-material/KeyboardArrowDownTwoTone';
 import Vote from "../../../public/svgs/Vote";
+import Image from "next/image";
+import { Divider } from "@mui/material";
 function Aside({ setOpen, open }) {
   const pathName = usePathname();
 
@@ -40,7 +43,7 @@ function Aside({ setOpen, open }) {
       path: "/store",
       icon: <HomeSvg />,
     },
-   
+
     {
       name: "QF Rounds",
       path: "/qfrounds",
@@ -81,55 +84,77 @@ function Aside({ setOpen, open }) {
 
   ];
   return (
-    <aside className={`${styles.aside__cont} relative w-full `} >
-      <div className={styles.divide}>
-        {open && (
-          <div
-            className=" absolute right-[0px] top-4 p-2 rounded-full shadow-xl z-[1100] bg-white border-2 border-black flex justify-center items-center"
-            style={{ width: "40px", height: "40px" }}
-            onClick={() => setOpen(false)}
-          >
-            <Close />
-          </div>
-        )}
-        <img
-          style={{ width: "185px", height: "50px", margin: " 0 auto" }}
-          src="/svgs/Logo.svg"
-          alt=""
-        />
-        <ul>
-          {Links.map((item, index) => {
-            const isActive =
-              item.path === "/"
-                ? pathName === "/"
-                : pathName.includes(item.path.substring(1)) &&
-                item.path.length !== 1;
+    <div className="w-full">
 
-            return (
-              <li key={index} className={isActive ? styles.active : ""} onClick={() => setOpen && setOpen(false)}>
-                <Link href={`${item.path}`}>
-                  <span className={styles.icon}> {item.icon}</span>
-                  {item.name}
-                </Link>
-              </li>
-            );
-          })}
-          {/* {(show1 || show2) && ( */}
-          <li>
-            <DoubleButton />
-          </li>
-          {/* )} */}
-        </ul>
+      <div className="w-full h-14 items-center px-5 max-sm:flex hidden">
+        <div className="w-full h-full flex items-center">
+          <Image src={'/svgs/Logo.svg'} width={125.2} height={33} alt="Logo" />
+        </div>
+        <div className="w-full h-full flex justify-between">
+          <Image src="/svgs/Search.svg" alt="Cart" height={35} width={35} className="object-cover opacity-[55%]" />
+          <Image src="/svgs/Cart.svg" alt="Cart" height={30} width={30} className="object-cover" />
+          <Divider orientation="vertical" className="h-[60%]" />
+          <div className="flex gap-0">
+            <Image src="/domain/Arb Logo.png" alt="logos" height={30} width={30} className="object-cover" />
+            <KeyboardArrowDownTwoToneIcon className="text-[30px] font-semibold" />
+          </div>
+          {open && (
+            <Close onClick={() => setOpen(false)} className="!text-[40px]" />
+          )}
+        </div>
       </div>
-      <div>
-        <Link id={styles.logOut} href="/">
-          <span style={{ height: "24px" }}>
-            <LogoutSvg />
-          </span>
-          Log Out
-        </Link>
-      </div>
-    </aside>
+
+      <aside className={`${styles.aside__cont} relative`} >
+        <div className="w-full max-sm:flex hidden flex-col gap-4 pb-3">
+          <button className="w-full rounded-md bg-[#424098] text-white font-semibold text-[16px] py-3 flex justify-center">
+            Connect wallet
+          </button>
+          <button className="w-full rounded-md bg-black text-white font-semibold text-[16px] py-3 flex justify-center">
+            Submit a Project
+          </button>
+        </div>
+        <div className={`${styles.divide}`}>
+
+          <img
+            style={{ width: "185px", height: "50px", margin: " 0 auto" }}
+            src="/svgs/Logo.svg"
+            alt="logo"
+            className="sm:flex hidden"
+          />
+          <ul>
+            {Links.map((item, index) => {
+              const isActive =
+                item.path === "/"
+                  ? pathName === "/"
+                  : pathName.includes(item.path.substring(1)) &&
+                  item.path.length !== 1;
+
+              return (
+                <li key={index} className={isActive ? styles.active : ""} onClick={() => setOpen && setOpen(false)}>
+                  <Link href={`${item.path}`}>
+                    <span className={styles.icon}> {item.icon}</span>
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+            {/* {(show1 || show2) && ( */}
+            <li>
+              <DoubleButton />
+            </li>
+            {/* )} */}
+          </ul>
+        </div>
+        <div>
+          <Link id={styles.logOut} href="/">
+            <span style={{ height: "24px" }}>
+              <LogoutSvg />
+            </span>
+            Log Out
+          </Link>
+        </div>
+      </aside>
+    </div>
   );
 }
 

@@ -10,7 +10,7 @@ import Aside from "../Aside/Aside";
 function Header() {
   const stateRecived = useContext(sharedState);
   const { stateStep } = stateRecived;
-  const [ open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -18,11 +18,11 @@ function Header() {
     <div className=" flex justify-between items-center w-full  p-2  py-4 border-b ">
       <div className="block sm:hidden text-xxl">
 
-      <Menu style={{fontSize:"40px"}} onClick={()=>setOpen(true)}/>
+        <Menu style={{ fontSize: "40px" }} onClick={() => setOpen(true)} />
       </div>
 
       <div className="p-2 border bg-[var(--third-color)] rounded-md relative sm:w-1/3  sm:block hidden placeholder:text-[#949aaf]">
-        
+
         <input
           type="text"
           placeholder="Search for projects"
@@ -36,8 +36,8 @@ function Header() {
         />
       </div>
       <div className=" flex items-center gap-4 sm:w-2/3 justify-end">
-      <Link className={stateStep > 0 ? " text-xl" : ""} href={"/cart"} >
-          <img src="/svgs/Cart.svg" alt="Cart"  className=" h-[40px] object-cover"/>
+        <Link className={stateStep > 0 ? " text-xl" : ""} href={"/cart"} >
+          <img src="/svgs/Cart.svg" alt="Cart" className=" h-[40px] object-cover" />
         </Link>
         {/* {stateStep === 0 ? (
           <>
@@ -52,7 +52,7 @@ function Header() {
         ) 
         : 
         ( */}
-          {/* <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
+        {/* <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
             <p className="flex p-3 items-center  ">
               <img src="./svgs/qf/Star.svg" alt="star" />
               Star
@@ -65,18 +65,16 @@ function Header() {
         </div>
       </div>
       <Drawer
-  open={open}
-  onClose={toggleDrawer(false)}
-  sx={{
-    width: "50%",
-  }}
->
-  
-  <Aside setOpen={setOpen} open={open} />
-</Drawer>
+        open={open}
+        onClose={toggleDrawer(false)}
+        sx={{
+          width: "100%",
+        }}
+        className="!w-full"
+      >
 
-
-
+        <Aside setOpen={setOpen} open={open} className='!w-full'/>
+      </Drawer>
     </div>
   );
 }

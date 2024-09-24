@@ -57,7 +57,7 @@ const Page = () => {
             /> */}
                     {/* </div> */}
                 </div>
-                <div className="absolute right-8 sm:bottom-[-30px] bottom-0 sm:h-full">
+                <div className="absolute sm:right-8 sm:bottom-[-35px] bottom-0 sm:h-full">
                     <div className="relative">
                         <Image src={'/home/Group14.png'} alt="bgimage" width={304.19} height={258} />
                         <div className="absolute bottom-0 right-0">

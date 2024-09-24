@@ -26,3 +26,9 @@
 .right_btn {
   border-radius: 0px 8px 8px 0px;
 }
+
+@media (max-width:540px) {
+  .btn {
+    width: 50%;
+  }
+}
