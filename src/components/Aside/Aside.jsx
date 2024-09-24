@@ -68,12 +68,11 @@ function Aside({ setOpen, open }) {
       path: "/bridge",
       icon: <BridgeSvg />,
     },
-    // {
-    //   name: "Mint Domain",
-    //   path: "/mintdomain",
-    //   icon: <MintDomain />,
-    // },
-
+    {
+      name: "Mint Domain",
+      path: "/mintdomain",
+      icon: <MintDomain />,
+    },
     {
       name: "Docs",
       path: "/docs",
