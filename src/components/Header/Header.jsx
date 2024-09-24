@@ -5,8 +5,10 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { sharedState } from "@/app/layout";
 import Link from "next/link";
 import { Close, Menu } from "@mui/icons-material";
-import { Drawer } from "@mui/material";
+import { Divider, Drawer } from "@mui/material";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Aside from "../Aside/Aside";
+import Image from "next/image";
 function Header() {
   const stateRecived = useContext(sharedState);
   const { stateStep } = stateRecived;
@@ -60,6 +62,12 @@ function Header() {
             <p className="p-4 px-6 border-l-2 bg-[var(--third-color)]">1000</p>
           </div> */}
         {/* )} */}
+        <div className="w-[1px] bg-gray-300 h-6"/>
+        <div className="flex items-center">
+          <Image src="/home/Arb Logo.png" alt="logos" height={42} width={42} className="object-cover" />
+          <KeyboardArrowDownIcon />
+        </div>
+        <div className="w-[2px] bg-gray-300 h-6"/>
         <div className="">
           <ConnectButton />
         </div>
@@ -73,7 +81,7 @@ function Header() {
         className="!w-full"
       >
 
-        <Aside setOpen={setOpen} open={open} className='!w-full'/>
+        <Aside setOpen={setOpen} open={open} className='!w-full' />
       </Drawer>
     </div>
   );
