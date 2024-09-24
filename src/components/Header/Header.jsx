@@ -62,12 +62,12 @@ function Header() {
             <p className="p-4 px-6 border-l-2 bg-[var(--third-color)]">1000</p>
           </div> */}
         {/* )} */}
-        <div className="w-[1px] bg-gray-300 h-6"/>
-        <div className="flex items-center">
+        <div className="w-[1px] bg-gray-300 h-6 sm:flex hidden"/>
+        <div className="items-center sm:flex hidden">
           <Image src="/home/Arb Logo.png" alt="logos" height={42} width={42} className="object-cover" />
           <KeyboardArrowDownIcon />
         </div>
-        <div className="w-[2px] bg-gray-300 h-6"/>
+        <div className="w-[2px] bg-gray-300 h-6 sm:flex hidden"/>
         <div className="">
           <ConnectButton />
         </div>

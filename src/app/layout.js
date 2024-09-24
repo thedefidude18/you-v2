@@ -9,6 +9,7 @@ import { useState } from "react";
 import "./globals.css";
 import Providers from "./provider";
 import { createContext } from "react";
+import Script from "next/script";
 export const sharedState = createContext();
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +24,10 @@ export default function RootLayout({ children }) {
   const [cartItems, setCartItems] = useState({});
   return (
     <html lang="en">
+      <Script 
+          src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js" 
+          strategy="lazyOnload" 
+        />
       <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral, cartItems, setCartItems, cartToken, setCartToken}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">

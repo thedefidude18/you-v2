@@ -34,7 +34,7 @@ function Aside({ setOpen, open }) {
       icon: <Projects />,
     },
     {
-      name: "Submit A Project",
+      name: "Home",
       path: "/",
       icon: <HomeSvg />,
     },
