@@ -98,8 +98,8 @@ function Header() {
               backdropFilter: "none",
             },
             "& .MuiDrawer-paper": {
-              top: "90px",
-              height: "calc(100vh - 90px)",
+              top: "88px",
+              height: "calc(100vh - 88px)",
               width: { xs: "100vw", sm: "auto" }, 
               position: "fixed", 
             },
