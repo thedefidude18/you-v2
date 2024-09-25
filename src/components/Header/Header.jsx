@@ -100,10 +100,9 @@ function Header() {
             "& .MuiDrawer-paper": {
               top: "88px",
               height: "calc(100vh - 88px)",
-              width: { xs: "100vw", sm: "auto" }, 
               position: "fixed", 
+              width: "100vw !important", 
             },
-            width: { xs: "100vw", sm: "auto" },
           }}
           className="!w-full"
         >
