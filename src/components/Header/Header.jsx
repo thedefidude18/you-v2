@@ -105,7 +105,7 @@ function Header() {
             },
           }}
         >
-          <Aside setOpen={setOpen} open={open} className="!w-full" />
+          <Aside setOpen={setOpen} open={open} className="!w-[110vw]" />
         </Drawer>
       </div>
   );
