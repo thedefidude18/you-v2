@@ -99,9 +99,9 @@ function Header() {
             },
             "& .MuiDrawer-paper": {
               top: "88px",
-              height: "calc(100vh - 88px)",
+              minHeight: "calc(100vh - 88px)",
               position: "fixed", 
-              width: "110vw !important", 
+              width: "110vw !important",
             },
           }}
         >

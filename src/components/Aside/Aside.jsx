@@ -28,7 +28,7 @@ function Aside({ setOpen, open }) {
 
 
   const Links = [
-    
+
     {
       name: "Home",
       path: "/",
