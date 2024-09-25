@@ -101,10 +101,9 @@ function Header() {
               top: "88px",
               height: "calc(100vh - 88px)",
               position: "fixed", 
-              width: "100vw !important", 
+              width: "110vw !important", 
             },
           }}
-          className="!w-full"
         >
           <Aside setOpen={setOpen} open={open} className="!w-full" />
         </Drawer>
