@@ -21,7 +21,7 @@ import Link from "next/link";
 
 const Slider = () => {
   return (
-    <div className="bg-red-600 font-sans text-black max-sm:h-[70vh]">
+    <div className="font-sans text-black max-sm:h-[70vh]">
       <Swiper
         className="sm:w-[calc(100vw-370px)] max-sm:w-[calc(100vw-10px)] h-full"
         loop={true}

@@ -11,6 +11,7 @@ const Found = ({ setSearch, setFound, setNotfound }) => {
                         <input
                             type="text"
                             placeholder="Search domain name"
+                            defaultValue={'Vitalik.Youbuidl'}
                             suppressHydrationWarning={true}
                             className="w-full p-1"
                         />
@@ -39,7 +40,7 @@ const Found = ({ setSearch, setFound, setNotfound }) => {
                                     </div>
                                 </div>
                                 <div className="!w-[17%] !h-full bg-[#4458A8] py-5 flex items-center justify-center">
-                                    <Image src={'/domain/cart-add.png'} alt='addtocart' width={50} height={50} className='object-contain' />
+                                    <Image src={'/domain/cart-add.svg'} alt='addtocart' width={50} height={50} className='object-contain' />
                                 </div>
                             </Card>
                             <Card className='w-full rounded-lg flex  h-full'>
@@ -58,7 +59,7 @@ const Found = ({ setSearch, setFound, setNotfound }) => {
                                     </div>
                                 </div>
                                 <div className="!w-[17%] !h-full bg-[#FF5151] py-5 flex items-center justify-center">
-                                    <Image src={'/domain/cart-minus.png'} alt='addtocart' width={50} height={50} className='object-contain' />
+                                    <Image src={'/domain/cart-minus.svg'} alt='addtocart' width={50} height={50} className='object-contain' />
                                 </div>
                             </Card>
                         </div>

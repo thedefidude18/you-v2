@@ -27,7 +27,6 @@
   font-weight: 500;
   color: var(--primary-color);
   padding: 16px 12px;
-
   border: 0px 2px 0px 0px;
 }
 /*In Active State*/
@@ -52,13 +51,7 @@
 @media (max-width:540px) {
   .aside__cont {
     width: 100vw !important;
-    height: 900px;
-    border-right: 1px solid #efeff1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* justify-content: center; */
-    padding: 2rem;
+    /* border: 4px solid black; */
   }
 
   .divide ul li {

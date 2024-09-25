@@ -28,15 +28,16 @@ function Aside({ setOpen, open }) {
 
 
   const Links = [
-    {
-      name: "Projects",
-      path: "/projects",
-      icon: <Projects />,
-    },
+    
     {
       name: "Home",
       path: "/",
       icon: <HomeSvg />,
+    },
+    {
+      name: "Projects",
+      path: "/projects",
+      icon: <Projects />,
     },
     {
       name: "PG Store",
@@ -84,9 +85,9 @@ function Aside({ setOpen, open }) {
 
   ];
   return (
-    <div className="w-full">
+    <div className="!w-full">
 
-      <div className="w-full h-14 items-center px-5 max-sm:flex hidden">
+      {/* <div className="w-full h-14 items-center px-5 max-sm:flex hidden">
         <div className="w-full h-full flex items-center">
           <Image src={'/svgs/Logo.svg'} width={125.2} height={33} alt="Logo" />
         </div>
@@ -102,7 +103,7 @@ function Aside({ setOpen, open }) {
             <Close onClick={() => setOpen(false)} className="!text-[40px]" />
           )}
         </div>
-      </div>
+      </div> */}
 
       <aside className={`${styles.aside__cont} relative`} >
         <div className="w-full max-sm:flex hidden flex-col gap-4 pb-3">
