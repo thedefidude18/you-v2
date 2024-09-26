@@ -40,6 +40,7 @@ const Slider = () => {
       <Swiper
         className="sm:w-[calc(100vw-300px)] w-[calc(100vw-50px)] [@media(min-width:374px && max-width:376px)]:w-[100vw] h-full"
         loop={true}
+        spaceBetween={16}
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
@@ -82,7 +83,7 @@ const Slider = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute sm:right-8 max-sm:left-14 sm:bottom-[-50px] bottom-0 sm:h-full">
+            <div className="absolute sm:right-8 max-sm:left-[5%] sm:bottom-[-50px] bottom-0 sm:h-full">
               <div className="relative">
                 <Image
                   src={"/home/Group14.png"}
@@ -218,10 +219,10 @@ const HomePage = () => {
     loadProjects();
   }, [address]);
   return (
-    <div className="max-sm:px-6 w-full">
+    <div className="w-full">
         <Slider />
-      <div className="px-5">
-        <div className="sm:flex justify-between mt-4  ">
+      <div className="sm:px-5">
+        <div className="sm:flex justify-between mt-4 max-sm:px-3">
           <div>
             <h2 className="font-bold text-2xl max-sm:py-2">Trending Buidls</h2>
           </div>
@@ -238,7 +239,7 @@ const HomePage = () => {
           </div>
         </div>
         {isContributer ? (
-          <div className=" grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full sm:p-4 p-2">
+          <div className=" grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full sm:p-4">
             {othersProjects.map((item, index) => (
               <ProjectCard project={item} key={index} />
             ))}
