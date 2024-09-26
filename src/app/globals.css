@@ -16,7 +16,7 @@ body
   {
     padding: 0;
     margin:0;
-    min-width: 400px;
+    min-width: 375px;
     color: black;
  }
 
@@ -78,6 +78,7 @@ input {
   display: grid;
   grid-template-columns: 288px 1fr;
   height: 100vh; /* Makes the layout take full viewport height */
+  width: 100%;
 }
 
 @media (max-width: 1024px) {

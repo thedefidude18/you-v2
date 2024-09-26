@@ -19,11 +19,26 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
 
+const sliderdata = [
+  {
+    heading: "Build Today",
+  },
+  {
+    heading: "Build Today",
+  },
+  {
+    heading: "Build Today",
+  },
+  {
+    heading: "Build Today",
+  },
+];
+
 const Slider = () => {
   return (
     <div className="font-sans text-black max-sm:h-[70vh]">
       <Swiper
-        className="sm:w-[calc(100vw-370px)] max-sm:w-[calc(100vw-10px)] h-full"
+        className="sm:w-[calc(100vw-370px)] w-[calc(100vw-50px)] [@media(min-width:374px && max-width:376px)]:w-[100vw] h-full"
         loop={true}
         pagination={{
           clickable: true,
@@ -37,7 +52,11 @@ const Slider = () => {
         }}
         modules={[Pagination, Autoplay]}
       >
-        <SwiperSlide className="flex justify-center items-center text-xl bg-white">
+        {/* {sliderdata?.map((item, index) => ( */}
+        <SwiperSlide
+          // key={index}
+          className="flex justify-center items-center text-xl bg-white"
+        >
           <div
             className={`bg-cover sm:bg-[url('/home/Rectangle.png')] max-sm:bg-[url('/home/Rectangle4829.png')] rounded-lg relative max-sm:h-[70vh]`}
           >
@@ -47,7 +66,7 @@ const Slider = () => {
               <div className="flex gap-[11rem]">
                 <div className="2xl:w-[40%] xl:w-[50%] md:w-[60%] w-[90%] text-white">
                   <h1 className="text-4xl font-bold text-white">
-                    Build Today{" "}
+                    Build Today {/* {item?.heading} */}
                   </h1>
                   <h1 className="text-4xl mt-2  font-bold  "> Fund Tomorow</h1>
                   <p className=" mt-2  ">
@@ -83,6 +102,8 @@ const Slider = () => {
             </div>
           </div>
         </SwiperSlide>
+        {/* ))} */}
+
         <SwiperSlide className="flex justify-center items-center text-xl bg-white">
           <div
             className={`bg-cover sm:bg-[url('/home/Rectangle.png')] max-sm:bg-[url('/home/Rectangle4829.png')] rounded-lg relative max-sm:h-[70vh]`}
@@ -198,34 +219,7 @@ const HomePage = () => {
   }, [address]);
   return (
     <div className="px-10 max-sm:px-6 w-full">
-      {/* <div className={`py-10 bg-cover sm:bg-[url('/home/Rectangle.png')] max-sm:bg-[url('/home/Rectangle4829.png')] rounded-lg pl-10 relative max-sm:h-[70vh]`}> */}
-      {/* <div className="flex gap-[11rem]"> */}
-      {/* <div className="2xl:w-[40%] xl:w-[50%] md:w-[60%] w-[90%] text-white">
-                        <h1 className="text-4xl font-bold text-white">Build Today </h1>
-                        <h1 className="text-4xl mt-2  font-bold  ">
-                            {" "}
-                            Fund Tomorow
-                        </h1>
-                        <p className=" mt-2  ">
-                            YouBuidl is crowdfunding web3 tool created by GiveStation for
-                            developers, creators and teams.
-                        </p>
-                        <button className="bg-[#4450A3] mt-4  px-10 max-sm:px-5 rounded-md h-[51px] flex justify-center items-center text-white ">
-                            Submit a Project
-                        </button>
-                    </div> */}
-      {/* </div> */}
-      {/* // <div className="absolute sm:right-8 sm:bottom-[-35px] bottom-0 sm:h-full">
-                //     <div className="relative">
-                //         <Image src={'/home/Group14.png'} alt="bgimage" width={304.19} height={258} />
-                //         <div className="absolute bottom-0 right-0">
-                //             <Image src={'/home/Monkey.png'} alt="monkey" width={388} height={258} />
-                //         </div>
-                //     </div>
-                // </div> */}
-      {/* </div> */}
-      <Slider />
-
+        <Slider />
       <div className=" ">
         <div className="sm:flex justify-between mt-4  ">
           <div>

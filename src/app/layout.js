@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
         <head>
         {/* <meta name="viewport" content="width=1000"/> */}
-        <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=1"/>
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0"/> 
         </head>
       <Script 
           src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js" 

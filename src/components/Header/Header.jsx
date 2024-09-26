@@ -18,8 +18,8 @@ function Header() {
     setOpen(newOpen);
   };
   return (
-    <div className=" flex justify-between items-center !w-full  p-2  py-4 border-b ">
-      <div className="w-full h-14 items-center px-5 max-sm:flex hidden">
+    <div className=" flex justify-between items-center !w-full p-2 py-4">
+      <div className="w-full h-14 items-center px-5 flex sm:hidden justify-between z-[999]">
         <div className="w-full h-full flex items-center">
           <Image src={'/svgs/Logo.svg'} width={125.2} height={33} alt="Logo" />
         </div>
@@ -89,28 +89,34 @@ function Header() {
           <ConnectButton />
         </div>
       </div>
-        <Drawer
-          open={open}
-          onClose={toggleDrawer(false)}
-          sx={{
-            "& .MuiBackdrop-root": {
-              backgroundColor: "transparent",
-              backdropFilter: "none",
-            },
-            "& .MuiDrawer-paper": {
-              top: "88px",
-              // maxHeight: "99vh",
-              // minHeight:"90vh",
-              overflowY: "scroll",
-              // position: "absolute",
-              width: "110vw !important",
-            },
-          }}
-          className="!h-[100vh]"
-        >
-          <Aside setOpen={setOpen} open={open} className="!w-[110vw]" />
-        </Drawer>
-      </div>
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
+        sx={{
+          "& .MuiBackdrop-root": {
+            backgroundColor: "transparent",
+            backdropFilter: "none",
+          },
+          // "& .MuiDrawer-paper": {
+          //   top: "88px",
+          //   // maxHeight: "99vh",
+          //   minHeight:"90vh",
+          //   overflowY: "scroll",
+          //   // position: "absolute",
+          //   width:"100%"
+          // },
+          "& .MuiDrawer-paper": {
+            top: "88px",
+            minHeight: "100vh", // Minimum height of 100vh
+            overflowY: "scroll", // Enable scrolling when content exceeds
+            width: "100%",
+          
+          },
+        }}
+      >
+        <Aside setOpen={setOpen} open={open} />
+      </Drawer>
+    </div>
   );
 }
 

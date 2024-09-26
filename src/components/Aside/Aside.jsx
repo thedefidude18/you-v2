@@ -85,7 +85,7 @@ function Aside({ setOpen, open }) {
 
   ];
   return (
-    <div className="!w-full">
+    <div className="!w-full ">
 
       {/* <div className="w-full h-14 items-center px-5 max-sm:flex hidden">
         <div className="w-full h-full flex items-center">
@@ -105,9 +105,9 @@ function Aside({ setOpen, open }) {
         </div>
       </div> */}
 
-      <aside className={`${styles.aside__cont} relative`} >
-        <div className="w-full max-sm:flex hidden flex-col gap-4 pb-3">
-          <button className="w-full rounded-md bg-[#424098] text-white font-semibold text-[16px] py-3 flex justify-center">
+      <aside className={`${styles.aside__cont} w-full relative px-4 overflow-y-scroll max-h-screen !pb-4`} >
+        <div className=" max-sm:flex hidden flex-col gap-4 px-4 pb-3">
+          <button className=" rounded-md bg-[#424098] text-white font-semibold text-[16px] py-3 flex justify-center">
             Connect wallet
           </button>
           <button className="w-full rounded-md bg-black text-white font-semibold text-[16px] py-3 flex justify-center">
@@ -131,7 +131,7 @@ function Aside({ setOpen, open }) {
                   item.path.length !== 1;
 
               return (
-                <li key={index} className={isActive ? styles.active : ""} onClick={() => setOpen && setOpen(false)}>
+                <li key={index} className={ isActive ? `${styles.active} !w-full`  : " "} onClick={() => setOpen && setOpen(false)}>
                   <Link href={`${item.path}`}>
                     <span className={styles.icon}> {item.icon}</span>
                     {item.name}
@@ -146,7 +146,7 @@ function Aside({ setOpen, open }) {
             {/* )} */}
           </ul>
         </div>
-        <div>
+        <div className=" pb-24">
           <Link id={styles.logOut} href="/">
             <span style={{ height: "24px" }}>
               <LogoutSvg />

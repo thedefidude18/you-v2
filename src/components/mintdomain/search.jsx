@@ -4,7 +4,7 @@ import React from 'react'
 const Search = ({ setSearch, setFound, setNotfound }) => {
     return (
         <div className='relative'>
-            <div className='w-full flex max-sm:flex-col-reverse sm:gap-10 mt-24 max-sm:mt-14'>
+            <div className='w-full flex sm:flex-row flex-col-reverse sm:gap-10 mt-24 max-sm:mt-14'>
                 <div className='max-sm:w-full w-[60%] h-full px-2 flex flex-col items-center sm:pt-20 max-sm:pt-12'>
                     <h1 className='text-[36px] leading-[84px] font-semibold font-poppins text-[#423F96] max-sm:w-10/12 w-full text-center max-sm:text-[32px] max-sm:leading-[30px]'>Mint your .YouBuidl web3 name!</h1>
                     <h2 className='text-[20px] leading-[30px] sm:w-[60%] font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:flex hidden'>Your domain helps people find you on chain and makes a first impression. Find one that represents you perfectly.</h2>
@@ -30,8 +30,8 @@ const Search = ({ setSearch, setFound, setNotfound }) => {
                     </div>
                 </div>
             </div>
-            <div className='w-full flex justify-center mt-24 max-sm:px-5'>
-                <div className="p-2 rounded-md relative w-[596px] max-sm:w-[322px] placeholder:text-[#949aaf]">
+            <div className='w-full flex sm:justify-center justify-between  mt-24 sm:px-0 px-4'>
+                <div className="p-2 rounded-md relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
                     <input
                         type="text"
                         placeholder="Search domain name"
@@ -52,14 +52,14 @@ const Search = ({ setSearch, setFound, setNotfound }) => {
                     Search
                 </button>
             </div>
-            <div className='w-full flex justify-center pt-10'>
+            <div className='flex justify-center pt-10'>
                 <button onClick={() => {
                     setFound(true)
                     setSearch(false)
                 }
                 } className='bg-[#423F96] text-white flex px-4 py-3 gap-2 rounded-md'>
                     <Image src={'/domain/Ellipse 1.png'} alt='ellipse' width={40} height={40} />
-                    <h2 className='text-[16px] leading-[24px] font-semibold'>My Domain</h2>
+                    <h2 className='text-[16px]  font-semibold'>My Domain</h2>
                 </button>
             </div>
             <div className='absolute top-0 max-sm:hidden flex left-[15%] z-[-9]'>
