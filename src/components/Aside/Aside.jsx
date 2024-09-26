@@ -110,9 +110,9 @@ function Aside({ setOpen, open }) {
           <button className=" rounded-md bg-[#424098] text-white font-semibold text-[16px] py-3 flex justify-center">
             Connect wallet
           </button>
-          <button className="w-full rounded-md bg-black text-white font-semibold text-[16px] py-3 flex justify-center">
+          <Link href={"/submit-project"} className="w-full rounded-md bg-black text-white font-semibold text-[16px] py-3 flex justify-center">
             Submit a Project
-          </button>
+          </Link>
         </div>
         <div className={`${styles.divide}`}>
 

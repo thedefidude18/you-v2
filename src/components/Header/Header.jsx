@@ -20,12 +20,14 @@ function Header() {
   return (
     <div className=" flex justify-between items-center !w-full p-2 py-4">
       <div className="w-full h-14 items-center px-5 flex sm:hidden justify-between z-[999]">
-        <div className="w-full h-full flex items-center">
+        <Link href={"/"} className="w-full h-full flex items-center">
           <Image src={'/svgs/Logo.svg'} width={125.2} height={33} alt="Logo" />
-        </div>
+        </Link>
         <div className="w-full h-full flex justify-between">
           <Image src="/svgs/Search.svg" alt="Cart" height={35} width={35} className="object-cover opacity-[55%]" />
-          <Image src="/svgs/Cart.svg" alt="Cart" height={30} width={30} className="object-cover" />
+          <Link href={"/cart"}>
+            <Image src="/svgs/Cart.svg" alt="Cart" height={30} width={30} className="object-cover" />
+          </Link>
           <Divider orientation="vertical" className="h-[60%]" />
           <div className="flex gap-0">
             <Image src="/domain/Arb Logo.png" alt="logos" height={30} width={30} className="object-cover" />
@@ -97,20 +99,11 @@ function Header() {
             backgroundColor: "transparent",
             backdropFilter: "none",
           },
-          // "& .MuiDrawer-paper": {
-          //   top: "88px",
-          //   // maxHeight: "99vh",
-          //   minHeight:"90vh",
-          //   overflowY: "scroll",
-          //   // position: "absolute",
-          //   width:"100%"
-          // },
           "& .MuiDrawer-paper": {
             top: "88px",
-            minHeight: "100vh", // Minimum height of 100vh
-            overflowY: "scroll", // Enable scrolling when content exceeds
+            minHeight: "100vh",
+            overflowY: "scroll",
             width: "100%",
-          
           },
         }}
       >
