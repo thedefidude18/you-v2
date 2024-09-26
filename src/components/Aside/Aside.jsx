@@ -105,7 +105,7 @@ function Aside({ setOpen, open }) {
         </div>
       </div> */}
 
-      <aside className={`${styles.aside__cont} w-full relative px-4 overflow-y-scroll max-h-screen !pb-4`} >
+      <aside className={`${styles.aside__cont} w-full relative px-4 max-sm:overflow-y-scroll max-h-screen !pb-4`} >
         <div className=" max-sm:flex hidden flex-col gap-4 px-4 pb-3">
           <button className=" rounded-md bg-[#424098] text-white font-semibold text-[16px] py-3 flex justify-center">
             Connect wallet
@@ -146,7 +146,7 @@ function Aside({ setOpen, open }) {
             {/* )} */}
           </ul>
         </div>
-        <div className=" pb-24">
+        <div className=" max-sm:pb-24">
           <Link id={styles.logOut} href="/">
             <span style={{ height: "24px" }}>
               <LogoutSvg />

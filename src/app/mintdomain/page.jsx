@@ -15,10 +15,11 @@ const Page = () => {
             {search && (
                 <Search setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
             )}
-            {found && (
+            {notfound && (
+            
                 <Found setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
             )}
-            {notfound && (
+            {found && (
                 <Notfound setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
             )}
         </>
