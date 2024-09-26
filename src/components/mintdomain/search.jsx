@@ -3,7 +3,7 @@ import React from 'react'
 
 const Search = ({ setSearch, setFound, setNotfound }) => {
     return (
-        <div className='relative'>
+        <div className='relative pb-20'>
             <div className='w-full flex sm:flex-row flex-col-reverse sm:gap-10 mt-24 max-sm:mt-14'>
                 <div className='max-sm:w-full w-[60%] h-full px-2 flex flex-col items-center sm:pt-20 max-sm:pt-12'>
                     <h1 className='text-[36px] leading-[84px] font-semibold font-poppins text-[#423F96] max-sm:w-10/12 w-full text-center max-sm:text-[32px] max-sm:leading-[30px]'>Mint your .YouBuidl web3 name!</h1>

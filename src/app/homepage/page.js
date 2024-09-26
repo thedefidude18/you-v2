@@ -38,7 +38,7 @@ const Slider = () => {
   return (
     <div className="font-sans text-black max-sm:h-[70vh]">
       <Swiper
-        className="sm:w-[calc(100vw-370px)] w-[calc(100vw-50px)] [@media(min-width:374px && max-width:376px)]:w-[100vw] h-full"
+        className="sm:w-[calc(100vw-300px)] w-[calc(100vw-50px)] [@media(min-width:374px && max-width:376px)]:w-[100vw] h-full"
         loop={true}
         pagination={{
           clickable: true,
@@ -218,9 +218,9 @@ const HomePage = () => {
     loadProjects();
   }, [address]);
   return (
-    <div className="px-10 max-sm:px-6 w-full">
+    <div className="max-sm:px-6 w-full">
         <Slider />
-      <div className=" ">
+      <div className="px-5">
         <div className="sm:flex justify-between mt-4  ">
           <div>
             <h2 className="font-bold text-2xl max-sm:py-2">Trending Buidls</h2>

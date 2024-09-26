@@ -5,7 +5,7 @@ import { Card, Divider } from '@mui/material'
 
 const Notfound = ({ setSearch, setFound, setNotfound }) => {
     return (
-        <div className='w-full h-screen flex justify-center'>
+        <div className='w-full h-screen flex justify-center pb-20'>
             <div className='w-[96%] h-full'>
                 <h2 className="font-poppins text-xl font-medium leading-4 tracking-wide text-left py-5">My Domains (0)</h2>
                 <Card className='h-[143px] rounded-[15px] flex justify-center items-center'>

@@ -4,7 +4,7 @@ import React from 'react'
 
 const Found = ({ setSearch, setFound, setNotfound }) => {
     return (
-        <div className='flex justify-center w-full'>
+        <div className='flex justify-center w-[100vw] pb-20'>
             <div className='w-[95%]'>
                 <div className='w-full flex items-center max-sm:px-5 py-14'>
                     <div className="p-2 border rounded-md w-[596px] max-sm:w-[322px] placeholder:text-[#949aaf]">
