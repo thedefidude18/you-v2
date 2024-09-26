@@ -99,11 +99,14 @@ function Header() {
             },
             "& .MuiDrawer-paper": {
               top: "88px",
-              minHeight: "calc(100vh - 88px)",
-              position: "fixed", 
+              // maxHeight: "99vh",
+              // minHeight:"90vh",
+              overflowY: "scroll",
+              // position: "absolute",
               width: "110vw !important",
             },
           }}
+          className="!h-[100vh]"
         >
           <Aside setOpen={setOpen} open={open} className="!w-[110vw]" />
         </Drawer>
