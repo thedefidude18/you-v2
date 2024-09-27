@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Search = ({ setSearch, setFound, setNotfound }) => {
+const Search = ({ setPage }) => {
     return (
         <div className='relative pb-20'>
             <div className='w-full flex sm:flex-row flex-col-reverse sm:gap-10 mt-24 max-sm:mt-14'>
@@ -45,17 +45,14 @@ const Search = ({ setSearch, setFound, setNotfound }) => {
                     />
                 </div>
                 <button onClick={() => {
-                    setNotfound(true)
-                    setSearch(false)
-                    setFound(false)
+                    setPage(1)
                 }} className='bg-[#423F96] text-white text-[20px] leading-[24px] font-semibold px-5 py-4 rounded-md'>
                     Search
                 </button>
             </div>
             <div className='flex justify-center pt-10'>
                 <button onClick={() => {
-                    setFound(true)
-                    setSearch(false)
+                    setPage(2)
                 }
                 } className='bg-[#423F96] text-white flex px-4 py-3 gap-2 rounded-md'>
                     <Image src={'/domain/Ellipse 1.png'} alt='ellipse' width={40} height={40} />

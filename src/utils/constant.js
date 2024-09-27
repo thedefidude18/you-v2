@@ -63,6 +63,10 @@ export const votingAddresses = {
     [scrollId]: "0xc0Ee03960e57ebD40Ea332b340de05aD5d267492",
 }
 
+export const domainAddresses = {
+    [baseId]: "0x9FB6DAbf06cC51C28589E24E8B47065F9F4d0dF2"
+}
+
 export const defaultEthLink = {
     [arbitrumId]: "https://arbiscan.io/address/",
     [baseId]: "https://basescan.com/address/",

@@ -2,8 +2,9 @@ import { writeContract, readContract, waitForTransactionReceipt } from "@wagmi/c
 import CrowdfundingABI from "../abis/Crowdfunding.json";
 import QFRoundsABI from "../abis/QFRounds.json";
 import VotingABI from "../abis/Voting.json";
+import DomainABI from "../abis/Domain.json";
 import ERC20ABI from "../abis/ERC20.json";
-import { contractAddresses, qfRoundsAddresses, votingAddresses } from "./constant";
+import { contractAddresses, domainAddresses, qfRoundsAddresses, votingAddresses } from "./constant";
 
 
 export const createProject = async (config, chainId, formData) => {
@@ -269,4 +270,31 @@ export const claimUserReward = async (config, chainId, isBuidl) => {
         return false;
     }
     return false;
+}
+
+export const getMyDomains = async (config, chainId, account) => {
+    const res = await readContract(config, {
+        address: domainAddresses[chainId],
+        abi: DomainABI,
+        functionName: "getHolderDomains",
+        args: [account]
+    })
+
+    let domains = [];
+
+    for (const domain of res) {
+        const uri = atob(domain.tokenURI.split(',')[1]);
+        const metadata = JSON.parse(uri);
+        const imgUrl = metadata.image;
+        const name = metadata.name;
+
+        domains.push({
+            name: name,
+            image: imgUrl,
+            time: domain.registerDate,
+            record: domain.record
+        })
+    }
+
+    return domains;
 }

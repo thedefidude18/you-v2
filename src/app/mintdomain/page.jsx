@@ -1,26 +1,22 @@
 "use client"
 
-import Found from '@/components/mintdomain/found'
-import Notfound from '@/components/mintdomain/notfound'
+import DomainCart from '@/components/mintdomain/domainCart'
+import MyDomains from '@/components/mintdomain/myDomains'
 import Search from '@/components/mintdomain/search'
 import React, { useState } from 'react'
 
-
 const Page = () => {
-    const [search, setSearch] = useState(true);
-    const [found, setFound] = useState(false);
-    const [notfound, setNotfound] = useState(false);
+    const [subPage, setSubPage] = useState(0);
     return (
         <>
-            {search && (
-                <Search setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
+            {subPage == 0 && (
+                <Search setPage = {setSubPage} />
             )}
-            {notfound && (
-            
-                <Found setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
+            {subPage == 1 && (
+                <DomainCart setPage = {setSubPage} />
             )}
-            {found && (
-                <Notfound setSearch={setSearch} setFound={setFound} setNotfound={setNotfound} />
+            {subPage == 2 && (
+                <MyDomains setPage = {setSubPage} />
             )}
         </>
     )

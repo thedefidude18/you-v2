@@ -2,7 +2,7 @@ import { Card } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
 
-const Found = ({ setSearch, setFound, setNotfound }) => {
+const DomainCart = ({ setSearch, setFound, setNotfound }) => {
     return (
         <div className='flex justify-center w-[100vw] pb-20'>
             <div className='w-[95%]'>
@@ -88,4 +88,4 @@ const Found = ({ setSearch, setFound, setNotfound }) => {
     )
 }
 
-export default Found
+export default DomainCart

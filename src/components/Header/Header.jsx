@@ -60,32 +60,6 @@ function Header() {
         <Link className={stateStep > 0 ? " text-xl" : ""} href={"/cart"} >
           <img src="/svgs/Cart.svg" alt="Cart" className=" h-[40px] object-cover" />
         </Link>
-        {/* {stateStep === 0 ? (
-          <>
-            <div className="Notification">
-              <img src="/svgs/Notifications.svg" alt="notifications" />
-            </div>
-            <div className="flex">
-              <img className={styles.avatar} src="/profile.jpeg" alt="user" />
-              <img src="/svgs/Arrow.svg" alt="arrow" />
-            </div>
-          </>
-        ) 
-        : 
-        ( */}
-        {/* <div className=" hidden border rounded-md font-bold text-xxl sm:flex  p-0 m-0">
-            <p className="flex p-3 items-center  ">
-              <img src="./svgs/qf/Star.svg" alt="star" />
-              Star
-            </p>
-            <p className="p-4 px-6 border-l-2 bg-[var(--third-color)]">1000</p>
-          </div> */}
-        {/* )} */}
-        <div className="w-[1px] bg-gray-300 h-6 sm:flex hidden" />
-        <div className="items-center sm:flex hidden">
-          <Image src="/home/Arb Logo.png" alt="logos" height={42} width={42} className="object-cover" />
-          <KeyboardArrowDownIcon />
-        </div>
         <div className="w-[2px] bg-gray-300 h-6 sm:flex hidden" />
         <div className="">
           <ConnectButton />
