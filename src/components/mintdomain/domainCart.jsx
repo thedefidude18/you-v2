@@ -85,21 +85,24 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
     }
 
     const checkOut = async () => {
-        let names = [];
-        let dTypes = [];
-        for (const domain of domainCartItems) {
-            names.push(domain.name);
-            dTypes.push(domain.dType);
+        if (domainCartItems.length > 0) {
+            let names = [];
+            let dTypes = [];
+            for (const domain of domainCartItems) {
+                names.push(domain.name);
+                dTypes.push(domain.dType);
+            }
+            const res = await registerDomains(config, chainId, names, dTypes, totalPrice);
+            if (res) {
+                setSResult([]);
+                setDomainCartItems([]);
+                setTotalPrice(0);
+                setTimeout(() => {
+                    setPage(2);
+                }, 1500)
+            }
         }
-        const res = await registerDomains(config, chainId, names, dTypes, totalPrice);
-        if (res) {
-            setSResult([]);
-            setDomainCartItems([]);
-            setTotalPrice(0);
-            setTimeout(() => {
-                setPage(2);
-            }, 1500)
-        }
+
     }
 
     return (
