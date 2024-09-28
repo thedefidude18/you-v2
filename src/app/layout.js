@@ -10,7 +10,6 @@ import "./globals.css";
 import Providers from "./provider";
 import { createContext } from "react";
 import Script from "next/script";
-import Head from "next/head";
 export const sharedState = createContext();
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +22,8 @@ export default function RootLayout({ children }) {
   const [cartToken, setCartToken] = useState(null);
   const [referral, setReferral] = useState('');
   const [cartItems, setCartItems] = useState({});
+  const [domainCartItems, setDomainCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   return (
     <html lang="en">
         <head>
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload" 
         />
         {/* <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> */}
-      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral, cartItems, setCartItems, cartToken, setCartToken}}>
+      <sharedState.Provider value={{ stateStep, setStateStep ,setIsContributer,isContributer,currentProject,setCurrentProject, contriToken, setContriToken, referral, setReferral, cartItems, setCartItems, cartToken, setCartToken, domainCartItems, setDomainCartItems, totalPrice, setTotalPrice}}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <div className="main__Wrapper">
            <div className="aside"><Aside /></div> 

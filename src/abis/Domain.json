@@ -570,6 +570,24 @@
     "type": "function"
   },
   {
+    "inputs": [
+      {
+        "internalType": "string[]",
+        "name": "names",
+        "type": "string[]"
+      },
+      {
+        "internalType": "enum Domains.DomainType[]",
+        "name": "domainTypes",
+        "type": "uint8[]"
+      }
+    ],
+    "name": "multiRegister",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "name",
     "outputs": [
@@ -631,24 +649,6 @@
       }
     ],
     "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "internalType": "enum Domains.DomainType",
-        "name": "domainType",
-        "type": "uint8"
-      }
-    ],
-    "name": "register",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {

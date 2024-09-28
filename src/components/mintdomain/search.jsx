@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Search = ({ setPage }) => {
+const Search = ({ setPage, setSearchName = () => {} }) => {
     return (
         <div className='relative pb-20'>
             <div className='w-full flex sm:flex-row flex-col-reverse sm:gap-10 mt-24 max-sm:mt-14'>
@@ -35,8 +35,8 @@ const Search = ({ setPage }) => {
                     <input
                         type="text"
                         placeholder="Search domain name"
-                        suppressHydrationWarning={true}
                         className="w-full border-4 border-black p-1 sm:pl-10"
+                        onChange={(e) => setSearchName(e.target.value)}
                     />
                     <img
                         className="absolute left-[12px] top-[25%] sm:block hidden"

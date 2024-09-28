@@ -205,7 +205,6 @@ const Slider = () => {
 const HomePage = () => {
   const stateRecived = useContext(sharedState);
   const { isContributer } = stateRecived;
-  console.log("iscontributer", isContributer);
   const [othersProjects, setOthersProjects] = useState([]);
   const [myProjects, setMyProjects] = useState([]);
   const { address } = useAccount();

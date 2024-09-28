@@ -7,13 +7,14 @@ import React, { useState } from 'react'
 
 const Page = () => {
     const [subPage, setSubPage] = useState(0);
+    const [searchName, setSearchName] = useState("");
     return (
         <>
             {subPage == 0 && (
-                <Search setPage = {setSubPage} />
+                <Search setSearchName={setSearchName} setPage = {setSubPage} />
             )}
             {subPage == 1 && (
-                <DomainCart setPage = {setSubPage} />
+                <DomainCart searchName={searchName} setPage = {setSubPage} />
             )}
             {subPage == 2 && (
                 <MyDomains setPage = {setSubPage} />

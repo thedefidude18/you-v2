@@ -1,10 +1,12 @@
-import { writeContract, readContract, waitForTransactionReceipt } from "@wagmi/core";
+import { writeContract, readContract, readContracts, waitForTransactionReceipt } from "@wagmi/core";
 import CrowdfundingABI from "../abis/Crowdfunding.json";
 import QFRoundsABI from "../abis/QFRounds.json";
 import VotingABI from "../abis/Voting.json";
 import DomainABI from "../abis/Domain.json";
 import ERC20ABI from "../abis/ERC20.json";
 import { contractAddresses, domainAddresses, qfRoundsAddresses, votingAddresses } from "./constant";
+import { FaLeaf } from "react-icons/fa";
+import { formatUnits, parseEther } from "viem";
 
 
 export const createProject = async (config, chainId, formData) => {
@@ -297,4 +299,47 @@ export const getMyDomains = async (config, chainId, account) => {
     }
 
     return domains;
+}
+
+export const isRegistered = async (config, chainId, dValue) => {
+    const res = await readContracts(config, {
+        contracts: [
+            {
+                address: domainAddresses[chainId],
+                abi: DomainABI,
+                functionName: "isRegistered",
+                args: [0, dValue],
+            },
+            {
+                address: domainAddresses[chainId],
+                abi: DomainABI,
+                functionName: "isRegistered",
+                args: [1, dValue],
+            },
+        ]
+    })
+
+    return res;
+}
+
+export const registerDomains = async (config, chainId, names, dTypes, price) => {
+    try {
+        const hash = await writeContract(config, {
+            address: domainAddresses[chainId],
+            abi: DomainABI,
+            functionName: "multiRegister",
+            args: [names, dTypes],
+            value: parseEther(price.toString())
+        })
+
+        const res = await waitForTransactionReceipt(config, { hash });
+
+        if (res.status == "success") {
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+        return false;
+    }
+    return false;
 }
