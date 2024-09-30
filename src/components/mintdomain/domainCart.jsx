@@ -166,7 +166,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                 {
                                     domainCartItems.map((item, index) => (
                                         <div className='flex justify-between w-full' key={index}>
-                                            <h2 className="font-nunito text-sm font-bold max-sm:text-[15px] max-sm:leading-[20.46px] leading-[21.82px] text-left">{item.name}</h2>
+                                            <h2 className="font-nunito text-sm font-bold max-sm:text-[15px] max-sm:leading-[20.46px] leading-[21.82px] text-left">{item.name}{dExtension[item.dType]}</h2>
                                             <h2 className="font-nunito text-sm font-medium leading-[21.82px] text-right max-sm:text-[15px] max-sm:leading-[20.46px]">{item.price} ETH</h2>
                                         </div>)
                                     )
