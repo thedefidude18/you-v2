@@ -64,7 +64,8 @@ export const votingAddresses = {
 }
 
 export const domainAddresses = {
-    [baseId]: "0x2D358e3fa9F323A4B4F137c5313305c9C575b2cf"
+    [baseId]: "0x2D358e3fa9F323A4B4F137c5313305c9C575b2cf",
+    [arbitrumId]: "0x42a4Be14F10a5ce747F603368679fFAE3451b027",
 }
 
 export const defaultEthLink = {
@@ -93,6 +94,8 @@ export const subgraphURLs = {
     // [optimismId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuidl-optimism",
     // [arbitrumId]: "https://api.thegraph.com/subgraphs/name/kilros0817/youbuildarbitrum",
 }
+
+export const domainChains = [baseId, arbitrumId];
 
 export const tokenDecimals = {
     [baseId]: {

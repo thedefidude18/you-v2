@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Card, Divider } from '@mui/material'
 import { useAccount, useConfig } from 'wagmi';
-import { baseId, chainLogos } from '@/utils/constant';
+import { chainLogos, domainChains } from '@/utils/constant';
 import { getMyDomains } from '@/utils/interact';
 
 const MyDomains = ({ }) => {
@@ -21,7 +21,7 @@ const MyDomains = ({ }) => {
             const data = await getMyDomains(config, chainId, address);
             setDomains(data);
         }
-        if (chainId && chainId == baseId) {
+        if (chainId && domainChains.includes(chainId)) {
             initDomains();
         }
     }, [address, chainId])

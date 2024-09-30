@@ -1,6 +1,6 @@
 "use client"
 import { sharedState } from '@/app/layout'
-import { baseId } from '@/utils/constant'
+import { domainChains } from '@/utils/constant'
 import { isRegistered, registerDomains } from '@/utils/interact'
 import { Card } from '@mui/material'
 import Image from 'next/image'
@@ -33,7 +33,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
     }
 
     const search = async () => {
-        if (chainId == baseId) {
+        if (domainChains.includes(chainId)) {
             if (isValid(sValue)) {
                 const data = await isRegistered(config, chainId, sValue);
                 const temp = [];
