@@ -64,7 +64,7 @@ export const votingAddresses = {
 }
 
 export const domainAddresses = {
-    [baseId]: "0xa0Db804d6011329e55d19c2e3e57258743E1Cb7b"
+    [baseId]: "0x2D358e3fa9F323A4B4F137c5313305c9C575b2cf"
 }
 
 export const defaultEthLink = {
