@@ -14,7 +14,7 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
                     <div className='inline-block border-8 p-1 rounded-xl'>
                         <div className='bg-black bg-gradient-to-b from-black to-[#4458A8] bg-opacity-20 h-[230.26px] w-[240.99px] pb-5 flex flex-col justify-between rounded-[12px]'>
                             <div className=' pt-5 w-full justify-start'>
-                                <Image src={'/domain/youbuidl_logolargeround (2) 2 1@2x.png'} height={69} width={105} alt='img' />
+                                <Image src={'/domain/domainbg.png'} height={69} width={105} alt='img' />
                             </div>
                             <h4 className='w-full text-center text-[18px] leading-[22.63px] font-source text-white'>Vitalik.Youbuidl</h4>
                         </div>
