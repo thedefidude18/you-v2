@@ -160,7 +160,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                 </Card>
                             ))}
                         </div>
-                        <Card className='max-sm:w-full w-[35%] p-5 h-[300px]'>
+                        <Card className='max-sm:w-full w-[35%] p-5 min-h-[300px]'>
                             <h4 className="font-poppins max-sm:text-[13px] max-sm:[19.5] text-base font-bold leading-6 text-left pb-6">Domain Order summary </h4>
                             <div className='flex flex-col gap-8'>
                                 {
