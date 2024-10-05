@@ -132,7 +132,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
         <div className='pb-20'>
             <div className='w-full'>
                 <div className='w-full flex items-center max-sm:px-5 py-14'>
-                    <div className="p-2 border border-[#ABB7C2] rounded-full rounded-md shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
+                    <div className="p-2 border border-[#ABB7C2] rounded-full shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
                         
                         <input
                             type="text"

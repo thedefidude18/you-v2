@@ -54,7 +54,7 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
                 </div>
             </div>
             <div className='w-full flex sm:justify-center justify-between gap-2  mt-24 sm:px-0 px-4'>
-                <div  className="p-2 border border-[#ABB7C2] rounded-full rounded-md shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
+                <div  className="p-2 border border-[#ABB7C2] rounded-full shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
                     <input
                         type="text"
                         placeholder="Search domain name"
