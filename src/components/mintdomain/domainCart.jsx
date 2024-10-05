@@ -11,6 +11,29 @@ const dExtension = {
     0: "youbuidl",
     1: "givestation"
 }
+const items = [
+    {
+      name: 'vitalik',
+      domain: '.youbuidl',
+      status: 'available',
+      price: '0.005ETH',
+      cart: 'add',
+    },
+    {
+      name: 'vitalik',
+      domain: '.givestation',
+      status: 'added to cart',
+      price: '0.005ETH',
+      cart: 'added',
+    },
+    {
+      name: 'vitalik',
+      domain: '.youbuidl',
+      status: 'not available',
+      price: '0.005ETH',
+      cart: 'disabled',
+    },
+  ];
 
 const DomainCart = ({ searchName, setPage = () => { } }) => {
 
@@ -109,23 +132,89 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
         <div className='pb-20'>
             <div className='w-full'>
                 <div className='w-full flex items-center max-sm:px-5 py-14'>
-                    <div className="p-2 border rounded-md w-[596px] max-sm:w-[322px] placeholder:text-[#949aaf]">
+                    <div className="p-2 border border-[#ABB7C2] rounded-full rounded-md shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
+                        
                         <input
                             type="text"
                             placeholder="Search domain name"
-                            className="w-full p-1"
+                            className="w-full border-4 border-black p-1 sm:pl-10"
                             value={sValue}
                             onChange={(e) => { setSValue(e.target.value) }}
                         />
+                                          <img
+                        className="absolute left-[12px] top-[25%] sm:block hidden"
+                        src="/svgs/Search.svg"
+                        alt="Search"
+                    />  
                     </div>
                     <button className='bg-[#423F96] text-white text-[20px] leading-[24px] font-semibold px-5 py-4 rounded-md' onClick={search}>
                         Search
                     </button>
                 </div>
                 <div className='w-full'>
-                    <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] text-left py-2">Search Result</h2>
-                    <div className='flex max-sm:flex-col justify-between h-fit sm:space-x-4 pr-36'>
-                        <div className='min-h-[300px] space-y-8 w-[60%] max-sm:w-full'>
+                    {/* <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] text-left py-2">Search Result</h2> */}
+                    <div className='flex sm:flex-col md:flex-col lg:flex-row justify-between h-fit sm:space-x-4 pr-10'>
+                    <div className='flex justify-center pt-10 '>
+                <div className='w-[100%]'>
+                {items.map((item, index) => (
+        <div
+          key={index}
+          className="flex rounded-full items-center justify-between p-4 bg-white shadow-lg mb-4"
+        >
+          <div className="flex items-center w-[40%] justify-between flex gap-3 p-2">
+          <Image src={"/TickMark.png"} width={20} height={20}/>
+        
+            <span className="text-[26px]">{item.name}</span>
+            <span className="bg-custom-gradient p-6 text-white w-[132px] h-[39px] text-center flex justify-center rounded-[30px] relative">
+              {item.domain}
+              {item.status === 'available' && (
+              <span className="ml-2 bg-green-200 text-green-600 px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-25%"}}>
+                {item.status}
+              </span>
+            )}
+            {item.status === 'added to cart' && (
+              <span className="ml-2 bg-[#FF5151] text-white px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-35%"}}>
+                {item.status}
+              </span>
+            )}
+            {item.status === 'not available' && (
+              <span className="ml-2 bg-[#FF5151] text-white px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-35%"}}>
+                {item.status}
+              </span>
+            )}
+            </span>
+            
+          </div>
+          <div className='flex items-center w-[45%] justify-between flex gap-3 p-2'>
+          <div className="text-gray-600 text-[26px] font-medium">{item.price}</div>
+          <button
+            className={`relative ml-4 p-2 rounded-md ${
+              item.cart === 'add'
+                ? 'bg-custom-gradient text-white'
+                : item.cart === 'added'
+                ? 'bg-custom-gradient text-white'
+                : 'bg-gray-300 text-gray-500'
+            } shadow`}
+            disabled={item.cart === 'disabled'}
+          >
+             {/* {items.cart === "add" ? <Image src={"/PlusImage.png"} width={30} height={30}/> : item.cart === "added" ? <Image src={"/MinusImage.png"} width={10} height={10}/>: <Image src={"/DisabledImage.png"} width={10} height={10}/>} */}
+             {item.cart === 'add' ? (
+        <Image src={"/PlusImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
+      ) : item.cart === 'added' ? (
+        <Image src={"/MinusImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
+      ) : (
+        <Image src={"/DisabledImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
+      )}
+           <Image src={"/cartImage.png"} width={30} height={30}/> 
+          </button>
+        </div>
+
+        </div>
+      ))}
+                </div>
+               
+            </div>
+                        {/* <div className='min-h-[300px] space-y-8 w-[60%] max-sm:w-full'>
                             {sResult.map((domain, index) => (
                                 <Card className='w-full rounded-lg flex h-full' key={index}>
                                     <div className='w-[83%] xl:pl-8 lg:pl-5 max-sm:pl-8 flex justify-evenly'>
@@ -159,9 +248,23 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                     )}
                                 </Card>
                             ))}
-                        </div>
-                        <Card className='max-sm:w-full w-[35%] p-5 min-h-[300px]'>
+                        </div> */}
+                        <div className='w-[40%]'>
+                         <div className='flex justify-center items-stretch gap-2 mb-2'>
+                            <div className='bg-[#43499E33] text-[#43499E] p-1 rounded-md flex justify-center'>
+                              <Image src={"/FreeForever.png"} width={30} height={30}/>
+                              Free forever
+                              </div>
+                              <div className='bg-[#43499E33] text-[#43499E] p-1 rounded-md flex justify-center'>
+                              <Image src={"/CostImage.png"} width={30} height={30}/>
+                              0$ Renewals
+                              </div>
+                         </div>
+                        <Card className='max-sm:w-full w-[100%] p-5 min-h-[300px]  shadow-lg rounded:md'>
+                            <div className='flex flex-col'>
                             <h4 className="font-poppins max-sm:text-[13px] max-sm:[19.5] text-base font-bold leading-6 text-left pb-6">Domain Order summary </h4>
+   <div style={{border: "3px solid #9F9F9F", width:"68px"}}></div>
+   </div>
                             <div className='flex flex-col gap-8'>
                                 {
                                     domainCartItems.map((item, index) => (
@@ -178,6 +281,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                             </div>
                             <button className='bg-[#423F96] w-full rounded-lg py-2 mt-6' onClick={checkOut}><h2 className="font-poppins text-white text-[18px] font-semibold leading-[27px] text-center">Check Out</h2></button>
                         </Card>
+                        </div>
                     </div>
                 </div>
             </div>
