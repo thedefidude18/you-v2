@@ -15,23 +15,29 @@ const items = [
     {
       name: 'vitalik',
       domain: '.youbuidl',
-      status: 'available',
-      price: '0.005ETH',
+      status: true,
+      isOnCart: false,
+      price: '0.005',
       cart: 'add',
+      dType: 1
     },
     {
       name: 'vitalik',
       domain: '.givestation',
-      status: 'added to cart',
-      price: '0.005ETH',
+      status: false,
+      isOnCart: true,
+      price: '0.005',
       cart: 'added',
+      dType: 0
     },
     {
       name: 'vitalik',
       domain: '.youbuidl',
-      status: 'not available',
-      price: '0.005ETH',
+      status: false,
+      isOnCart: false,
+      price: '0.005',
       cart: 'disabled',
+      dType: 1
     },
   ];
 
@@ -60,6 +66,8 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
             if (isValid(sValue)) {
                 const data = await isRegistered(config, chainId, sValue);
                 const temp = [];
+                // console.log(data);
+                
                 for (const i in data) {
                     let dmn = { name: sValue, dType: i, status: data[i].result, isOnCart: false, price: getPrice(sValue.length) }
                     const filterRes = domainCartItems.filter((item) => item.name == dmn.name && item.dType == dmn.dType);
@@ -148,73 +156,107 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                     />  
                     </div>
                     <button className='bg-[#423F96] text-white text-[20px] leading-[24px] font-semibold px-5 py-4 rounded-md' onClick={search}>
-                        Search
+                        My Domains(0)
                     </button>
                 </div>
                 <div className='w-full'>
-                    {/* <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] text-left py-2">Search Result</h2> */}
-                    <div className='flex sm:flex-col md:flex-col lg:flex-row justify-between h-fit sm:space-x-4 pr-10'>
+                    <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] text-left py-2">Search Result</h2>
+                    <div className=' sm:flex-col md:flex-col lg:flex-row lg:flex justify-between h-fit sm:space-x-4 pr-10'>
                     <div className='flex justify-center pt-10 '>
-                <div className='w-[100%]'>
-                {items.map((item, index) => (
-        <div
-          key={index}
-          className="flex rounded-full items-center justify-between p-4 bg-white shadow-lg mb-4"
-        >
-          <div className="flex items-center w-[40%] justify-between flex gap-3 p-2">
-          <Image src={"/TickMark.png"} width={20} height={20}/>
-        
-            <span className="text-[26px]">{item.name}</span>
-            <span className="bg-custom-gradient p-6 text-white w-[132px] h-[39px] text-center flex justify-center rounded-[30px] relative">
-              {item.domain}
-              {item.status === 'available' && (
+                
+               
+            </div>
+            <div className="relative min-h-[300px] space-y-8 w-[60%] md:w-full sm:w-full max-sm:w-full">
+      {/* Loop through items (domains) */}
+      {sResult.map((domain, index) => (
+        <div className='w-full rounded-full shadow-lg flex p-2' key={index}>
+          <div className='w-[83%] xl:pl-8 lg:pl-5 max-sm:pl-8 flex justify-evenly'>
+            <div className='flex w-full h-full gap-3'>
+              <div className='w-[15%] max-sm:w-[32.65px] max-sm:h-[29.87px]'>
+                <Image src={'/domain/TickMark.png'} alt='success logo' width={27} height={27} className='object-contain' />
+              </div>
+              <div className='w-[85%] flex justify-between gap-2'>
+                <div className='flex items-center max-sm:flex-col-reverse max-sm:w-full'>
+                  <h2 className="font-inter lg:text-[16px] xl:text-[20px] max-sm:text-[15px] font-semibold leading-[21px] text-left max-sm:w-full flex justify-start">
+                  {domain.name}
+                    <span className="ml-1 bg-custom-gradient relative p-4 text-white lg:w-[132px] h-[39px] text-center flex justify-center rounded-[30px] relative">
+                    .{dExtension[domain.dType]}
+              {!domain.isOnCart && (
               <span className="ml-2 bg-green-200 text-green-600 px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-25%"}}>
-                {item.status}
+                {!domain.isOnCart && "available"}
               </span>
             )}
-            {item.status === 'added to cart' && (
+            {domain.isOnCart  && (
               <span className="ml-2 bg-[#FF5151] text-white px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-35%"}}>
-                {item.status}
+                {domain.isOnCart && "added to cart"}
               </span>
             )}
-            {item.status === 'not available' && (
-              <span className="ml-2 bg-[#FF5151] text-white px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-35%"}}>
-                {item.status}
+            {domain.status && (
+              <span className="ml-2 bg-gray-500 text-white px-2 py-1 text-xs rounded-full absolute" style={{top:"-35%", right:"-35%"}}>
+                {domain.status && "Unavailable"}
               </span>
             )}
             </span>
-            
+                  </h2>
+                  {/* <div className={`inline-flex items-center rounded-xl ml-1 border px-2.5 py-0.5 max-sm:mb-2 sm:mb-5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent ${domain.status ? "bg-gray-500" : domain.isOnCart ? "bg-red-400" : "bg-[#1BA27A]"} text-white shadow`}>
+                    {domain.status ? "Unavailable" : domain.isOnCart ? "added to cart" : "available"}
+                  </div> */}
+                </div>
+                <h2 className='font-poppins text-nowrap lg:text-[16px] xl:text-[22px] max-sm:text-[15px] max-sm:w-full flex justify-end font-semibold leading-[21px] lg:pr-10 max-sm:pr-8'>
+                  {domain.price} ETH
+                </h2>
+              </div>
+            </div>
           </div>
-          <div className='flex items-center w-[45%] justify-between flex gap-3 p-2'>
-          <div className="text-gray-600 text-[26px] font-medium">{item.price}</div>
-          <button
-            className={`relative ml-4 p-2 rounded-md ${
-              item.cart === 'add'
-                ? 'bg-custom-gradient text-white'
-                : item.cart === 'added'
-                ? 'bg-custom-gradient text-white'
-                : 'bg-gray-300 text-gray-500'
-            } shadow`}
-            disabled={item.cart === 'disabled'}
-          >
-             {/* {items.cart === "add" ? <Image src={"/PlusImage.png"} width={30} height={30}/> : item.cart === "added" ? <Image src={"/MinusImage.png"} width={10} height={10}/>: <Image src={"/DisabledImage.png"} width={10} height={10}/>} */}
-             {item.cart === 'add' ? (
-        <Image src={"/PlusImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
-      ) : item.cart === 'added' ? (
-        <Image src={"/MinusImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
-      ) : (
-        <Image src={"/DisabledImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
-      )}
-           <Image src={"/cartImage.png"} width={30} height={30}/> 
-          </button>
-        </div>
 
+          {/* Cart Icon with Conditional Badge */}
+          <div className={`relative ml-4 p-2 rounded-md ${domain.status? "bg-gray-300 text-gray-500":"bg-custom-gradient text-white"}  flex items-center justify-center`}>
+            {/* Cart Icon */}
+
+            <Image src={"/domain/cartImage.png"} width={40} height={40} alt="Cart Icon" className="object-contain" />
+            
+            {/* Conditional Badge for Add/Remove */}
+            { domain.isOnCart ? (
+             <Image
+             src='/domain/MinusImage.png'
+             alt='remove from cart'
+             width={22}
+             height={22}
+             className='object-contain absolute'
+             style={{ top: "-25%", left: "-20%",cursor:"pointer" }}
+             onClick={() => { popCart(domain) }}
+           />
+            ) : (
+              !domain.status && !domain.isOnCart && (
+                <Image
+                src='/domain/PlusImage.png'
+                alt='add to cart'
+                width={22}
+                height={22}
+                className='object-contain absolute'
+                style={{ top: "-25%", left: "-20%", cursor:"pointer" }}
+                onClick={() => { addCart(domain) }}
+              />
+              )
+            )}
+            {domain.status &&(
+                             <Image
+                             src='/domain/DisabledImage.png'
+                             alt='remove from cart'
+                             width={22}
+                             height={22}
+                             className='object-contain absolute'
+                             style={{ top: "-25%", left: "-20%",cursor:"not-allowed" }}
+                            //  onClick={() => { popCart(domain) }}
+                             />
+            )}
+          </div>
+
+    
         </div>
       ))}
-                </div>
-               
-            </div>
-                        {/* <div className='min-h-[300px] space-y-8 w-[60%] max-sm:w-full'>
+    </div>
+     {/* <div className='min-h-[300px] space-y-8 w-[60%] none max-sm:w-full'>
                             {sResult.map((domain, index) => (
                                 <Card className='w-full rounded-lg flex h-full' key={index}>
                                     <div className='w-[83%] xl:pl-8 lg:pl-5 max-sm:pl-8 flex justify-evenly'>
@@ -244,19 +286,21 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                     )}
                                     {domain.status && (
                                         <div className="!w-[17%] !h-[60px] py-5 flex items-center justify-center">
+                                        {domain.status}
                                         </div>
                                     )}
                                 </Card>
                             ))}
                         </div> */}
-                        <div className='w-[40%]'>
-                         <div className='flex justify-center items-stretch gap-2 mb-2'>
+
+                        <div className='lg:w-[40%] md:w-[100%] sm:w-[100%] md:mt-2 sm:mt-2'>
+                         <div className='flex justify-center text-center items-stretch gap-2 mb-2'>
                             <div className='bg-[#43499E33] text-[#43499E] p-1 rounded-md flex justify-center'>
-                              <Image src={"/FreeForever.png"} width={30} height={30}/>
+                              <Image src={"/domain/FreeForever.png"} width={30} height={30}/>
                               Free forever
                               </div>
                               <div className='bg-[#43499E33] text-[#43499E] p-1 rounded-md flex justify-center'>
-                              <Image src={"/CostImage.png"} width={30} height={30}/>
+                              <Image src={"/domain/CostImage.png"} width={30} height={30}/>
                               0$ Renewals
                               </div>
                          </div>

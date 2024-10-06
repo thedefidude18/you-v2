@@ -73,7 +73,7 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
                     My Domains(0)
                 </button>
             </div>
-            {/* <div className='flex justify-center pt-10'>
+            <div className='flex justify-center pt-10'>
                 <button onClick={() => {
                     setPage(2)
                 }
@@ -84,8 +84,8 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
             </div>
             <div className='absolute top-0 max-sm:hidden flex left-[15%] z-[-9]'>
                 <Image src={"/domain/Star 1.png"} alt='star' height={195} width={195} className='object-contain' />
-            </div> */}
-            <div className='flex justify-center pt-10 '>
+            </div>
+            {/* <div className='none justify-center pt-10 '>
                 <div className=' lg:w-[80%] sm:w-[100%] md:w-[100%]'>
                 {items.map((item, index) => (
         <div
@@ -128,7 +128,6 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
             } shadow`}
             disabled={item.cart === 'disabled'}
           >
-             {/* {items.cart === "add" ? <Image src={"/PlusImage.png"} width={30} height={30}/> : item.cart === "added" ? <Image src={"/MinusImage.png"} width={10} height={10}/>: <Image src={"/DisabledImage.png"} width={10} height={10}/>} */}
              {item.cart === 'add' ? (
         <Image src={"/PlusImage.png"} className='absolute' style={{top:"-25%", left:"-20%"}} width={20} height={20}/>
       ) : item.cart === 'added' ? (
@@ -144,7 +143,7 @@ const Search = ({ setPage, setSearchName = () => {} }) => {
       ))}
                 </div>
                
-            </div>
+            </div> */}
         </div>
     )
 }
