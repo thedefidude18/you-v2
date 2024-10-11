@@ -70,7 +70,7 @@
   
   .item {
     display: flex;
-    background-color: #F3F6FB;
+    background-color: #E4E9F2;
     padding: 15px;
     border-radius: 8px;
     align-items: center;
@@ -78,10 +78,10 @@
   }
   
   .image {
-    width: 60px;
-    height: 60px;
-    margin-right: 20px;
-    border-radius: 50%;
+    width: 138px;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 6px;
   }
   .image1 {
     width: 30px;
@@ -102,15 +102,18 @@
   }
   
   .title {
-    font-size: 1.1em;
+    font-size: 24px;
+    font-weight: 500;
+    color: #0F1222;
     margin: 0;
   }
   
   .description {
-    font-size: 0.9em;
+    font-size: 12px;
     color: #555;
     margin: 5px 0;
     width: 60%;
+    color: #0F1222;
   }
   
   .donation {
@@ -119,7 +122,9 @@
   }
   
   .donationInput {
-    width: 80px;
+    width: 54px;
+    display: grid;
+    place-items: center;
     margin-right: 10px;
     padding: 5px;
     border-radius: 4px;
@@ -131,6 +136,7 @@
     font-weight: bold;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: center;
   }
   

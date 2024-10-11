@@ -8,10 +8,40 @@ import { useContext, useEffect, useState } from 'react';
 import { sharedState } from '@/app/layout';
 import DropDown from '../Dropdown/DropDown';
 import CartDropDown from '../Dropdown/CartDropDown';
+import Image from 'next/image'
 import { parseUnits } from 'viem';
 import { approve, contributeBatch, getAllowance } from '@/utils/interact';
+import { width } from '@mui/system';
 const Cart = () => {
-
+  const cartItem = {
+    1: {
+      coverURL: "https://via.placeholder.com/150?text=Project+Alpha",
+      title: "Project Alpha",
+      description: "This is a description of Project Alpha.",
+      amount: 50,
+      token: "ETH",
+      tokenOptions: ["ETH", "BTC", "USDT", "USDC", "DAI"] // Token dropdown options
+    },
+    2: {
+      coverURL: "https://via.placeholder.com/150?text=Project+Beta",
+      title: "Project Beta",
+      description: "This is a description of Project Beta.",
+      amount: 75,
+      token: "BTC",
+      tokenOptions: ["ETH", "BTC", "USDT", "USDC", "DAI"]
+    },
+    3: {
+      coverURL: "https://via.placeholder.com/150?text=Project+Gamma",
+      title: "Project Gamma",
+      description: "This is a description of Project Gamma.",
+      amount: 100,
+      token: "USDT",
+      tokenOptions: ["ETH", "BTC", "USDT", "USDC", "DAI"]
+    }
+  };
+  
+  
+  
   const config = useConfig();
   const { chain, address } = useAccount()
   const stateRecived = useContext(sharedState);
@@ -122,6 +152,10 @@ const Cart = () => {
 
   return (
     <div className={styles.container}>
+      <div className='flex justify-between'>
+      <h2>My Cart</h2>
+      <p >Projects ({Object.keys(cartItems).length})</p>
+      </div>
       <div className={styles.header}>
         {chain && (
           <div className={styles.chainName}>
@@ -133,7 +167,7 @@ const Cart = () => {
             {chain.name} ({Object.keys(cartItems).length})
           </div>
         )}
-        <div className={styles.amountInputWrapper}>
+        {/* <div className={styles.amountInputWrapper}>
           Amount
           <input type="number" className={styles.amountInput} value={amount} onChange={(e) => setAmount(e.target.value)} />
           <div className={styles.waletContainer}>
@@ -145,28 +179,30 @@ const Cart = () => {
             <DropDown isCart={true} />
           </div>
           <span className={styles.applyButton} onClick={applyToAll}>Apply to all</span>
-        </div>
+        </div> */}
       </div>
-      <div className={styles.container1}>
-        <div className={styles.items}>
+      <div className={`${styles.container1} xl:flex-row lg:flex-row md:flex-col sm:flex-col max-sm:flex-col`}>
+        <div className={`${styles.items} lg:w-full md:w-[100%]`}>
           {Object.entries(cartItems).map(([key, project], index) => {
             return (
-              <div key={index} className={styles.item}>
+              <div key={index} className={`${styles.item} relative`}>
                 <img
                   src={project.coverURL}
                   alt="Game Icon"
-                  className={styles.image}
+                  className={`${styles.image} w-[80px] h-[60px]  xl:w-[138px] xl:h-[101px]`}
                 />
                 <div className={styles.details}>
-                  <h2 className={styles.title}>{project.title}</h2>
-                  <p className={styles.description}>
+                  <h2 className={`${styles.title} text-[16px] xl:text-[24px]`}>{project.title}</h2>
+                  <p className={`${styles.description} md:block md:text-[10px] max-sm:hidden sm:hidden `}>
                     {project.description}
                   </p>
                 </div>
                 <div className={styles.donation}>
                   <input type="number" className={styles.donationInput} value={project.amount} onChange={(e) => updateProjectAmount(key, e.target.value)} />
-                  <div className={styles.price}><CartDropDown token={project.token} setToken={(token) => setProjectToken(key, token)} /> ${project.amount}</div>
-                  <button className={styles.deleteButton} onClick={() => removeProject(key)}><Delete sx={{ color: "#000 " }} /></button>
+                  <div className={styles.price}><CartDropDown token={project.token} setToken={(token) => setProjectToken(key, token)} />${project.amount}</div>
+                  {/* <button className={styles.deleteButton} onClick={() => removeProject(key)}><Delete sx={{ color: "#000 " }} /></button> */}
+                  <Image src={'/DeleteProject.png'} alt='success logo' width={27} height={27} onClick={() => removeProject(key)} className='object-contain absolute' style={{right:"-2%", top:"-10%", cursor:"pointer"}} />
+                
                 </div>
               </div>
             )
@@ -174,7 +210,24 @@ const Cart = () => {
           )}
         </div>
 
-        <div className={styles.summaryContainer}>
+        <div className={`${styles.summaryContainer} w-[100%]`}>
+        <div className={`flex flex-col w-[100%]`}>
+        <div className='flex justify-between w-[100%]'> 
+          <p>Enter Amount</p>
+          <span className={styles.applyButton} onClick={applyToAll}>Apply to all</span>
+
+        </div>
+          <input type="number" className={`${styles.amountInput} w-[100%]`} value={amount} onChange={(e) => setAmount(e.target.value)} />
+          <p className='w-[100%] text-start'>Select Amount</p>
+          <div className={`${styles.waletContainer} w-[100%] pl-2  bg-[#fff] mt-2`}>
+            <img
+              src={chainLogos[chain?.id]}
+              alt="Game Icon"
+              className={styles.image1}
+            />
+            <DropDown style={{width:"100%"}} isCart={true} />
+          </div>
+        </div>
           <h2 className={styles.summaryTitle}>Summary</h2>
           <div className='flex flex-row gap-2 w-full'>
             <div className='w-2/3 flex flex-col gap-4'>
@@ -200,10 +253,11 @@ const Cart = () => {
             </div>
           </div>
           <div className={styles.totalSection}>
+            
             <span>Total</span>
             <span>${total}</span>
           </div>
-          <button className={styles.submitButton} onClick={contribute}>Submit</button>
+          <button className={styles.submitButton} onClick={contribute}> <span className="mr-2">💜</span> Donate</button>
         </div>
       </div>
 

@@ -14,7 +14,7 @@ function CartDropDown({ token, setToken }) {
   }, [chainId])
 
   return (
-    <div className={styles.filter__btn__cont}>
+    <div className={`${styles.filter__btn__cont}`}>
       <button onClick={() => setActive(!active)}>
         <img className={styles.tokenLogo} src={contriTokenLogos[token.name]} alt="" /> <img src="/svgs/Arrow.svg" />
       </button>

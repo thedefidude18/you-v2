@@ -28,8 +28,8 @@ function DropDown({ isCart = false }) {
     }
   }, [chainId])
   return (
-    <div className={styles.filter__btn__cont}>
-      <button onClick={() => setActive(!active)}>
+    <div className={`${styles.filter__btn__cont} w-[100%]`}>
+      <button onClick={() => setActive(!active)} className="w-[100%] justify-between">
         <img className={styles.tokenLogo} src={contriTokenLogos[isCart ? cartToken?.name : contriToken?.name]} alt="" /> <img src="/svgs/Arrow.svg" />
       </button>
       <div className={`${styles.dropdown} ${active ? styles.active : ""}`}>
