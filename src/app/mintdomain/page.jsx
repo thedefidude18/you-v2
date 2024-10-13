@@ -9,7 +9,7 @@ const Page = () => {
     const [subPage, setSubPage] = useState(0);
     const [searchName, setSearchName] = useState("");
     return (
-        <>
+        < div className='relative'>
             {subPage == 0 && (
                 <Search setSearchName={setSearchName} setPage = {setSubPage} />
             )}
@@ -19,7 +19,7 @@ const Page = () => {
             {subPage == 2 && (
                 <MyDomains setPage = {setSubPage} />
             )}
-        </>
+        </div>
     )
 }
 
