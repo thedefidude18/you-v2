@@ -4,7 +4,7 @@ import { domainChains } from '@/utils/constant'
 import { isRegistered, registerDomains } from '@/utils/interact'
 import { Card } from '@mui/material'
 import Image from 'next/image'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useAccount, useConfig } from 'wagmi'
 
 const dExtension = {
@@ -63,13 +63,25 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
 
 
     const config = useConfig();
-    const { chainId } = useAccount();
+    const {address, chainId } = useAccount();
     const [displayCheckout, setDisplayCheckout] = useState(false);
     const [sValue, setSValue] = useState(searchName);
     const stateRecived = useContext(sharedState);
     const { domainCartItems, setDomainCartItems, totalPrice, setTotalPrice } = stateRecived;
     const [sResult, setSResult] = useState([]);
+    // const { address, chainId } = useAccount();
+    // const config = useConfig();
+    const [domains, setDomains] = useState([]);
 
+    useEffect(() => {
+        const initDomains = async () => {
+            const data = await getMyDomains(config, chainId, address);
+            setDomains(data);
+        }
+        if (chainId && domainChains.includes(chainId)) {
+            initDomains();
+        }
+    }, [address, chainId])
     const getPrice = (len) => {
         if (len == 3) return 0.005;
         else if (len == 4) return 0.003;
@@ -157,8 +169,19 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
 
     return (
         <div className='pb-20'>
+            <div className='w-full hidden md:hidden max-sm:flex  sm:flex-row flex-col-reverse sm:gap-10  max-sm:mt-14'>
+                <div className='max-sm:w-full w-[60%] h-full px-2 flex flex-col items-center sm:pt-20 max-sm:pt-12'>
+                    <h1 style={{fontWeight:"600"}} className='text-[36px] leading-[84px] font-semibold font-poppins text-[#423F96] max-sm:w-[98%] w-[80%] text-center max-sm:text-[32px] max-sm:leading-[30px]'>Get .givestation and .youbuidl
+                    web3 domains.</h1>
+                    <h2 className='text-[20px] leading-[30px] md:w-[90%] sm:w-[60%] font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:flex hidden'>Your domain helps people find you on chain and makes a first impression. Find one that represents you perfectly.</h2>
+                    <h2 className='text-[20px] leading-[30px] max-sm:w-[75%] mt-2 font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:hidden flex'>Your domain helps people find you on chain and makes a first impression.</h2>
+                </div>
+                <div className='max-sm:w-full w-[40%] h-full flex max-sm:justify-center'>
+                <Image src={'/domain/Youbuidldomain2.png'} height={171} width={171} alt='img' />
+                </div>
+            </div>
             <div className='w-full'>
-                <div className='w-full flex items-center max-sm:justify-center max-sm:px-5 py-14'>
+                <div className='w-full md:flex items-center max-sm:justify-center max-sm:px-5 py-14 hidden'>
                     <div className="p-2 border border-[#ABB7C2] rounded-full shadow-lg relative sm:w-[596px] w-1/2   placeholder:text-[#949aaf]">
 
                         <input
@@ -178,8 +201,27 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                         Search
                     </button>
                 </div>
+                <div className='w-full md:hidden items-center max-sm:justify-center max-sm:px-5 py-14 flex'>
+                    <div className="relative flex items-center border border-[#ABB7C2] rounded-full w-full max-w-md" style={{ overflow: "hidden" }}>
+                        <input
+                            type="text"
+                            placeholder="Search for a name"
+                            className="w-full  pl-4 py-5 rounded-full text-[#949aaf] placeholder:text-[#949aaf] focus:outline-none"
+                            value={sValue}
+                            onChange={(e) => { setSValue(e.target.value) }}
+                        />
+                        <button className="bg-[#423F96] text-white px-5 py-5  flex items-center justify-center">
+                            <img
+                                src="/domain/searchs.png"
+                                alt="Search"
+                                className="h-6 w-6"
+                            />
+                        </button>
+                    </div>
+                </div>
+
                 <div className='w-full'>
-                    <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] text-left py-2">Search Result</h2>
+                    <h2 className="font-poppins text-[20px] font-medium leading-4 tracking-[0.03em] block text-left py-2 max-sm:hidden">Search Result</h2>
                     <div className=' sm:flex-col md:flex-col lg:flex-row lg:flex justify-between h-fit sm:space-x-4 pr-10'>
                         <div className='flex justify-center pt-10 '>
                         </div>
@@ -209,7 +251,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                                                 </span>
                                                             )}
                                                             {domain.status && (
-                                                                <span className="ml-2 bg-gray-500 text-white px-2 py-1 text-xs rounded-full absolute" style={{ top: "-35%", right: "-35%" }}>
+                                                                <span className="ml-2 bg-[#FF5151] text-white px-2 py-1 text-xs rounded-full absolute" style={{ top: "-35%", right: "-35%" }}>
                                                                     {domain.status && "Unavailable"}
                                                                 </span>
                                                             )}
@@ -245,7 +287,9 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                         )}
 
                                         {!domain.status && !domain.isOnCart && (<Image src={"/domain/CartAddition.svg"} onClick={() => { addCart(domain) }} width={150} height={150} alt="Cart Icon" className="object-contain" style={{ cursor: "pointer" }} />)}
-                                        {domain.status && <Image src={"/domain/DisabledCartImage.svg"} width={150} style={{ cursor: "not-allowed" }} height={150} alt="Cart Icon" className="object-contain" />}
+                                        {domain.status && ("")
+                                        // <Image src={"/domain/DisabledCartImage.svg"} width={150} style={{ cursor: "not-allowed" }} height={150} alt="Cart Icon" className="object-contain" />
+                                        }
                                     </div>
 
 
@@ -288,7 +332,15 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                 </Card>
                             ))}
                         </div> */}
-
+            <div className='hidden max-sm:flex sm:flex md:hidden justify-center pt-10'>
+                <button onClick={() => {
+                    setPage(2)
+                }
+                } className='bg-[#423F96] text-white flex px-4 py-3 gap-2 rounded-md'>
+                    {/* <Image src={'/domain/Ellipse 1.png'} alt='ellipse' width={40} height={40} /> */}
+                    <h2 className='text-[16px]  font-semibold'>My Domain ({domains.length})</h2>
+                </button>
+            </div>
                         <div className='lg:w-[40%] md:w-[100%] sm:w-[100%] md:mt-2 sm:mt-2 max-sm:hidden'>
                             <div className='flex justify-center text-center items-stretch gap-2 mb-2'>
                                 <div className='bg-[#43499E33] text-[#43499E] p-1 rounded-md flex justify-center'>
@@ -300,7 +352,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                     0$ Renewals
                                 </div>
                             </div>
-                            <Card className='max-sm:w-full w-[100%] p-5 min-h-[300px]  shadow-lg' style={{borderRadius:"16px"}}>
+                            <Card className='max-sm:w-full w-[100%] p-5 min-h-[300px]  shadow-lg' style={{ borderRadius: "16px" }}>
                                 <div className='flex flex-col'>
                                     <h4 className="font-poppins max-sm:text-[13px] max-sm:[19.5] text-base font-bold leading-6 text-left pb-6">Domain Order summary </h4>
                                     <div style={{ border: "3px solid #9F9F9F", width: "68px" }}></div>
@@ -319,8 +371,8 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                         <h2 className="font-nunito text-sm font-medium leading-[21.82px] text-right max-sm:text-[15px] max-sm:leading-[20.46px]">{totalPrice} ETH</h2>
                                     </div>
                                 </div>
-                                <div className='mt-2' style={{width:"120%", background:"#ddd", height:"2px", marginLeft:"-10%"}}>
-                        </div>
+                                <div className='mt-2' style={{ width: "120%", background: "#ddd", height: "2px", marginLeft: "-10%" }}>
+                                </div>
                                 <button className='bg-[#423F96] w-full rounded-lg py-2 mt-3' onClick={checkOut}><h2 className="font-poppins text-white text-[18px] font-semibold leading-[27px] text-center">Check Out</h2></button>
                             </Card>
                         </div>
@@ -340,7 +392,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                             0$ Renewals
                         </div>
                     </div>
-                    <Card className='max-sm:w-[90%] w-[100%] p-5 min-h-[300px]  shadow-lg ' style={{borderRadius:"16px"}}>
+                    <Card className='max-sm:w-[90%] w-[100%] p-5 min-h-[300px]  shadow-lg ' style={{ borderRadius: "16px" }}>
                         <div className='flex flex-col'>
                             <h4 className="font-poppins max-sm:text-[13px] max-sm:[19.5] text-base font-bold leading-6 text-left pb-6">Domain Order summary </h4>
                             <div style={{ border: "3px solid #9F9F9F", width: "68px" }}></div>
@@ -359,13 +411,13 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                                 <h2 className="font-nunito text-sm font-medium leading-[21.82px] text-right max-sm:text-[15px] max-sm:leading-[20.46px]">{totalPrice} ETH</h2>
                             </div>
                         </div>
-                        <div className='mt-2' style={{width:"120%", background:"#ddd", height:"2px", marginLeft:"-10%"}}>
+                        <div className='mt-2' style={{ width: "120%", background: "#ddd", height: "2px", marginLeft: "-10%" }}>
                         </div>
                         <button className='bg-[#423F96] w-full rounded-lg py-2 mt-6' onClick={checkOut}><h2 className="font-poppins text-white text-[18px] font-semibold leading-[27px] text-center">Check Out</h2></button>
                     </Card>
                 </div>
             </div>
-            <div className={ `bottom-[0] ${displayCheckout ?"max-sm:hidden":"max-sm:flex"} hidden p-2 justify-evenly items-center w-full sm:hidden max-sm:flex`} style={{ borderTop: "1px solid #777", position: "fixed", background: "#fff" }}>
+            <div className={`bottom-[0] ${displayCheckout ? "max-sm:hidden" : "max-sm:flex"} hidden p-2 justify-evenly items-center w-full sm:hidden max-sm:flex`} style={{ borderTop: "1px solid #777", position: "fixed", background: "#fff" }}>
                 <div>
                     <span>{domainCartItems.length} Domains</span>
                     <h2><span className='text-[#595959]' style={{ fontSize: "20px" }}>Total</span>: {totalPrice} ETH</h2>
