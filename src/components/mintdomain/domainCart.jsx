@@ -171,13 +171,23 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
         <div className='pb-20'>
             <div className='w-full hidden md:hidden max-sm:flex  sm:flex-row flex-col-reverse sm:gap-10  max-sm:mt-14'>
                 <div className='max-sm:w-full w-[60%] h-full px-2 flex flex-col items-center sm:pt-20 max-sm:pt-12'>
-                    <h1 style={{fontWeight:"600"}} className='text-[36px] leading-[84px] font-semibold font-poppins text-[#423F96] max-sm:w-[98%] w-[80%] text-center max-sm:text-[32px] max-sm:leading-[30px]'>Get .givestation and .youbuidl
-                    web3 domains.</h1>
+                    <h1 style={{fontWeight:"bolder"}} className='text-[36px] leading-[84px] font-semibold font-poppins text-[#423F96] max-sm:w-[98%] w-[80%] text-center max-sm:text-[32px] max-sm:leading-[30px]'>Get .givestation and .youbuidl web3 domains.</h1>
                     <h2 className='text-[20px] leading-[30px] md:w-[90%] sm:w-[60%] font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:flex hidden'>Your domain helps people find you on chain and makes a first impression. Find one that represents you perfectly.</h2>
-                    <h2 className='text-[20px] leading-[30px] max-sm:w-[75%] mt-2 font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:hidden flex'>Your domain helps people find you on chain and makes a first impression.</h2>
+                    <h2 style={{fontWeight:"400", lineHeight:"19px"}} className='text-[20px] leading-[30px] max-sm:w-[75%] mt-2 font-semibold text-center max-sm:text-[16px] max-sm:leading-[30px] sm:hidden flex'>Your domain helps people find you on chain and makes a first impression.</h2>
                 </div>
                 <div className='max-sm:w-full w-[40%] h-full flex max-sm:justify-center'>
-                <Image src={'/domain/Youbuidldomain2.png'} height={171} width={171} alt='img' />
+                    <div className='inline-block'>
+                        <div style={{borderRadius:"40px"}} className='bg-black bg-gradient-to-b from-black to-[#4458A8] bg-opacity-20 h-[230.26px] w-[240.99px] pb-5 flex flex-col justify-between rounded-[12px]'>
+                            <div className=' pt-5 w-full justify-start'>
+                                <Image src={'/domain/domainbg.png'} height={69} width={105} alt='img' />
+                            </div>
+                            <div className=' pt-5 w-full' style={{display:"contents"}}>
+                                <Image src={'/domain/RocketImage.svg'} height={85} style={{marginTop:"-20px"}} width={120} alt='img' />
+                            </div>
+                            <h4 className='w-full text-center text-[18px] leading-[22.63px] font-source text-white'>Vitalik.Youbuidl</h4>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <div className='w-full'>
