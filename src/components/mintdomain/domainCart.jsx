@@ -220,7 +220,7 @@ const DomainCart = ({ searchName, setPage = () => { } }) => {
                             value={sValue}
                             onChange={(e) => { setSValue(e.target.value) }}
                         />
-                        <button className="bg-[#423F96] text-white px-5 py-5  flex items-center justify-center">
+                        <button className="bg-[#423F96] text-white px-5 py-5  flex items-center justify-center" onClick={search}>
                             <img
                                 src="/domain/searchs.png"
                                 alt="Search"
