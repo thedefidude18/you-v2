@@ -15,10 +15,13 @@
     "@mui/material": "^5.16.1",
     "@rainbow-me/rainbowkit": "^2.1.2",
     "@tanstack/react-query": "^5.45.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "cheerio": "^1.0.0",
     "formik": "^2.4.6",
+    "mongoose": "^8.9.2",
     "next": "14.2.4",
+    "puppeteer": "^23.11.1",
     "react": "^18",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
@@ -32,5 +35,10 @@
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.40",
     "tailwindcss": "^3.4.7"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "postcss.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

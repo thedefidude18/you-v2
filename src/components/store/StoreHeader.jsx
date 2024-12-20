@@ -23,7 +23,7 @@ const StoreHeader = () => {
 
   const data = [
     { title: "Networks", url: "/Ellipse.svg" },
-    { title: "Insfrastructures", url: "/Ellipse.svg" },
+    { title: "AI Agents", url: "/Ellipse.svg" },
     { title: "Tools", url: "/Ellipse.svg" },
     { title: "Qf Rounds", url: "/Ellipse.svg" },
   ];
