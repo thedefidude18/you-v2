@@ -28,7 +28,6 @@ function Aside({ setOpen, open }) {
 
 
   const Links = [
-
     {
       name: "Home",
       path: "/",
@@ -44,13 +43,11 @@ function Aside({ setOpen, open }) {
       path: "/store",
       icon: <HomeSvg />,
     },
-
     {
-      name: "QF Rounds",
+      name: "Builders",
       path: "/qfrounds",
       icon: <QFround />,
     },
-
     {
       name: "Donation",
       path: "/donation",
@@ -61,7 +58,6 @@ function Aside({ setOpen, open }) {
       path: "/rewards",
       icon: <RewardsSvg />,
     },
-
     {
       name: "Vote",
       path: "/vote",
@@ -82,7 +78,11 @@ function Aside({ setOpen, open }) {
       path: "/docs",
       icon: <DocsSvg />,
     },
-
+    {
+      name: "YouBuidl Social",  // New Link
+      path: "/you-buidl",       // The path where YouBuidl Social will be displayed
+      icon: <HomeSvg />,        // Add an appropriate icon for the YouBuidl Social
+    },
   ];
   return (
     <div className="!w-full ">
